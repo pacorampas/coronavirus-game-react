@@ -98,8 +98,12 @@ const initGame = function(documentId) {
   
   function create() {
     this.ownVars = {
-      time: 0
+      time: 0,
+      velocity: GLOB_VELOCITY
     }
+    // + 1 is a player
+    globalCollectData.setTotals(BALLS_LENGTH + 1)
+    
     // this.physics.world.setBounds(50, 50, 700, 500);
   
     // graphics = this.add.graphics();
@@ -110,6 +114,7 @@ const initGame = function(documentId) {
     this.ownVars.player = player
   
     balls = new BallsClass(this, GLOB_VELOCITY, BALLS_LENGTH)
+
     
     const handleGameOver = () => {
       console.log(globalCollectData.getData())

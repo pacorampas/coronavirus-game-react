@@ -123,7 +123,7 @@ const setSocialDistancingItem = function(
             callback: () => {
               const isPositive = Phaser.Math.Between(0, 1)
               ball.setVelocity(
-                isPositive ? GLOB_VELOCITY * -1 : GLOB_VELOCITY
+                isPositive ? this.ownVars.velocity * -1 : this.ownVars.velocity
               )
               ball.setImmovable(false)
             },
