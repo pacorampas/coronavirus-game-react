@@ -68,6 +68,7 @@ class PlayerClass {
   collideWithBall(balls, onGameOver) {
     this.scene.physics.add.collider(this.player, balls, (_player, _ball) => {
       const playerData = _player.getData('player') || {}
+      const gameTime = this.scene.ownVars.time
   
       if (_ball.getData('infected')) {
         if (playerData.mask) {
@@ -75,11 +76,16 @@ class PlayerClass {
           _player.setData('player', playerData)
           PlayerClass.updateTexture(_player)
         } else if (playerData.respirator) {
-          BallsClass.uninfectABall(_ball) 
+          BallsClass.uninfectABall({ ball: _ball, gameTime, byPlayer: true }) 
           playerData.respirator = false
           _player.setData('player', playerData)
           PlayerClass.updateTexture(_player)
         } else {
+
+          const EVENTS = globalCollectData.getEventsConst()
+          const event = EVENTS.playerInfected
+          globalCollectData.set({ event, gameTime })
+
           _player.destroy()
           const gameOverText = this.scene.add.text(0, this.scene.game.config.height / 2)
           gameOverText.setStyle({

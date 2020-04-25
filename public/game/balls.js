@@ -29,12 +29,16 @@ class BallsClass {
 
       // ball.anims.play('player_walk_down')
 
-      BallsClass.uninfectABall(ball)
+      BallsClass.uninfectABall({ ball, noSave: true })
 
       this.directions.setAnimationByDirection(ball)
     })
 
-    BallsClass.infectABall(this.balls.getChildren()[0])
+    const gameTime = this.scene.ownVars.time
+    BallsClass.infectABall({ 
+      ball: this.balls.getChildren()[0],  
+      gameTime
+    })
 
     this.ballCollideWithBall()
   }
@@ -43,22 +47,36 @@ class BallsClass {
     return this.balls
   }
 
-  static infectABall(ball) {
+  static infectABall({ ball, gameTime }) {
+    const EVENTS = globalCollectData.getEventsConst()
+
     ball.setData('infected', true)
     ball.setTint('0xd1045a')
+    
+    globalCollectData.set({ event: EVENTS.ballInfected, gameTime })
   }
 
-  static uninfectABall(ball) {
+  static uninfectABall({ ball, gameTime, noSave, byPlayer }) {
+    
     ball.setData('infected', false)
     ball.setTint('0xfa5fd6')
+    
+    if (noSave) {
+      return
+    }
+
+    const EVENTS = globalCollectData.getEventsConst()
+    const event = (byPlayer && EVENTS.ballRecoveredByPlayer) || EVENTS.ballRecovered
+    globalCollectData.set({ event, gameTime })
   }
   
   ballCollideWithBall() {
     this.scene.physics.add.collider(this.balls, this.balls, (_ballA, _ballB) => {
+      const gameTime = this.scene.ownVars.time
       if (_ballA.getData('infected') && !_ballB.getData('infected')) {
-        BallsClass.infectABall(_ballB)
+        BallsClass.infectABall({ ball: _ballB, gameTime })
       } else if (_ballB.getData('infected') && !_ballA.getData('infected')) {
-        BallsClass.infectABall(_ballA)
+        BallsClass.infectABall({ ball: _ballA, gameTime })
       }
 
       this.directions.setAnimationByDirection(_ballA)

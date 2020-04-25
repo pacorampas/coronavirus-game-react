@@ -53,7 +53,7 @@ const initGame = function(documentId) {
     },
   }
   
-  const BALLS_LENGTH = 1
+  const BALLS_LENGTH = 14
   
   var player
   let GLOB_VELOCITY = 100
@@ -97,7 +97,9 @@ const initGame = function(documentId) {
   }
   
   function create() {
-    this.ownVars = {}
+    this.ownVars = {
+      time: 0
+    }
     // this.physics.world.setBounds(50, 50, 700, 500);
   
     // graphics = this.add.graphics();
@@ -110,7 +112,7 @@ const initGame = function(documentId) {
     balls = new BallsClass(this, GLOB_VELOCITY, BALLS_LENGTH)
     
     const handleGameOver = () => {
-      GLOB_VELOCITY = 100
+      console.log(globalCollectData.getData())
     }
     
     player.collideWithBall(balls.getGroup(), handleGameOver)
@@ -137,8 +139,7 @@ const initGame = function(documentId) {
     } else {
       cursors = this.input.keyboard.createCursorKeys()
     }
-    
-    this.ownVars.time = 0
+  
     timerNextItem.bind(this)(BALLS_LENGTH)
     timer.bind(this)()
   }
