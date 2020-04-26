@@ -36,7 +36,7 @@ function App() {
     
   useEffect(() => {
     // eslint-disable-next-line no-undef
-    const game = initGame('coronavirus-game', 40, true)
+    const game = initGame('coronavirus-game', 40, false, true)
 
     globalCollectData.onChangeData(data => {
       const dataPrepared = prepateDataToChart(data)

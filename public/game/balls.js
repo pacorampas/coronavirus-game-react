@@ -15,9 +15,10 @@ class BallsClass {
       velocityY: velocity,
     })
 
-    Phaser.Actions.RandomRectangle(this.balls.getChildren(), scene.physics.world.bounds)
+    const ballsChildren = this.balls.getChildren()
+    Phaser.Actions.RandomRectangle(ballsChildren, scene.physics.world.bounds)
 
-    this.balls.getChildren().forEach((ball) => {
+    ballsChildren.forEach((ball) => {
       ball.setSize(200, 200, true)
       ball.setDisplaySize(40, 40)
   
@@ -36,7 +37,7 @@ class BallsClass {
 
     const gameTime = this.scene.ownVars.time
     BallsClass.infectABall({ 
-      ball: this.balls.getChildren()[0],  
+      ball: ballsChildren[ballsChildren.length - 1],  
       gameTime,
       scene: this.scene
     })

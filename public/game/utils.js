@@ -10,15 +10,17 @@ const timer = function() {
   this.time.addEvent({
     delay: 1000,
     callback: () => {
+      // TODO GAME OVER TIME STOP
       // if (player && !player.get().active) {
       //   return
       // }
 
       const newTime = time + 1
       this.ownVars.time = newTime
+      const timeScaleDisable = this.ownVars.timeScaleDisable
       const a = newTime % 5
 
-      if (a === 0 && this.physics.world.timeScale >= 0.2) {
+      if (!timeScaleDisable && a === 0 && this.physics.world.timeScale >= 0.2) {
         this.physics.world.timeScale -= 0.02;
       }
 

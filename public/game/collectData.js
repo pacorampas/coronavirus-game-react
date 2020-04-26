@@ -81,7 +81,6 @@ class CollectData {
   }
 
   _notifyChangeData(data) {
-    console.log(this.onChangeCallbacks)
     this.onChangeCallbacks.forEach(cb => cb(data))
   }
   

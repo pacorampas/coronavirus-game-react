@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* global dat */
-const initGame = function(documentId, ballsLength, playerDisbaled) {
+const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisable) {
   var config = {
     type: Phaser.AUTO,
     width: 1000,
@@ -99,7 +99,8 @@ const initGame = function(documentId, ballsLength, playerDisbaled) {
   function create() {
     this.ownVars = {
       time: 0,
-      velocity: GLOB_VELOCITY
+      velocity: GLOB_VELOCITY,
+      timeScaleDisable
     }
     // + 1 is a player
     globalCollectData.setTotals(BALLS_LENGTH + 1)
@@ -153,7 +154,7 @@ const initGame = function(documentId, ballsLength, playerDisbaled) {
     }
     timer.bind(this)()
 
-    socialDistancigNoPlayer.bind(this)(30, 1)
+    socialDistancigNoPlayer.bind(this)(0, 1)
   }
   
   function update(time) {
