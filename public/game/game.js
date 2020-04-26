@@ -5,7 +5,7 @@ const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisa
     type: Phaser.AUTO,
     width: 1000,
     height: 600,
-    backgroundColor: 0x222222,
+    backgroundColor: 0xf9f9f9,
     parent: documentId,
     dom: {
       createContainer: true,
@@ -70,6 +70,9 @@ const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisa
         true
       )
     }
+
+    this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
+
   
     this.load.image('ball', 'game/assets/person.png')
     this.load.image('infected', 'game/assets/infected.png')
@@ -97,6 +100,17 @@ const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisa
   }
   
   function create() {
+    // fonts
+    WebFont.load({
+      custom: {
+          families: ['Montserrat', 'Montserrat-bold']
+      },
+      active: function (a)
+      {
+        console.log('fonts active!')
+      }
+    });
+
     this.ownVars = {
       time: 0,
       velocity: GLOB_VELOCITY,
@@ -117,7 +131,7 @@ const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisa
     }
   
     balls = new BallsClass(this, GLOB_VELOCITY, BALLS_LENGTH)
-
+    this.ownVars.balls = balls
     
     const handleGameOver = () => {
       console.log(globalCollectData.getData())
@@ -157,11 +171,7 @@ const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisa
     socialDistancigNoPlayer.bind(this)(0, 1)
   }
   
-  function update(time) {
-    this.physics.world.wrap(balls.getGroup())
-  
-    // graphics.clear().fillStyle(0).fillRectShape(this.physics.world.bounds);
-    
+  function update(time) {  
     if (!playerDisbaled) {
       player.inputs(cursors, time)
     }

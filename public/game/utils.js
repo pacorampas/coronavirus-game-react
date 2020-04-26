@@ -2,18 +2,28 @@
 const timer = function() {
   const { player, time } = this.ownVars
   if (!this.ownVars.timeText) {
-    this.ownVars.timeText = this.add.text(2, 2)
+    this.ownVars.timeText = this.add.text(12, 12)
   }
   timeText = this.ownVars.timeText
 
-  timeText.setText(`Time: ${time}`)
+  timeText.setText(`${time}s`)
+  timeText.setStyle({
+    fontFamily: 'Montserrat-bold',
+    fontSize: '24px',
+    fill: '#333333',
+    align: 'right'
+  })
+  timeText.setAlpha(0.9);
+
+  
+
   this.time.addEvent({
     delay: 1000,
     callback: () => {
       // TODO GAME OVER TIME STOP
-      // if (player && !player.get().active) {
-      //   return
-      // }
+      if (player && !player.get().active) {
+        return
+      }
 
       const newTime = time + 1
       this.ownVars.time = newTime
