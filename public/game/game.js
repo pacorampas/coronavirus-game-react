@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* global dat */
-const initGame = function(documentId) {
+const initGame = function(documentId, ballsLength, playerDisbaled) {
   var config = {
     type: Phaser.AUTO,
     width: 1000,
@@ -53,7 +53,7 @@ const initGame = function(documentId) {
     },
   }
   
-  const BALLS_LENGTH = 14
+  const BALLS_LENGTH = ballsLength
   
   var player
   let GLOB_VELOCITY = 100
@@ -109,9 +109,11 @@ const initGame = function(documentId) {
     // graphics = this.add.graphics();
   
     borders = new Borders(this)
-  
-    player = new PlayerClass(this, GLOB_VELOCITY)
-    this.ownVars.player = player
+    
+    if (!playerDisbaled) {
+      player = new PlayerClass(this, GLOB_VELOCITY)
+      this.ownVars.player = player
+    }
   
     balls = new BallsClass(this, GLOB_VELOCITY, BALLS_LENGTH)
 
@@ -119,42 +121,49 @@ const initGame = function(documentId) {
     const handleGameOver = () => {
       console.log(globalCollectData.getData())
     }
-    
-    player.collideWithBall(balls.getGroup(), handleGameOver)
+    if (!playerDisbaled) {
+      player.collideWithBall(balls.getGroup(), handleGameOver)
+      borders.collideWith([player.get()], (_border, _player) => {
+        player.setAnimationByDirection()
+      })
+    }
     borders.collideWith([balls.getGroup()], (_border, _ball) => {
       balls.setAnimationByDirection(_ball)
-    })
-    borders.collideWith([player.get()], (_border, _player) => {
-      player.setAnimationByDirection()
     })
     
   
     //createWorldGui(this.physics.world);
-  
-    if (isMobile(this)) {
-      joystick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-        x: config.width - 60 - 40,
-        y: config.height - 60 - 40,
-        dir: '4dir',
-        radius: 60,
-        base: this.add.circle(0, 0, 60, 0x888888),
-        thumb: this.add.circle(0, 0, 30, 0xcccccc),
-      })
-      cursors = joystick.createCursorKeys()
-    } else {
-      cursors = this.input.keyboard.createCursorKeys()
+    
+    if (!playerDisbaled) {
+      if (isMobile(this)) {
+        joystick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
+          x: config.width - 60 - 40,
+          y: config.height - 60 - 40,
+          dir: '4dir',
+          radius: 60,
+          base: this.add.circle(0, 0, 60, 0x888888),
+          thumb: this.add.circle(0, 0, 30, 0xcccccc),
+        })
+        cursors = joystick.createCursorKeys()
+      } else {
+        cursors = this.input.keyboard.createCursorKeys()
+      }
+    
+      timerNextItem.bind(this)(BALLS_LENGTH)
     }
-  
-    timerNextItem.bind(this)(BALLS_LENGTH)
     timer.bind(this)()
+
+    socialDistancigNoPlayer.bind(this)(30, 1)
   }
   
   function update(time) {
     this.physics.world.wrap(balls.getGroup())
   
     // graphics.clear().fillStyle(0).fillRectShape(this.physics.world.bounds);
-  
-    player.inputs(cursors, time)
+    
+    if (!playerDisbaled) {
+      player.inputs(cursors, time)
+    }
   }
   
   function createWorldGui(world) {

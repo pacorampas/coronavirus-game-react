@@ -37,7 +37,8 @@ class BallsClass {
     const gameTime = this.scene.ownVars.time
     BallsClass.infectABall({ 
       ball: this.balls.getChildren()[0],  
-      gameTime
+      gameTime,
+      scene: this.scene
     })
 
     this.ballCollideWithBall()
@@ -47,13 +48,29 @@ class BallsClass {
     return this.balls
   }
 
-  static infectABall({ ball, gameTime }) {
+  static infectABall({ ball, gameTime, scene }) {
     const EVENTS = globalCollectData.getEventsConst()
 
     ball.setData('infected', true)
     ball.setTint('0xd1045a')
     
     globalCollectData.set({ event: EVENTS.ballInfected, gameTime })
+
+    scene.time.addEvent({
+      delay: 10000,
+      callback: () => {
+        if (ball.getData('recovered')) {
+          return
+        }
+        BallsClass.recoverABall({ 
+          ball,  
+          gameTime: scene.ownVars.time
+        })
+      },
+      //args: [],
+      callbackScope: this,
+      loop: false,
+    })
   }
 
   static uninfectABall({ ball, gameTime, noSave, byPlayer }) {
@@ -69,14 +86,25 @@ class BallsClass {
     const event = (byPlayer && EVENTS.ballRecoveredByPlayer) || EVENTS.ballRecovered
     globalCollectData.set({ event, gameTime })
   }
+
+  static recoverABall({ ball, gameTime, byPlayer }) {
+    
+    ball.setData('infected', false)
+    ball.setData('recovered', true)
+    ball.setTint('0x00ff00')
+
+    const EVENTS = globalCollectData.getEventsConst()
+    const event = (byPlayer && EVENTS.ballRecoveredByPlayer) || EVENTS.ballRecovered
+    globalCollectData.set({ event, gameTime })
+  }
   
   ballCollideWithBall() {
     this.scene.physics.add.collider(this.balls, this.balls, (_ballA, _ballB) => {
       const gameTime = this.scene.ownVars.time
-      if (_ballA.getData('infected') && !_ballB.getData('infected')) {
-        BallsClass.infectABall({ ball: _ballB, gameTime })
-      } else if (_ballB.getData('infected') && !_ballA.getData('infected')) {
-        BallsClass.infectABall({ ball: _ballA, gameTime })
+      if (_ballA.getData('infected') && !_ballB.getData('infected') && !_ballB.getData('recovered')) {
+        BallsClass.infectABall({ ball: _ballB, gameTime, scene: this.scene })
+      } else if (_ballB.getData('infected') && !_ballA.getData('infected') && !_ballA.getData('recovered')) {
+        BallsClass.infectABall({ ball: _ballA, gameTime, scene: this.scene })
       }
 
       this.directions.setAnimationByDirection(_ballA)

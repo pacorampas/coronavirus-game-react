@@ -10,9 +10,9 @@ const timer = function() {
   this.time.addEvent({
     delay: 1000,
     callback: () => {
-      if (!player.get().active) {
-        return
-      }
+      // if (player && !player.get().active) {
+      //   return
+      // }
 
       const newTime = time + 1
       this.ownVars.time = newTime

@@ -76,7 +76,7 @@ const setRespirator = function() {
 
 const setSocialDistancingItem = function(
   howManyShouldBeStopped,
-  textureImageForItem
+  textureImageForItem,
 ) {
   const player = this.ownVars.player
   const widthObject = 40
@@ -137,6 +137,15 @@ const setSocialDistancingItem = function(
       timerNextItem.bind(this)()
     }
   )
+}
+
+const socialDistancigNoPlayer = function(howManyShouldBeStopped) {
+  balls.getGroup().getChildren().forEach((ball, i) => {
+    if (howManyShouldBeStopped > i) {
+      ball.setVelocity(0)
+      ball.setImmovable(true)
+    }
+  })
 }
 
 const setQuarentineWall = function() {
