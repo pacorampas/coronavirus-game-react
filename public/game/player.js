@@ -2,6 +2,10 @@
 class PlayerClass {
   directions = directionsUtil
   powerUpsButton
+
+  SOCIAL_DISTANCING_LENGTH = 20
+  SOCIAL_DISTANCING_TIMER = 10
+
   constructor(scene, velocity) {
     this.scene = scene
     this.velocity = velocity
@@ -187,6 +191,15 @@ class PlayerClass {
     }
   }
 
+  inputKeysActions() {
+    this.scene.input.keyboard.on('keydown-Q', event => {
+      socialDistancigAction.bind(this.scene)(this.SOCIAL_DISTANCING_LENGTH, this.SOCIAL_DISTANCING_TIMER)
+    })
+    this.scene.input.keyboard.on('keydown-W', event => {
+      // wall
+    })
+  }
+
   static updateTexture(player) {
     const data = player.getData('player')
 
@@ -235,7 +248,7 @@ class PlayerClass {
 
     this.sprintEnable = false
     this.powerUpsButton.setText('Recharching...')
-    this.setNewVelocity(this.velocity * 2)
+    this.setNewVelocity(this.velocity * 2.5)
     setTimeout(() => {
       this.setNewVelocity(this.velocity)
       setTimeout(() => {
@@ -243,7 +256,7 @@ class PlayerClass {
         this.powerUpsButton.setText('Sprint')
         this.sprintEnable = true
       }, 5000)
-    }, 500)
+    }, 250)
   }
 
 }

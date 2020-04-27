@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* global dat */
-const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisable) {
+const initGame = function(documentId, ballsLength, socialDistancingLength, playerDisbaled, timeScaleDisable) {
   var config = {
     type: Phaser.AUTO,
     width: 1000,
@@ -160,15 +160,19 @@ const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisa
           thumb: this.add.circle(0, 0, 30, 0xcccccc),
         })
         cursors = joystick.createCursorKeys()
+        // mobile buttons, like sprint
       } else {
         cursors = this.input.keyboard.createCursorKeys()
+        player.inputKeysActions()
       }
     
       timerNextItem.bind(this)(BALLS_LENGTH)
     }
     timer.bind(this)()
 
-    socialDistancigNoPlayer.bind(this)(30, 1)
+    if (socialDistancingLength && socialDistancingLength > 0) {
+      socialDistancigAction.bind(this)(socialDistancingLength)
+    }
   }
   
   function update(time) {  

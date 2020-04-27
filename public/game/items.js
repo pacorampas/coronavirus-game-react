@@ -139,15 +139,6 @@ const setSocialDistancingItem = function(
   )
 }
 
-const socialDistancigNoPlayer = function(howManyShouldBeStopped) {
-  balls.getGroup().getChildren().forEach((ball, i) => {
-    if (howManyShouldBeStopped > i) {
-      ball.setVelocity(0)
-      ball.setImmovable(true)
-    }
-  })
-}
-
 const setQuarentineWall = function() {
   const player = this.ownVars.player
   const widthObject = 20
