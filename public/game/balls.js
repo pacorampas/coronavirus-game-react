@@ -19,8 +19,8 @@ class BallsClass {
     Phaser.Actions.RandomRectangle(ballsChildren, scene.physics.world.bounds)
 
     ballsChildren.forEach((ball) => {
-      ball.setSize(200, 200, true)
-      ball.setDisplaySize(40, 40)
+      ball.setSize(60, 60, true)
+      ball.setDisplaySize(24, 24)
   
       if (Phaser.Math.Between(0, 1) === 1) {
         ball.setVelocity(this.velocity * -1)
@@ -53,7 +53,7 @@ class BallsClass {
     const EVENTS = globalCollectData.getEventsConst()
 
     ball.setData('infected', true)
-    ball.setTint('0xd1045a')
+    ball.setTexture('infected')
     
     globalCollectData.set({ event: EVENTS.ballInfected, gameTime })
 
@@ -77,7 +77,6 @@ class BallsClass {
   static uninfectABall({ ball, gameTime, noSave, byPlayer }) {
     
     ball.setData('infected', false)
-    ball.setTint('0xfa5fd6')
     
     if (noSave) {
       return
@@ -92,7 +91,7 @@ class BallsClass {
     
     ball.setData('infected', false)
     ball.setData('recovered', true)
-    ball.setTint('0x00ff00')
+    ball.setTintFill('0x00ff00')
 
     const EVENTS = globalCollectData.getEventsConst()
     const event = (byPlayer && EVENTS.ballRecoveredByPlayer) || EVENTS.ballRecovered

@@ -5,7 +5,7 @@ const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisa
     type: Phaser.AUTO,
     width: 1000,
     height: 600,
-    backgroundColor: 0xf9f9f9,
+    backgroundColor: 0xfafafa,
     parent: documentId,
     dom: {
       createContainer: true,
@@ -168,7 +168,7 @@ const initGame = function(documentId, ballsLength, playerDisbaled, timeScaleDisa
     }
     timer.bind(this)()
 
-    socialDistancigNoPlayer.bind(this)(0, 1)
+    socialDistancigNoPlayer.bind(this)(30, 1)
   }
   
   function update(time) {  

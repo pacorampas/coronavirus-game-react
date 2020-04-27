@@ -9,9 +9,8 @@ class PlayerClass {
     this.player = this.initSprite()
 
     this.player.setVelocity(0, velocity)
-    this.player.setSize(200, 200, true)
-    this.player.setDisplaySize(40, 40)
-    this.player.setTint('0x666666')
+    this.player.setSize(60, 60, true)
+    this.player.setDisplaySize(24, 24)
     // not needed because we have a borders created with objects body
     this.player.setCollideWorldBounds(true)
 
