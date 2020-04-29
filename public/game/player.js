@@ -191,12 +191,17 @@ class PlayerClass {
     }
   }
 
+  wallEnabled = true
   inputKeysActions() {
     this.scene.input.keyboard.on('keydown-Q', event => {
       socialDistancigAction.bind(this.scene)(this.SOCIAL_DISTANCING_LENGTH, this.SOCIAL_DISTANCING_TIMER)
     })
     this.scene.input.keyboard.on('keydown-W', event => {
-      // wall
+      if (!this.wallEnabled) {
+        return
+      }
+      this.wallEnabled = false
+      quarentineWallAction.bind(this.scene)(() => this.wallEnabled = true)
     })
   }
 

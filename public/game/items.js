@@ -10,7 +10,7 @@ const timerNextItem = function(ballsLength) {
 }
 
 const randomNextItem = function(ballsLength) {
-  const rand = Phaser.Math.Between(0, 4)
+  const rand = Phaser.Math.Between(0, 3)
 
   switch (rand) {
     case 0:
@@ -27,9 +27,9 @@ const randomNextItem = function(ballsLength) {
       // social distancing
       setSocialDistancingItem.bind(this)(Math.floor(ballsLength / 4))
       return
-    case 4:
-      setQuarentineWall.bind(this)()
-      return
+    // case 4:
+    //   setQuarentineWall.bind(this)()
+    //   return
   }
 }
 
@@ -139,74 +139,3 @@ const setSocialDistancingItem = function(
   )
 }
 
-const setQuarentineWall = function() {
-  const player = this.ownVars.player
-  const widthObject = 20
-
-  // if the world is landscape or portrait
-  // landscape set wall vetical
-  // portrait set wall horizontal
-  const isLandscape = this.game.config.width >= this.game.config.height
-  let line
-  // add 10 because without this the line stars with -10 when is used with PlaceOnLine
-  const addPixels = 10
-  if (isLandscape) {
-    const max = this.game.config.width - (widthObject + 100)
-    const x = Phaser.Math.Between(100, max)
-    line = new Phaser.Geom.Line(
-      x,
-      0 + addPixels,
-      x,
-      this.game.config.height + addPixels
-    )
-  } else {
-    const max = this.game.config.height - (widthObject + 100)
-    const y = Phaser.Math.Between(100, max)
-    line = new Phaser.Geom.Line(
-      0 + addPixels,
-      y,
-      this.game.config.width + addPixels,
-      y
-    )
-  }
-
-  let howManyBocks
-  if (isLandscape) {
-    howManyBocks = Math.ceil(this.game.config.height / widthObject)
-  } else {
-    howManyBocks = Math.ceil(this.game.config.width / widthObject)
-  }
-
-  const blocks = this.physics.add.group({
-    key: 'solid_block',
-    frameQuantity: howManyBocks,
-    collideWorldBounds: true,
-    bounceX: 1,
-    bounceY: 1,
-    velocityX: 0,
-    velocityY: 0,
-    immovable: true,
-  })
-
-  blocks.getChildren().forEach((block) => {
-    block.setDisplaySize(widthObject, widthObject)
-  })
-
-  Phaser.Actions.PlaceOnLine(blocks.getChildren(), line)
-
-  this.physics.add.collider(blocks, player.get(), () => {
-    player.setAnimationByDirection()
-  })
-  this.physics.add.collider(blocks, balls.getGroup())
-
-  this.time.addEvent({
-    delay: 5000,
-    callback: () => {
-      blocks.clear(true, true)
-      timerNextItem.bind(this)()
-    },
-    //args: [],
-    callbackScope: this,
-    loop: false,
-  })
-}
