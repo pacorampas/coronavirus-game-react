@@ -6,6 +6,8 @@ class PlayerClass {
   SOCIAL_DISTANCING_LENGTH = 20
   SOCIAL_DISTANCING_TIMER = 10
 
+  SPRINT_INCREMENT = this.SPRINT_INCREMENT
+
   constructor(scene, velocity) {
     this.scene = scene
     this.velocity = velocity
@@ -240,8 +242,15 @@ class PlayerClass {
     if (right) {
       this.player.setVelocityX(newVelovity)
     } else if (left) {
-      console.log('left')
       this.player.setVelocityX(newVelovity * -1)
+    }
+  }
+
+  setDefaultVelocity() {
+    if (this.sprintEnable) {
+      this.setNewVelocity(this.velocity * this.SPRINT_INCREMENT)
+    } else {
+      this.setNewVelocity(this.velocity)
     }
   }
 
@@ -253,7 +262,7 @@ class PlayerClass {
 
     this.sprintEnable = false
     this.powerUpsButton.setText('Recharching...')
-    this.setNewVelocity(this.velocity * 2.5)
+    this.setNewVelocity(this.velocity * this.SPRINT_INCREMENT)
     setTimeout(() => {
       this.setNewVelocity(this.velocity)
       setTimeout(() => {

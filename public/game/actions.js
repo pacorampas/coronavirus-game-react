@@ -30,7 +30,8 @@ const socialDistancigAction = function(howManyShouldBeStopped, timer) {
 
 const quarentineWallAction = function(cb) {
   const max = this.game.config.width - 200
-  const x = Phaser.Math.Between(200, max)
+  // const x = Phaser.Math.Between(200, max)
+  const x = this.game.config.width / 2
 
   const w = 4 
   const h = this.game.config.height / 2
@@ -70,8 +71,12 @@ const quarentineWallAction = function(cb) {
   const colliders = []
   colliders.push(this.physics.add.collider(r1, this.ownVars.player.get()))
   colliders.push(this.physics.add.collider(r2, this.ownVars.player.get()))
-  colliders.push(this.physics.add.collider(r1, balls.getGroup()))
-  colliders.push(this.physics.add.collider(r2, balls.getGroup()))
+  colliders.push(this.physics.add.collider(r1, balls.getGroup(), (_r1, _ball) => {
+    balls.setDefaultVelocity(_ball)
+  }))
+  colliders.push(this.physics.add.collider(r2, balls.getGroup(), (_r1, _ball) => {
+    balls.setDefaultVelocity(_ball)
+  }))
 
   this.time.addEvent({
     delay: 30000,

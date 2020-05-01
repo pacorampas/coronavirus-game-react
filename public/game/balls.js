@@ -116,4 +116,25 @@ class BallsClass {
     this.directions.setAnimationByDirection(ball)
   }
 
+  setDefaultVelocity(ball) {
+    const { x, y } = ball.body.velocity
+
+    const up = y < 0
+    const down = y > 0
+    const right = x > 0
+    const left = x < 0
+
+    if (up) {
+      ball.setVelocityY(this.velocity * -1)
+    } else if (down) {
+      ball.setVelocityY(this.velocity)
+    }
+
+    if (right) {
+      ball.setVelocityX(this.velocity)
+    } else if (left) {
+      ball.setVelocityX(this.velocity * -1)
+    }
+  }
+
 }
