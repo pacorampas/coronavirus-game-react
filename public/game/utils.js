@@ -27,12 +27,6 @@ const timer = function() {
 
       const newTime = time + 1
       this.ownVars.time = newTime
-      const timeScaleDisable = this.ownVars.timeScaleDisable
-      const a = newTime % 5
-
-      if (!timeScaleDisable && a === 0 && this.physics.world.timeScale >= 0.2) {
-        this.physics.world.timeScale -= 0.02;
-      }
 
       timer.bind(this)()
     },
@@ -190,25 +184,50 @@ class DirectionsUtilClass {
 
 const directionsUtil = new DirectionsUtilClass()
 
-// class TimeBar extends Phaser.GameObjects.Image {
+class WavesManager {
+  wave = 1
+  waveText
 
-//   constructor (scene, x, y, myExtra) {
-//       super(scene, x, y)
-//       this.myExtra = myExtra
-//       this.setTexture('cachedtexturekey')
-//       this.setPosition(x, y)
-//   }
-  
-//   preload() {
+  constructor({ scene }) {
+    this.scene = scene
+  }
 
-//   }
-  
-//   create() {
+  initText() {
+    this.waveText = this.scene.add.text(0, 12)
+    this.waveText.setStyle({
+      fontFamily: 'Montserrat-bold',
+      fontSize: '24px',
+      fill: '#333333',
+      align: 'center',
+      fixedWidth: this.scene.game.config.width,
+    })
+    this.updateWaveText()
+  }
 
-//   } 
-  
-//   preUpdate (time, delta) {
-//     // do stuff with this.myExtra
-//   }
+  shouldTheWaveIncrement(balls) {
+    const children = balls.getGroup().getChildren()
+    if (children.every(ball => !ball.getData('infected'))) {
+      this.wave += 1
+      balls.uninfectAll()
+      balls.infectABall({ ball: children[0] })
+      this.incrementGameVelocity()
+      this.updateWaveText()
+    }
+  }
 
-// }
+  incrementGameVelocity() {
+    const timeScaleDisable = this.scene.ownVars.timeScaleDisable
+    const world = this.scene.physics.world
+
+    if (!timeScaleDisable && world.timeScale >= 0.2) {
+      world.timeScale -= 0.1;
+    }
+  }
+
+  updateWaveText() {
+    if (!this.waveText) {
+      return
+    }
+    this.waveText.setText(`OLEADA ${this.wave}`)
+  }
+}

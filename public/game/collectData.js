@@ -3,7 +3,8 @@ class CollectData {
     ballInfected: 1,
     ballRecovered: 2,
     ballRecoveredByPlayer: 3,
-    playerInfected: 4
+    playerInfected: 4,
+    resetBallsByWave: 5
   }
 
   data = {}
@@ -21,7 +22,7 @@ class CollectData {
     }
   }
 
-  reset() {
+  WaveData() {
     this.data = {}
   }
 
@@ -50,6 +51,19 @@ class CollectData {
     this.data[Date.now()] = {
       gameTime,
       event,
+      ...this.totals
+    }
+
+    this._notifyChangeData(this.data)
+  }
+
+  resetWaveData({ gameTime }) {
+    this.totals.infected = 0
+    this.totals.recovered = this.totals.length
+
+    this.data[Date.now()] = {
+      gameTime,
+      event: this.EVENTS.resetBallsByWave,
       ...this.totals
     }
 

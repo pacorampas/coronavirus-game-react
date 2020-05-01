@@ -1,13 +1,11 @@
 /* eslint-disable no-unused-vars */
 const socialDistancigAction = function(howManyShouldBeStopped, timer) {
-  console.log('pepeee', howManyShouldBeStopped, timer)
   balls.getGroup().getChildren().forEach((ball, i) => {
     if (howManyShouldBeStopped > i) {
       ball.setVelocity(0)
       ball.setImmovable(true)
       
       if (timer && timer > 0) {
-        console.log('pasooo!!!')
         this.time.addEvent({
           delay: 5000,
           callback: () => {

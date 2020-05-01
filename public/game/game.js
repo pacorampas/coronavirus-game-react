@@ -100,6 +100,14 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
   }
   
   function create() {
+    const wavesManager = new WavesManager({ scene: this })
+
+    this.ownVars = {
+      time: 0,
+      velocity: GLOB_VELOCITY,
+      timeScaleDisable,
+      wavesManager
+    }
     // fonts
     WebFont.load({
       custom: {
@@ -108,14 +116,10 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       active: function (a)
       {
         console.log('fonts active!')
+        wavesManager.initText()
       }
     });
 
-    this.ownVars = {
-      time: 0,
-      velocity: GLOB_VELOCITY,
-      timeScaleDisable
-    }
     // + 1 is a player
     globalCollectData.setTotals(BALLS_LENGTH + 1)
     
@@ -137,7 +141,7 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       console.log(globalCollectData.getData())
     }
     if (!playerDisbaled) {
-      player.collideWithBall(balls.getGroup(), handleGameOver)
+      player.collideWithBall(balls, handleGameOver)
       borders.collideWith([player.get()], (_border, _player) => {
         player.setAnimationByDirection()
       })
