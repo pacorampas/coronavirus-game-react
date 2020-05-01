@@ -69,8 +69,12 @@ const quarentineWallAction = function(cb) {
   })
   
   const colliders = []
-  colliders.push(this.physics.add.collider(r1, this.ownVars.player.get()))
-  colliders.push(this.physics.add.collider(r2, this.ownVars.player.get()))
+  colliders.push(this.physics.add.collider(r1, this.ownVars.player.get(), (_r1, _player) => {
+    this.ownVars.player.setDefaultVelocity()
+  }))
+  colliders.push(this.physics.add.collider(r2, this.ownVars.player.get(), (_r1, _player) => {
+    this.ownVars.player.setDefaultVelocity()
+  }))
   colliders.push(this.physics.add.collider(r1, balls.getGroup(), (_r1, _ball) => {
     balls.setDefaultVelocity(_ball)
   }))

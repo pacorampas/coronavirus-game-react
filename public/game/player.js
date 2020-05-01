@@ -6,7 +6,7 @@ class PlayerClass {
   SOCIAL_DISTANCING_LENGTH = 20
   SOCIAL_DISTANCING_TIMER = 10
 
-  SPRINT_INCREMENT = this.SPRINT_INCREMENT
+  SPRINT_INCREMENT = 2.5
 
   constructor(scene, velocity) {
     this.scene = scene
@@ -211,11 +211,11 @@ class PlayerClass {
     const data = player.getData('player')
 
     if (data.mask && data.respirator) {
-      player.setTexture('player_mask_respirator')
+      player.setTexture('player')
     } else if (data.mask) {
-      player.setTexture('player_mask')
+      player.setTexture('player')
     } else if (data.respirator) {
-      player.setTexture('player_respirator')
+      player.setTexture('player')
     } else {
       player.setTexture('player')
     }
@@ -254,7 +254,7 @@ class PlayerClass {
     }
   }
 
-  sprintEnable = true
+  sprintEnable = false
   sprint = () => {
     if (!this.sprintEnable) {
       return
