@@ -88,7 +88,9 @@ class BallsClass {
   }
 
   static recoverABall({ ball, gameTime, byPlayer }) {
-    
+    if (!ball.getData('infected')) {
+      return
+    }
     ball.setData('infected', false)
     ball.setData('recovered', true)
     ball.setTintFill('0x00ff00')

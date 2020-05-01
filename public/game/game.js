@@ -77,14 +77,14 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
     this.load.image('ball', 'game/assets/person.png')
     this.load.image('infected', 'game/assets/infected.png')
   
-    this.load.image('item_mask', 'game/assets/mask.png')
+    this.load.image('item_mask', 'game/assets/ico-mask.png')
     this.load.image('item_forced_quarentine', 'game/assets/forced_quarentine.png')
     this.load.image('item_social_distancing', 'game/assets/social_distancing.png')
     this.load.image(
       'item_more_social_distancing',
       'game/assets/more_social_distancing.png'
     )
-    this.load.image('item_respirator', 'game/assets/respirator.png')
+    this.load.image('item_respirator', 'game/assets/ico-medikit.png')
   
     this.load.image('solid_block', 'game/assets/block.png')
   

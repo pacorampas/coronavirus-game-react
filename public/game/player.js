@@ -81,7 +81,7 @@ class PlayerClass {
           _player.setData('player', playerData)
           PlayerClass.updateTexture(_player)
         } else if (playerData.respirator) {
-          BallsClass.uninfectABall({ ball: _ball, gameTime, byPlayer: true }) 
+          BallsClass.recoverABall({ ball: _ball, gameTime, byPlayer: true }) 
           playerData.respirator = false
           _player.setData('player', playerData)
           PlayerClass.updateTexture(_player)
@@ -256,11 +256,11 @@ class PlayerClass {
 
   sprintEnable = false
   sprint = () => {
-    if (!this.sprintEnable) {
+    if (this.sprintEnable) {
       return
     }
 
-    this.sprintEnable = false
+    this.sprintEnable = true
     this.powerUpsButton.setText('Recharching...')
     this.setNewVelocity(this.velocity * this.SPRINT_INCREMENT)
     setTimeout(() => {
@@ -268,7 +268,7 @@ class PlayerClass {
       setTimeout(() => {
         console.log('Sprint enabled')
         this.powerUpsButton.setText('Sprint')
-        this.sprintEnable = true
+        this.sprintEnable = false
       }, 5000)
     }, 250)
   }
