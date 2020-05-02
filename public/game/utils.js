@@ -1,19 +1,21 @@
 /* eslint-disable no-undef */
-const timer = function() {
-  const { player, time } = this.ownVars
-  if (!this.ownVars.timeText) {
-    this.ownVars.timeText = this.add.text(12, 12)
-  }
-  timeText = this.ownVars.timeText
-
-  timeText.setText(`${time}s`)
-  timeText.setStyle({
+const initTimerText = function() {
+  const { time }  = this.ownVars
+  this.ownVars.timeText = this.add.text(12, 12)
+  this.ownVars.timeText.setStyle({
     fontFamily: 'Montserrat-bold',
     fontSize: '24px',
     fill: '#333333',
     align: 'right'
   })
-  timeText.setAlpha(0.9);
+  this.ownVars.timeText.setText(`${time}s`)
+  this.ownVars.timeText.setAlpha(0.9)
+}
+
+const timer = function() {
+  const { player, time, timeText } = this.ownVars
+  
+  timeText && timeText.setText(`${time}s`)
 
   this.time.addEvent({
     delay: 1000,
@@ -195,7 +197,7 @@ class WavesManager {
   initText() {
     this.waveText = this.scene.add.text(0, 12)
     this.waveText.setStyle({
-      fontFamily: 'Montserrat-bold',
+      fontFamily: 'Montserrat',
       fontSize: '24px',
       fill: '#333333',
       align: 'center',

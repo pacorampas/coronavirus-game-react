@@ -55,7 +55,7 @@ const randomNextItem = function() {
 
 const setMaskItem = function() {
   const player = this.ownVars.player
-  const widthObject = 24
+  const widthObject = 34
   const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
   const y = Phaser.Math.Between(0, this.game.config.height - widthObject)
 
@@ -80,7 +80,7 @@ const setMaskItem = function() {
 
 const setRespirator = function() {
   const player = this.ownVars.player
-  const widthObject = 24
+  const widthObject = 34
   const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
   const y = Phaser.Math.Between(0, this.game.config.height - widthObject)
 

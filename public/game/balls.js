@@ -93,7 +93,7 @@ class BallsClass {
     }
     ball.setData('infected', false)
     ball.setData('recovered', true)
-    ball.setTintFill('0x00ff00')
+    ball.setTintFill('0x62dcb6')
 
     const wavesManger = this.scene.ownVars.wavesManager
     wavesManger.shouldTheWaveIncrement(this)
@@ -116,7 +116,6 @@ class BallsClass {
   
   ballCollideWithBall() {
     this.scene.physics.add.collider(this.balls, this.balls, (_ballA, _ballB) => {
-      const gameTime = this.scene.ownVars.time
       if (_ballA.getData('infected') && !_ballB.getData('infected') && !_ballB.getData('recovered')) {
         this.infectABall({ ball: _ballB })
       } else if (_ballB.getData('infected') && !_ballA.getData('infected') && !_ballA.getData('recovered')) {

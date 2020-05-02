@@ -108,6 +108,8 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       timeScaleDisable,
       wavesManager
     }
+
+    const self = this
     // fonts
     WebFont.load({
       custom: {
@@ -115,8 +117,9 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       },
       active: function (a)
       {
-        console.log('fonts active!')
+        console.log('fonts active!', self)
         wavesManager.initText()
+        initTimerText.bind(self)()
       }
     });
 
