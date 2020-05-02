@@ -111,7 +111,7 @@ class PlayerClass {
           )
           textRestart.setStyle({
             fontSize: '20px',
-            color: '#ffffff',
+            color: '#333333',
             align: 'center',
             fixedWidth: this.scene.game.config.width,
           })
