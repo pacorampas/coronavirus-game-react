@@ -120,7 +120,6 @@ class PlayerClass {
           textRestart.setInteractive()
           textRestart.on('pointerdown', () => {
             this.scene.scene.restart()
-            this.scene.ownVars.wavesManager.timerNextItem()
           })
 
           onGameOver()
@@ -266,7 +265,6 @@ class PlayerClass {
     setTimeout(() => {
       this.setNewVelocity(this.velocity)
       setTimeout(() => {
-        console.log('Sprint enabled')
         this.powerUpsButton.setText('Sprint')
         this.sprintEnable = false
       }, 5000)

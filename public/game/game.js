@@ -117,14 +117,13 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       },
       active: function (a)
       {
-        console.log('fonts active!', self)
         wavesManager.initText()
         initTimerText.bind(self)()
       }
     });
 
     // + 1 is a player
-    globalCollectData.setTotals(BALLS_LENGTH + 1)
+    globalCollectData.initGame(BALLS_LENGTH + 1)
     
     // this.physics.world.setBounds(50, 50, 700, 500);
   
@@ -141,8 +140,8 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
     this.ownVars.balls = balls
     
     const handleGameOver = () => {
-      console.log(globalCollectData.getData())
       timerNextItemReset()
+      balls.stop()
     }
     if (!playerDisbaled) {
       player.collideWithBall(balls, handleGameOver)

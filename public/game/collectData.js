@@ -15,15 +15,20 @@ class CollectData {
     recovered: 0
   }
 
-  setTotals = (length) => {
+  length = 0
+
+  initGame(length) {
+    this.length = length
+    this.resetAll()
+    this.setTotals(length)
+  }
+
+  setTotals = length => {
+    
     this.totals = {
       ...this.totals,
       length
     }
-  }
-
-  WaveData() {
-    this.data = {}
   }
 
   set({ event, gameTime }) {
@@ -68,6 +73,15 @@ class CollectData {
     }
 
     this._notifyChangeData(this.data)
+  }
+
+  resetAll() {
+    this.data = {}
+    this.totals = {
+      length: this.length,
+      infected: 0,
+      recovered: 0
+    }
   }
 
   getData() {

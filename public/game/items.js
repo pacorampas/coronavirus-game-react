@@ -8,7 +8,6 @@ let itemsInWorld = []
 const timerNextItem = function(minTime, maxTime) {
   const milliseconds = Phaser.Math.Between(minTime, maxTime)
 
-  console.log('miliseconds', milliseconds)
   timerNextItemInstance = this.time.addEvent({
     delay: milliseconds,
     callback: () => {
@@ -106,7 +105,6 @@ const setRespirator = function() {
 
 const timerNextItemReset = function() {
   itemsInWorld.forEach(item => {
-    console.log(item)
     item.gameObject.destroy()
   })
   itemsInWorld = []

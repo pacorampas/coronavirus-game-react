@@ -152,4 +152,10 @@ class BallsClass {
     }
   }
 
+  stop() {
+    this.balls.getChildren().forEach(ball => {
+      ball.setVelocity(0)
+    }) 
+  }
+
 }

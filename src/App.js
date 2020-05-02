@@ -45,8 +45,6 @@ function App() {
       setGameData(dataPrepared)
     })
   }, [])
-
-
   
   return (
     <div>
