@@ -139,6 +139,7 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
     
     const handleGameOver = () => {
       console.log(globalCollectData.getData())
+      timerNextItemReset()
     }
     if (!playerDisbaled) {
       player.collideWithBall(balls, handleGameOver)
@@ -170,7 +171,7 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
         player.inputKeysActions()
       }
     
-      timerNextItem.bind(this)(BALLS_LENGTH)
+      wavesManager.timerNextItem()
     }
     timer.bind(this)()
 

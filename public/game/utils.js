@@ -15,8 +15,6 @@ const timer = function() {
   })
   timeText.setAlpha(0.9);
 
-  
-
   this.time.addEvent({
     delay: 1000,
     callback: () => {
@@ -185,6 +183,8 @@ class DirectionsUtilClass {
 const directionsUtil = new DirectionsUtilClass()
 
 class WavesManager {
+  NEXT_ITEM_MIN_TIME = 2000
+  NEXT_ITEM_MAX_TIME = 1500
   wave = 1
   waveText
 
@@ -229,5 +229,12 @@ class WavesManager {
       return
     }
     this.waveText.setText(`OLEADA ${this.wave}`)
+  }
+
+  timerNextItem() {
+    timerNextItem.bind(this.scene)(
+      this.NEXT_ITEM_MIN_TIME, 
+      this.NEXT_ITEM_MAX_TIME,
+    )
   }
 }

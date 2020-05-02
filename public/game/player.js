@@ -120,6 +120,7 @@ class PlayerClass {
           textRestart.setInteractive()
           textRestart.on('pointerdown', () => {
             this.scene.scene.restart()
+            this.scene.ownVars.wavesManager.timerNextItem()
           })
 
           onGameOver()
@@ -270,6 +271,16 @@ class PlayerClass {
         this.sprintEnable = false
       }, 5000)
     }, 250)
+  }
+
+  hasRespirator() {
+    const playerData = this.player.getData('player')
+    return playerData && playerData.respirator
+  }
+
+  hasMask() {
+    const playerData = this.player.getData('player') || {}
+    return playerData && playerData.mask
   }
 
 }

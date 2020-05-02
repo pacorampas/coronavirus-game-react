@@ -1,22 +1,53 @@
 /* eslint-disable no-undef */
-const timerNextItem = function(ballsLength) {
-  this.time.addEvent({
-    delay: 1000,
-    callback: () => randomNextItem.bind(this)(ballsLength),
+let timerNextItemInstance
+const ITEMS_ID = {
+  respirator: 1,
+  mask: 2
+}
+let itemsInWorld = []
+const timerNextItem = function(minTime, maxTime) {
+  const milliseconds = Phaser.Math.Between(minTime, maxTime)
+
+  console.log('miliseconds', milliseconds)
+  timerNextItemInstance = this.time.addEvent({
+    delay: milliseconds,
+    callback: () => {
+      randomNextItem.bind(this)()
+      timerNextItem.bind(this)(minTime, maxTime)
+    },
     //args: [],
     callbackScope: this,
     loop: false,
   })
 }
 
-const randomNextItem = function(ballsLength) {
-  const rand = Phaser.Math.Between(0, 2)
+const randomNextItem = function() {
+  const itemsRandom = []
+  const player = this.ownVars.player
+  
+  const hasRespirator = player.hasRespirator()
+  const hasMask = player.hasMask()
+  const respiratorInWorld = itemsInWorld.some(item => item.id === ITEMS_ID.respirator)
+  const maskInWorld = itemsInWorld.some(item => item.id === ITEMS_ID.mask)
+  
+  if (!hasRespirator && !respiratorInWorld) {
+    itemsRandom.push(ITEMS_ID.respirator)
+  }
+  if (!hasMask && !maskInWorld) {
+    itemsRandom.push(ITEMS_ID.mask)
+  }
 
-  switch (rand) {
-    case 0:
+  if (!itemsRandom.length) {
+    return
+  }
+
+  const randIndex = Phaser.Math.Between(0, itemsRandom.length - 1)
+
+  switch (itemsRandom[randIndex]) {
+    case ITEMS_ID.respirator:
       setRespirator.bind(this)()
       return
-    case 1:
+    case ITEMS_ID.mask:
       setMaskItem.bind(this)()
       return
   }
@@ -31,6 +62,11 @@ const setMaskItem = function() {
   const mask = this.physics.add.image(x, y, 'item_mask')
   mask.setDisplaySize(widthObject, widthObject)
 
+  itemsInWorld.push({
+    gameObject: mask,
+    id: ITEMS_ID.mask
+  })
+
   this.physics.add.overlap(player.get(), mask, (_player, _mask) => {
     const prevData = _player.getData('player')
 
@@ -38,7 +74,7 @@ const setMaskItem = function() {
     PlayerClass.updateTexture(_player)
 
     _mask.destroy()
-    timerNextItem.bind(this)()
+    itemsInWorld = itemsInWorld.filter(item => item.id !== ITEMS_ID.mask)
   })
 }
 
@@ -51,6 +87,11 @@ const setRespirator = function() {
   const respirator = this.physics.add.image(x, y, 'item_respirator')
   respirator.setDisplaySize(widthObject, widthObject)
 
+  itemsInWorld.push({
+    gameObject: respirator,
+    id: ITEMS_ID.respirator
+  })
+
   this.physics.add.overlap(player.get(), respirator, (_player, _respirator) => {
     const prevData = _player.getData('player')
 
@@ -59,6 +100,15 @@ const setRespirator = function() {
     PlayerClass.updateTexture(_player)
 
     _respirator.destroy()
-    timerNextItem.bind(this)()
+    itemsInWorld = itemsInWorld.filter(item => item.id !== ITEMS_ID.respirator)
   })
+}
+
+const timerNextItemReset = function() {
+  itemsInWorld.forEach(item => {
+    console.log(item)
+    item.gameObject.destroy()
+  })
+  itemsInWorld = []
+  timerNextItemInstance && timerNextItemInstance.remove()
 }
