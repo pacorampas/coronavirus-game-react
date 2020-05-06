@@ -1,0 +1,59 @@
+.modal {
+  position: fixed;
+  width: 400px;
+  height: 300px;
+  background: #eee;
+  opacity: 0;
+}
+
+.modal--waiting-to-enter {
+  opacity: 0;
+  animation-name: enter;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.modal--entering {
+  animation-name: entering;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.modal--entered {
+  opacity: 1;
+}
+
+.modal--leaving {
+  pointer-events: none;
+  animation-name: leaving;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.modal--left {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes entering {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes leaving {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
