@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "classnames": "^2.2.6",
     "gh-pages": "^2.2.0",
+    "json": "^9.0.6",
     "react": "^16.13.1",
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
@@ -19,7 +20,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && gh-pages -d build"
+    "gitResetChanges": "git checkout .",
+    "ghPagesHomepage": "npx json -I -f package.json -e 'this.homepage=\"http://pacorampas.github.io/coronavirus-game-react\"'",
+    "deploy": "npm run ghPagesHomepage && npm run build && gh-pages -d build && npm run gitResetChanges"
   },
   "eslintConfig": {
     "extends": "react-app"
