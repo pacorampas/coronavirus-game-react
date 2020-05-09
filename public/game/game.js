@@ -142,7 +142,9 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
     const handleGameOver = () => {
       timerNextItemReset()
       balls.stop()
-      onGameHover && onGameHover()
+      onGameHover && onGameHover({
+        time: this.ownVars.time
+      })
     }
     if (!playerDisbaled) {
       player.collideWithBall(balls, handleGameOver)

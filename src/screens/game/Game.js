@@ -17,6 +17,7 @@ function Game({ setScreenActive }) {
   const game = useRef()
   const [modalState, setModalState] = useState()
   const [exit, setExit] = useState(false)
+  const [points, setPoints] = useState(0)
 
   const showModal = () => {
     setModalState(ANIMATE_STATES.entering)
@@ -49,7 +50,8 @@ function Game({ setScreenActive }) {
   }
     
   useEffect(() => {
-    const handleGameOver = () => {
+    const handleGameOver = ({ time }) => {
+      setPoints(time * 7.683)
       showModal()
     }
 
@@ -70,6 +72,7 @@ function Game({ setScreenActive }) {
         <ModalGameOver
           className={styles.modal}
           state={modalState} 
+          points={points}
           onAccept={hanldeAcceptModal} 
           onCancel={handleCancelModal}
           onStateChange={hanldeStateChange}

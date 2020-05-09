@@ -1,9 +1,10 @@
 import React from 'react'
+import CountUp from 'react-countup'
 import Modal from 'components/modal/Modal'
 import Button from 'components/button/Button'
 import styles from './ModalGameOver.module.css'
 
-function ModalGameOver({ state, onAccept, onCancel, ...rest }) {
+function ModalGameOver({ state, points, onAccept, onCancel, ...rest }) {
   
   const hanldeClickRestart = () => {
     onAccept && onAccept()
@@ -18,7 +19,9 @@ function ModalGameOver({ state, onAccept, onCancel, ...rest }) {
       <div className={styles.wrapper}>
         <h1 className={styles.title}>¡SE ACABÓ!</h1>
         <p className={styles.text}>Tu puntuación</p>
-        <p className={styles.points}>3000 pts</p>
+        <p className={styles.points}>
+          <CountUp end={points} delay={2} duration={5} /> pts
+        </p>
         <div className={styles.buttons}>
           <Button 
             className={styles.button}
