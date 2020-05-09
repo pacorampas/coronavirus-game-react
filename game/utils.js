@@ -3,7 +3,7 @@ const initTimerText = function() {
   const { time }  = this.ownVars
   this.ownVars.timeText = this.add.text(12, 12)
   this.ownVars.timeText.setStyle({
-    fontFamily: 'Montserrat-bold',
+    fontFamily: 'FiraMono-Bold',
     fontSize: '24px',
     fill: '#333333',
     align: 'right'
@@ -197,7 +197,7 @@ class WavesManager {
   initText() {
     this.waveText = this.scene.add.text(0, 12)
     this.waveText.setStyle({
-      fontFamily: 'Montserrat',
+      fontFamily: 'FiraMono-Medium',
       fontSize: '24px',
       fill: '#333333',
       align: 'center',

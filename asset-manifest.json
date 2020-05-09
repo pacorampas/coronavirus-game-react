@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/coronavirus-game-react/static/css/main.250fc510.chunk.css",
-    "main.js": "/coronavirus-game-react/static/js/main.46870cb5.chunk.js",
-    "main.js.map": "/coronavirus-game-react/static/js/main.46870cb5.chunk.js.map",
-    "runtime-main.js": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js",
-    "runtime-main.js.map": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js.map",
-    "static/js/2.880ffb03.chunk.js": "/coronavirus-game-react/static/js/2.880ffb03.chunk.js",
-    "static/js/2.880ffb03.chunk.js.map": "/coronavirus-game-react/static/js/2.880ffb03.chunk.js.map",
-    "index.html": "/coronavirus-game-react/index.html",
-    "precache-manifest.13578eb2c93a9c19e20c7f37488927fc.js": "/coronavirus-game-react/precache-manifest.13578eb2c93a9c19e20c7f37488927fc.js",
-    "service-worker.js": "/coronavirus-game-react/service-worker.js",
-    "static/css/main.250fc510.chunk.css.map": "/coronavirus-game-react/static/css/main.250fc510.chunk.css.map",
-    "static/js/2.880ffb03.chunk.js.LICENSE.txt": "/coronavirus-game-react/static/js/2.880ffb03.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.77b0b0f4.chunk.css",
+    "main.js": "/static/js/main.d8d55513.chunk.js",
+    "main.js.map": "/static/js/main.d8d55513.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5f677595.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5f677595.js.map",
+    "static/js/2.bcff1c30.chunk.js": "/static/js/2.bcff1c30.chunk.js",
+    "static/js/2.bcff1c30.chunk.js.map": "/static/js/2.bcff1c30.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f98b372b21effd1b27f39385a97b226d.js": "/precache-manifest.f98b372b21effd1b27f39385a97b226d.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.77b0b0f4.chunk.css.map": "/static/css/main.77b0b0f4.chunk.css.map",
+    "static/js/2.bcff1c30.chunk.js.LICENSE.txt": "/static/js/2.bcff1c30.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.db404fd4.js",
-    "static/js/2.880ffb03.chunk.js",
-    "static/css/main.250fc510.chunk.css",
-    "static/js/main.46870cb5.chunk.js"
+    "static/js/runtime-main.5f677595.js",
+    "static/js/2.bcff1c30.chunk.js",
+    "static/css/main.77b0b0f4.chunk.css",
+    "static/js/main.d8d55513.chunk.js"
   ]
 }
