@@ -1,0 +1,56 @@
+.modal {
+  position: fixed;
+  left: 300px;
+  width: 400px;
+  height: 300px;
+  background: rgba(250, 250, 250, 0.95);
+  opacity: 0;
+  z-index: 10000;
+}
+
+.modal--waiting-to-enter {
+  opacity: 0;
+  animation-name: enter;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.modal--entering {
+  animation-name: entering;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.modal--entered {
+  opacity: 1;
+}
+
+.modal--leaving {
+  animation-name: leaving;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.modal--left {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes entering {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes leaving {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+

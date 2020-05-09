@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 /* global dat */
-const initGame = function(documentId, ballsLength, socialDistancingLength, playerDisbaled, timeScaleDisable) {
+const initGame = function(documentId, ballsLength, socialDistancingLength, playerDisbaled, timeScaleDisable, onGameHover, sizes) {
   var config = {
     type: Phaser.AUTO,
-    width: 1000,
-    height: 600,
+    width: sizes.width || 1000,
+    height: sizes.height || 600,
     backgroundColor: 0xfafafa,
     parent: documentId,
     dom: {
@@ -113,7 +113,7 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
     // fonts
     WebFont.load({
       custom: {
-          families: ['Montserrat', 'Montserrat-bold']
+        families: ['FiraMono-Bold', 'FiraMono-Medium']
       },
       active: function (a)
       {
@@ -142,6 +142,7 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
     const handleGameOver = () => {
       timerNextItemReset()
       balls.stop()
+      onGameHover && onGameHover()
     }
     if (!playerDisbaled) {
       player.collideWithBall(balls, handleGameOver)

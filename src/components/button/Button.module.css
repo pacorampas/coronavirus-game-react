@@ -1,0 +1,12 @@
+.button {
+  border: 0;
+  font-family: FiraSans-Bold;
+  padding: 12px 48px;
+  border-radius: 6px;
+  background-color: #009eff;
+  color: #fff;
+}
+
+.button.negative {
+  background-color: #ff656d;
+}

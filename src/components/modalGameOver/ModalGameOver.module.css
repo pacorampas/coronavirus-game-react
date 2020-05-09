@@ -1,0 +1,58 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 48px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-family: FiraSans-SemiBold;
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+
+  margin: 0;
+}
+
+.text {
+  font-family: FiraSans-Regular;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+
+  margin: auto 0 6px;
+}
+
+.points {
+  font-family: FiraSans-Heavy;
+  font-size: 40px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+  margin: 0 0 auto;
+
+}
+
+.buttons {
+  display: flex;
+}
+
+.button:not(:last-child) {
+  margin-right: 12px;
+}

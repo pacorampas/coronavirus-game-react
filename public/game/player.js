@@ -91,37 +91,6 @@ class PlayerClass {
           globalCollectData.set({ event, gameTime })
 
           _player.destroy()
-          const gameOverText = this.scene.add.text(0, this.scene.game.config.height / 2)
-          gameOverText.setStyle({
-            fontSize: '24px',
-            color: '#000000',
-            align: 'center',
-            backgroundColor: '#f9f9f9',
-            fixedWidth: this.scene.game.config.width,
-          })
-          gameOverText.setText('GAME OVER')
-          gameOverText.setPosition(
-            0,
-            this.scene.game.config.height / 2 - gameOverText.height / 2
-          )
-  
-          const textRestart = this.scene.add.text(
-            0,
-            this.scene.game.config.height / 2 - gameOverText.height + 60
-          )
-          textRestart.setStyle({
-            fontSize: '20px',
-            color: '#333333',
-            align: 'center',
-            fixedWidth: this.scene.game.config.width,
-          })
-          textRestart.setText('click to restart')
-  
-          textRestart.setInteractive()
-          textRestart.on('pointerdown', () => {
-            this.scene.scene.restart()
-          })
-
           onGameOver()
         }
       }
