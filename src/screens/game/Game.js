@@ -54,7 +54,7 @@ function Game({ setScreenActive }) {
     
   useEffect(() => {
     const handleGameOver = ({ time }) => {
-      const newBonusPoints = Math.round(time * 7.683)
+      const newBonusPoints = Math.round(time * 3.683)
       setPoints(0)
       setBonusTime(newBonusPoints)
       const newBest = AppService.setNewPuntation(newBonusPoints)
