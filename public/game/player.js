@@ -179,11 +179,11 @@ class PlayerClass {
     const data = player.getData('player')
 
     if (data.mask && data.respirator) {
-      player.setTexture('player')
+      player.setTexture('player_mask_respirator')
     } else if (data.mask) {
-      player.setTexture('player')
+      player.setTexture('player_mask')
     } else if (data.respirator) {
-      player.setTexture('player')
+      player.setTexture('player_respirator')
     } else {
       player.setTexture('player')
     }

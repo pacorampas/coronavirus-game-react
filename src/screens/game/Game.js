@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react'
+import { SCREENS_IDS } from 'App'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import Chart from './Chart'
@@ -12,9 +13,10 @@ const GAME = {
   }
 }
 
-function Game() {
+function Game({ setScreenActive }) {
   const game = useRef()
   const [modalState, setModalState] = useState()
+  const [exit, setExit] = useState(false)
 
   const showModal = () => {
     setModalState(ANIMATE_STATES.entering)
@@ -24,8 +26,24 @@ function Game() {
     setModalState(ANIMATE_STATES.leaving)
   }
 
+  const handleCancelModal = () => {
+    hideModal()
+    setExit(true)
+  }
+
+  const hanldeStateChange = state => {
+    if (!exit) {
+      return
+    }
+    // eslint-disable-next-line default-case
+    switch(state) {
+      case ANIMATE_STATES.left:
+        setScreenActive(SCREENS_IDS.home)
+        return
+    }
+  }
+
   const hanldeAcceptModal = () => {
-    console.log(game.current)
     game.current.scene.getScenes(true)[0].scene.restart()
     hideModal()
   }
@@ -53,7 +71,8 @@ function Game() {
           className={styles.modal}
           state={modalState} 
           onAccept={hanldeAcceptModal} 
-          onCancel={hideModal} 
+          onCancel={handleCancelModal}
+          onStateChange={hanldeStateChange}
         />
       </div>
 

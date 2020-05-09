@@ -32,6 +32,7 @@ const useAnimationEnd = ({ onStateChange, state, metadata, styles, classPrefix }
             setStateInternal(ANIMATE_STATES.entered)
             return ANIMATE_STATES.entered
           } else if (ANIMATE_STATES.leaving === state) {
+        
             setStateInternal(ANIMATE_STATES.left)
             return ANIMATE_STATES.left
           }
@@ -41,8 +42,10 @@ const useAnimationEnd = ({ onStateChange, state, metadata, styles, classPrefix }
           return
         }
 
+        const nextState = getNextState(stateInternal)
+
         onStateChange &&
-          onStateChange({ event, state: getNextState(stateInternal), metadata })
+          onStateChange({ event, state: nextState, metadata })
       }
 
       return requestAnimationFrame(() => handleStateChange(event))
