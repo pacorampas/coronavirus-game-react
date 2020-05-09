@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { SCREENS_IDS } from 'App'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
+import AppService from 'services/AppService'
 import Chart from './Chart'
 import styles from './Game.module.css'
 
@@ -16,11 +17,15 @@ const GAME = {
 function Game({ setScreenActive }) {
   const game = useRef()
   const [modalState, setModalState] = useState()
+  const [showModalGameOver, setShowModalGameOver] = useState(false)
   const [exit, setExit] = useState(false)
   const [points, setPoints] = useState(0)
+  const [bonusTime, setBonusTime] = useState(0)
+  const [newBest, setNewBest] = useState(false)
 
   const showModal = () => {
     setModalState(ANIMATE_STATES.entering)
+    setShowModalGameOver(true)
   }
 
   const hideModal = () => {
@@ -33,13 +38,11 @@ function Game({ setScreenActive }) {
   }
 
   const hanldeStateChange = state => {
-    if (!exit) {
-      return
-    }
     // eslint-disable-next-line default-case
     switch(state) {
       case ANIMATE_STATES.left:
-        setScreenActive(SCREENS_IDS.home)
+        setShowModalGameOver(false)
+        exit && setScreenActive(SCREENS_IDS.home)
         return
     }
   }
@@ -51,7 +54,11 @@ function Game({ setScreenActive }) {
     
   useEffect(() => {
     const handleGameOver = ({ time }) => {
-      setPoints(time * 7.683)
+      const newBonusPoints = Math.round(time * 7.683)
+      setPoints(0)
+      setBonusTime(newBonusPoints)
+      const newBest = AppService.setNewPuntation(newBonusPoints)
+      setNewBest(newBest)
       showModal()
     }
 
@@ -69,14 +76,18 @@ function Game({ setScreenActive }) {
         
         <div id="coronavirusGame" />
 
-        <ModalGameOver
-          className={styles.modal}
-          state={modalState} 
-          points={points}
-          onAccept={hanldeAcceptModal} 
-          onCancel={handleCancelModal}
-          onStateChange={hanldeStateChange}
-        />
+        {showModalGameOver && 
+          <ModalGameOver
+            className={styles.modal}
+            state={modalState} 
+            points={points}
+            bonusTime={bonusTime}
+            newBest={newBest}
+            onAccept={hanldeAcceptModal} 
+            onCancel={handleCancelModal}
+            onStateChange={hanldeStateChange}
+          />
+        }
       </div>
 
       {/* <div className={styles.chartWrapper}>

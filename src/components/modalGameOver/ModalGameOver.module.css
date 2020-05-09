@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+.wrapperPoints {
+  margin: auto 0;
+}
+
 .title {
   font-family: FiraSans-SemiBold;
   font-size: 24px;
@@ -17,7 +21,6 @@
   letter-spacing: 1px;
   text-align: center;
   color: rgba(0, 11, 50, 0.8);
-
   margin: 0;
 }
 
@@ -32,7 +35,7 @@
   text-align: center;
   color: rgba(0, 11, 50, 0.8);
 
-  margin: auto 0 6px;
+  margin: 0 0 6px;
 }
 
 .points {
@@ -45,8 +48,22 @@
   letter-spacing: 1px;
   text-align: center;
   color: rgba(0, 11, 50, 0.8);
-  margin: 0 0 auto;
 
+  margin: 0 0 16px;
+}
+
+.bonusPoints {
+  font-family: FiraSans-Bold;
+  font-size: 24px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+
+  margin: 0;
 }
 
 .buttons {
@@ -55,4 +72,13 @@
 
 .button:not(:last-child) {
   margin-right: 12px;
+}
+
+.animation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
