@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 
 export const ANIMATE_STATES = {
   waitingToEnter: 1,
@@ -15,16 +15,24 @@ const requestAnimationFrame =
   window.msRequestAnimationFrame
 window.requestAnimationFrame = requestAnimationFrame
 
-const useAnimationEnd = ({ onStateChange, state, metadata }) => {
+const useAnimationEnd = ({ onStateChange, state, metadata, styles, classPrefix }) => {
   const animateRef = useRef()
+  const [stateInternal, setStateInternal] = useState(state ? state : ANIMATE_STATES.waitingToEnter)
+
+  useEffect(() => {
+    const stateTemp = state ? state : ANIMATE_STATES.waitingToEnter
+    setStateInternal(stateTemp)
+  }, [state])
 
   const handleStateChangeMemo = useCallback(
     event => {
       const handleStateChange = event => {
         const getNextState = state => {
           if (ANIMATE_STATES.entering === state) {
+            setStateInternal(ANIMATE_STATES.entered)
             return ANIMATE_STATES.entered
           } else if (ANIMATE_STATES.leaving === state) {
+            setStateInternal(ANIMATE_STATES.left)
             return ANIMATE_STATES.left
           }
         }
@@ -34,12 +42,12 @@ const useAnimationEnd = ({ onStateChange, state, metadata }) => {
         }
 
         onStateChange &&
-          onStateChange({ event, state: getNextState(state), metadata })
+          onStateChange({ event, state: getNextState(stateInternal), metadata })
       }
 
       return requestAnimationFrame(() => handleStateChange(event))
     },
-    [state, onStateChange, metadata]
+    [stateInternal, onStateChange, metadata]
   )
 
   useEffect(() => {
@@ -51,7 +59,17 @@ const useAnimationEnd = ({ onStateChange, state, metadata }) => {
       selfCurrent.removeEventListener('animationend', handleStateChangeMemo)
   }, [animateRef, handleStateChangeMemo])
 
-  return animateRef
+  const getCSSClass = useCallback(() => {
+    return styles && mapStateWithClassCSSModule({ state, styles, classPrefix })
+  }, [state, styles, classPrefix])
+
+  const animationClass = getCSSClass()
+
+  return [
+    animateRef, 
+    animationClass,
+    stateInternal
+  ]
 }
 
 export default useAnimationEnd
@@ -80,6 +98,11 @@ export const mapStateWithClass = ({ state, classPrefix }) => {
 }
 
 export const mapStateWithClassCSSModule = ({ state, styles, classPrefix }) => {
+  if (!styles) {
+    console.error('[mapStateWithClassCSSModule] you should pass an css module styles object')
+    return
+  }
+
   let classPrefixPar = classPrefix
   if (!classPrefixPar) {
     classPrefixPar = 'spark-animation'

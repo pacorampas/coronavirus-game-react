@@ -2,12 +2,12 @@
 import React, { useState, useCallback } from 'react'
 import { SCREENS_IDS } from 'App'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
-import Modal from 'components/modal/Modal'
+import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import styles from './Home.module.css'
 
 function Home({ setScreenActive }) {
 
-  const [modalState, setModalState] = useState(true)
+  const [modalState, setModalState] = useState()
 
   const handleClickGame = () => {
     setScreenActive(SCREENS_IDS.game)
@@ -36,7 +36,7 @@ function Home({ setScreenActive }) {
         Hide Modal
       </button>
 
-      <Modal state={modalState}>Hola mundo cruel</Modal>
+      {/* <ModalGameOver state={modalState} /> */}
     </div>
   );
 }

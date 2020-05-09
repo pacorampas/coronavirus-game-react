@@ -1,27 +1,23 @@
 /* eslint-disable no-undef */
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import c from 'classnames'
-import useAnimationEnd, { ANIMATE_STATES, mapStateWithClassCSSModule } from 'utils/useAnimationEnd'
+import useAnimationEnd from 'utils/useAnimationEnd'
 import styles from './Modal.module.css'
 
-function Modal({ state, onLeft, children }) {
-  
-  const ref = useAnimationEnd({ 
-    onStateChange: ({ state }) => {
-      if (ANIMATE_STATES.left === state) {
-        onLeft && onLeft()
-      }
-    }, 
-    state, 
-    metadata: {}
-  })
+function Modal({ className, state, onStateChange, children }) {
+  const [ref, animationClass, animationState] = useAnimationEnd({ state, styles, classPrefix: 'modal' })
+
+  useEffect(() => {
+    onStateChange && onStateChange(animationState)
+  }, [animationState, onStateChange])
 
   return (
     <div 
       ref={ref} 
       className={c(
+        className,
         styles.modal, 
-        mapStateWithClassCSSModule({ state, styles, classPrefix: 'modal' })
+        animationClass
       )}
     >
       {children}
