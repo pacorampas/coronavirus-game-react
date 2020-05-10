@@ -25,6 +25,10 @@ class PlayerClass {
 
     const callbackPowerUp = isMobile(this.scene) && this.sprint
     this.powerUpsButton = new PowerUp(this.scene, callbackPowerUp)
+
+    this.scene.ownVars.wavesManager.onWaveChange(() => {
+      this.disbledSocialDistancing = false
+    })
   }
 
   initSprite() {
@@ -92,6 +96,12 @@ class PlayerClass {
 
           _player.destroy()
           onGameOver()
+        }
+      } else {
+        if (playerData.respirator) {
+          playerData.respirator = false
+          _player.setData('player', playerData)
+          PlayerClass.updateTexture(_player)
         }
       }
 
@@ -161,18 +171,23 @@ class PlayerClass {
     }
   }
 
-  wallEnabled = true
+  // wallEnabled = true
+  disbledSocialDistancing = false
   inputKeysActions() {
     this.scene.input.keyboard.on('keydown-Q', event => {
-      socialDistancigAction.bind(this.scene)(this.SOCIAL_DISTANCING_LENGTH, this.SOCIAL_DISTANCING_TIMER)
-    })
-    this.scene.input.keyboard.on('keydown-W', event => {
-      if (!this.wallEnabled) {
+      if (this.disbledSocialDistancing) {
         return
       }
-      this.wallEnabled = false
-      quarentineWallAction.bind(this.scene)(() => this.wallEnabled = true)
+      this.disbledSocialDistancing = true
+      socialDistancigAction.bind(this.scene)(this.SOCIAL_DISTANCING_LENGTH, this.SOCIAL_DISTANCING_TIMER)
     })
+    // this.scene.input.keyboard.on('keydown-W', event => {
+    //   if (!this.wallEnabled) {
+    //     return
+    //   }
+    //   this.wallEnabled = false
+    //   quarentineWallAction.bind(this.scene)(() => this.wallEnabled = true)
+    // })
   }
 
   static updateTexture(player) {

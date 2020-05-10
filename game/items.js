@@ -110,3 +110,22 @@ const timerNextItemReset = function() {
   itemsInWorld = []
   timerNextItemInstance && timerNextItemInstance.remove()
 }
+
+const setPointIcon = function() {
+  const player = this.ownVars.player
+  const widthObject = 34
+  const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
+  const y = Phaser.Math.Between(0, this.game.config.height - widthObject)
+
+  const itemsName = ['item_dog', 'item_shop']
+  const randomIndex = Phaser.Math.Between(0, itemsName.length - 1)
+
+  const item = this.physics.add.image(x, y, itemsName[randomIndex])
+  item.setDisplaySize(widthObject, widthObject)
+
+  this.physics.add.overlap(player.get(), item, (_player, _item) => {
+    this.ownVars.wavesManager.sumPoints()
+    _item.destroy()
+    setPointIcon.bind(this)()
+  })
+}

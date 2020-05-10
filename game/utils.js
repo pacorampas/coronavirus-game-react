@@ -186,9 +186,13 @@ const directionsUtil = new DirectionsUtilClass()
 
 class WavesManager {
   NEXT_ITEM_MIN_TIME = 2000
-  NEXT_ITEM_MAX_TIME = 1500
+  NEXT_ITEM_MAX_TIME = 15000
+  NEXT_WALL_MIN_TIME = 15000
+  NEXT_WALL_MAX_TIME = 45000
   wave = 1
+  points = 0
   waveText
+  pointsText
 
   constructor({ scene }) {
     this.scene = scene
@@ -204,6 +208,25 @@ class WavesManager {
       fixedWidth: this.scene.game.config.width,
     })
     this.updateWaveText()
+
+    this.pointsText = this.scene.add.text(0, 12)
+    this.pointsText.setStyle({
+      fontFamily: 'FiraMono-Bold',
+      fontSize: '24px',
+      fill: '#333333',
+      align: 'right',
+      fixedWidth: this.scene.game.config.width - 12,
+    })
+    this.updatePointsText()
+  }
+
+  sumPoints() {
+    this.points = this.points + (20 + (5 * this.wave))
+    this.updatePointsText()
+  }
+
+  getPoints() {
+    return this.points
   }
 
   shouldTheWaveIncrement(balls) {
@@ -214,6 +237,7 @@ class WavesManager {
       balls.infectABall({ ball: children[0] })
       this.incrementGameVelocity()
       this.updateWaveText()
+      this.notifyWaveChange({ wave: this.wave })
     }
   }
 
@@ -221,8 +245,8 @@ class WavesManager {
     const timeScaleDisable = this.scene.ownVars.timeScaleDisable
     const world = this.scene.physics.world
 
-    if (!timeScaleDisable && world.timeScale >= 0.2) {
-      world.timeScale -= 0.1;
+    if (!timeScaleDisable && world.timeScale >= 0.3) {
+      world.timeScale -= 0.2;
     }
   }
 
@@ -233,10 +257,56 @@ class WavesManager {
     this.waveText.setText(`OLEADA ${this.wave}`)
   }
 
+  updatePointsText() {
+    if (!this.pointsText) {
+      return
+    }
+    this.pointsText.setText(`${this.points}pts`)
+  }
+
   timerNextItem() {
     timerNextItem.bind(this.scene)(
       this.NEXT_ITEM_MIN_TIME, 
       this.NEXT_ITEM_MAX_TIME,
     )
+  }
+
+  timerNextWallInstance
+  timerNextWall() {
+    if (this.timerNextWallInstance) {
+      timerNextItemInstance.remove()
+    }
+    
+    const milliseconds = Phaser.Math.Between(this.NEXT_WALL_MIN_TIME, this.NEXT_WALL_MAX_TIME)
+
+    this.timerNextWallInstance = this.scene.time.addEvent({
+      delay: milliseconds,
+      callback: () => {
+        quarentineWallAction.bind(this.scene)(() => this.timerNextWall())
+      },
+      //args: [],
+      callbackScope: this,
+      loop: false,
+    })
+  }
+
+  onWaveChangeCb = []
+  onWaveChange(cb) {
+    if (this.onWaveChangeCb.some(c => cb === c)) {
+      return
+    }
+    this.onWaveChangeCb.push(cb)
+  }
+
+  offWaveChange(cb) {
+    if (!cb) {
+      return
+    }
+    const index = this.onWaveChangeCb.indexOf(c => cb === c)
+    this.onWaveChangeCb.splice(index, 1)
+  }
+
+  notifyWaveChange(data) {
+    this.onWaveChangeCb.forEach(cb => cb(data))
   }
 }

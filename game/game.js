@@ -85,6 +85,9 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       'game/assets/more_social_distancing.png'
     )
     this.load.image('item_respirator', 'game/assets/ico-medikit.png')
+
+    this.load.image('item_dog', 'game/assets/ico-dog.png')
+    this.load.image('item_shop', 'game/assets/ico-shop.png')
   
     this.load.image('solid_block', 'game/assets/block.png')
   
@@ -143,7 +146,8 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       timerNextItemReset()
       balls.stop()
       onGameHover && onGameHover({
-        time: this.ownVars.time
+        time: this.ownVars.time,
+        points: wavesManager.getPoints()
       })
     }
     if (!playerDisbaled) {
@@ -177,6 +181,8 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       }
     
       wavesManager.timerNextItem()
+      wavesManager.timerNextWall()
+      setPointIcon.bind(this)()
     }
     timer.bind(this)()
 
