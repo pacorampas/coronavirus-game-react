@@ -80,13 +80,13 @@ class PlayerClass {
       const gameTime = this.scene.ownVars.time
   
       if (_ball.getData('infected')) {
-        if (playerData.mask) {
-          playerData.mask = false
-          _player.setData('player', playerData)
-          PlayerClass.updateTexture(_player)
-        } else if (playerData.respirator) {
+        if (playerData.respirator) {
           balls.recoverABall({ ball: _ball, byPlayer: true }) 
           playerData.respirator = false
+          _player.setData('player', playerData)
+          PlayerClass.updateTexture(_player)
+        } else if (playerData.mask) {
+          playerData.mask = false
           _player.setData('player', playerData)
           PlayerClass.updateTexture(_player)
         } else { 
