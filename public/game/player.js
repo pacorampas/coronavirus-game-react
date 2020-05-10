@@ -25,6 +25,10 @@ class PlayerClass {
 
     const callbackPowerUp = isMobile(this.scene) && this.sprint
     this.powerUpsButton = new PowerUp(this.scene, callbackPowerUp)
+
+    this.scene.ownVars.wavesManager.onWaveChange(() => {
+      this.disbledSocialDistancing = false
+    })
   }
 
   initSprite() {
@@ -168,8 +172,13 @@ class PlayerClass {
   }
 
   wallEnabled = true
+  disbledSocialDistancing = false
   inputKeysActions() {
     this.scene.input.keyboard.on('keydown-Q', event => {
+      if (this.disbledSocialDistancing) {
+        return
+      }
+      this.disbledSocialDistancing = true
       socialDistancigAction.bind(this.scene)(this.SOCIAL_DISTANCING_LENGTH, this.SOCIAL_DISTANCING_TIMER)
     })
     this.scene.input.keyboard.on('keydown-W', event => {

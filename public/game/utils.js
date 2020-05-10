@@ -235,6 +235,7 @@ class WavesManager {
       balls.infectABall({ ball: children[0] })
       this.incrementGameVelocity()
       this.updateWaveText()
+      this.notifyWaveChange({ wave: this.wave })
     }
   }
 
@@ -242,8 +243,8 @@ class WavesManager {
     const timeScaleDisable = this.scene.ownVars.timeScaleDisable
     const world = this.scene.physics.world
 
-    if (!timeScaleDisable && world.timeScale >= 0.2) {
-      world.timeScale -= 0.1;
+    if (!timeScaleDisable && world.timeScale >= 0.3) {
+      world.timeScale -= 0.2;
     }
   }
 
@@ -266,5 +267,25 @@ class WavesManager {
       this.NEXT_ITEM_MIN_TIME, 
       this.NEXT_ITEM_MAX_TIME,
     )
+  }
+
+  onWaveChangeCb = []
+  onWaveChange(cb) {
+    if (this.onWaveChangeCb.some(c => cb === c)) {
+      return
+    }
+    this.onWaveChangeCb.push(cb)
+  }
+
+  offWaveChange(cb) {
+    if (!cb) {
+      return
+    }
+    const index = this.onWaveChangeCb.indexOf(c => cb === c)
+    this.onWaveChangeCb.splice(index, 1)
+  }
+
+  notifyWaveChange(data) {
+    this.onWaveChangeCb.forEach(cb => cb(data))
   }
 }
