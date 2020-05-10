@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "aa526abeacd9db9c310a1495fa26c2f1",
+    "revision": "0f700cf84f67544f75e1fb512751369b",
     "url": "/coronavirus-game-react/index.html"
   },
   {
-    "revision": "f25e6221a2a52b06b066",
+    "revision": "e1e10b0be0b93fee8e57",
     "url": "/coronavirus-game-react/static/css/main.1f16db0f.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coronavirus-game-react/static/js/2.9a9a72ac.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f25e6221a2a52b06b066",
-    "url": "/coronavirus-game-react/static/js/main.313be821.chunk.js"
+    "revision": "e1e10b0be0b93fee8e57",
+    "url": "/coronavirus-game-react/static/js/main.7bb59b2f.chunk.js"
   },
   {
     "revision": "5dedd8a591b317c7cd8d",
