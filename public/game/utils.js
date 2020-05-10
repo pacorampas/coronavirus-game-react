@@ -186,9 +186,11 @@ const directionsUtil = new DirectionsUtilClass()
 
 class WavesManager {
   NEXT_ITEM_MIN_TIME = 2000
-  NEXT_ITEM_MAX_TIME = 1500
+  NEXT_ITEM_MAX_TIME = 15000
   wave = 1
+  points = 0
   waveText
+  pointsText
 
   constructor({ scene }) {
     this.scene = scene
@@ -204,6 +206,25 @@ class WavesManager {
       fixedWidth: this.scene.game.config.width,
     })
     this.updateWaveText()
+
+    this.pointsText = this.scene.add.text(0, 12)
+    this.pointsText.setStyle({
+      fontFamily: 'FiraMono-Bold',
+      fontSize: '24px',
+      fill: '#333333',
+      align: 'right',
+      fixedWidth: this.scene.game.config.width - 12,
+    })
+    this.updatePointsText()
+  }
+
+  sumPoints() {
+    this.points = this.points + (20 + (5 * this.wave))
+    this.updatePointsText()
+  }
+
+  getPoints() {
+    return this.points
   }
 
   shouldTheWaveIncrement(balls) {
@@ -231,6 +252,13 @@ class WavesManager {
       return
     }
     this.waveText.setText(`OLEADA ${this.wave}`)
+  }
+
+  updatePointsText() {
+    if (!this.pointsText) {
+      return
+    }
+    this.pointsText.setText(`${this.points}pts`)
   }
 
   timerNextItem() {
