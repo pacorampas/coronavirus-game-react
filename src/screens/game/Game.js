@@ -62,7 +62,7 @@ function Game({ setScreenActive }) {
       showModal()
     }
 
-    game.current = initGame('coronavirusGame', 35, 0, false, true, handleGameOver, GAME.size)
+    game.current = initGame('coronavirusGame', 35, 0, false, false, handleGameOver, GAME.size)
 
     return () => {
       game.current.destroy()
