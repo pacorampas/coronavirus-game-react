@@ -57,12 +57,12 @@ function Game({ setScreenActive }) {
       const newBonusPoints = Math.round(time * 3.683)
       setPoints(points)
       setBonusTime(newBonusPoints)
-      const newBest = AppService.setNewPuntation(newBonusPoints)
+      const newBest = AppService.setNewPuntation(newBonusPoints + points)
       setNewBest(newBest)
       showModal()
     }
 
-    game.current = initGame('coronavirusGame', 40, 0, false, true, handleGameOver, GAME.size)
+    game.current = initGame('coronavirusGame', 35, 0, false, true, handleGameOver, GAME.size)
 
     return () => {
       game.current.destroy()
