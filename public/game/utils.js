@@ -187,6 +187,8 @@ const directionsUtil = new DirectionsUtilClass()
 class WavesManager {
   NEXT_ITEM_MIN_TIME = 2000
   NEXT_ITEM_MAX_TIME = 15000
+  NEXT_WALL_MIN_TIME = 15000
+  NEXT_WALL_MAX_TIME = 45000
   wave = 1
   points = 0
   waveText
@@ -267,6 +269,25 @@ class WavesManager {
       this.NEXT_ITEM_MIN_TIME, 
       this.NEXT_ITEM_MAX_TIME,
     )
+  }
+
+  timerNextWallInstance
+  timerNextWall() {
+    if (this.timerNextWallInstance) {
+      timerNextItemInstance.remove()
+    }
+    
+    const milliseconds = Phaser.Math.Between(this.NEXT_WALL_MIN_TIME, this.NEXT_WALL_MAX_TIME)
+
+    this.timerNextWallInstance = this.scene.time.addEvent({
+      delay: milliseconds,
+      callback: () => {
+        quarentineWallAction.bind(this.scene)(() => this.timerNextWall())
+      },
+      //args: [],
+      callbackScope: this,
+      loop: false,
+    })
   }
 
   onWaveChangeCb = []

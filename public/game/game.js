@@ -181,6 +181,7 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       }
     
       wavesManager.timerNextItem()
+      wavesManager.timerNextWall()
       setPointIcon.bind(this)()
     }
     timer.bind(this)()

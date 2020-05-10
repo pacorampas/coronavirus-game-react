@@ -171,7 +171,7 @@ class PlayerClass {
     }
   }
 
-  wallEnabled = true
+  // wallEnabled = true
   disbledSocialDistancing = false
   inputKeysActions() {
     this.scene.input.keyboard.on('keydown-Q', event => {
@@ -181,13 +181,13 @@ class PlayerClass {
       this.disbledSocialDistancing = true
       socialDistancigAction.bind(this.scene)(this.SOCIAL_DISTANCING_LENGTH, this.SOCIAL_DISTANCING_TIMER)
     })
-    this.scene.input.keyboard.on('keydown-W', event => {
-      if (!this.wallEnabled) {
-        return
-      }
-      this.wallEnabled = false
-      quarentineWallAction.bind(this.scene)(() => this.wallEnabled = true)
-    })
+    // this.scene.input.keyboard.on('keydown-W', event => {
+    //   if (!this.wallEnabled) {
+    //     return
+    //   }
+    //   this.wallEnabled = false
+    //   quarentineWallAction.bind(this.scene)(() => this.wallEnabled = true)
+    // })
   }
 
   static updateTexture(player) {

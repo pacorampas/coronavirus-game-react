@@ -28,8 +28,8 @@ const socialDistancigAction = function(howManyShouldBeStopped, timer) {
 
 const quarentineWallAction = function(cb) {
   const max = this.game.config.width - 200
-  // const x = Phaser.Math.Between(200, max)
-  const x = this.game.config.width / 2
+  const x = Phaser.Math.Between(200, max)
+  // const x = this.game.config.width / 2
 
   const w = 4 
   const h = this.game.config.height / 2
@@ -81,7 +81,7 @@ const quarentineWallAction = function(cb) {
   }))
 
   this.time.addEvent({
-    delay: 30000,
+    delay: 15000,
     callback: () => {
       r1.body.velocity.y = -100;
       r2.body.velocity.y = 100;
