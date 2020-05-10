@@ -246,7 +246,7 @@ class WavesManager {
     const world = this.scene.physics.world
 
     if (!timeScaleDisable && world.timeScale >= 0.3) {
-      world.timeScale -= 0.05;
+      world.timeScale -= 0.02;
     }
   }
 
