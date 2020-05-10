@@ -28,7 +28,7 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
     setTimeout(() => {
       anim.current.goToAndPlay(0)
       setShowNewBestText(true)
-    }, 4000)
+    }, 4800)
 
   }, [])
   
