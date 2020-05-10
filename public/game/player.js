@@ -93,6 +93,12 @@ class PlayerClass {
           _player.destroy()
           onGameOver()
         }
+      } else {
+        if (playerData.respirator) {
+          playerData.respirator = false
+          _player.setData('player', playerData)
+          PlayerClass.updateTexture(_player)
+        }
       }
 
       if (_player && _player.body && _player.body.touching) {
