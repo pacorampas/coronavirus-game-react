@@ -81,7 +81,7 @@ const quarentineWallAction = function(cb) {
   }))
 
   this.time.addEvent({
-    delay: 15000,
+    delay: 10000,
     callback: () => {
       r1.body.velocity.y = -100;
       r2.body.velocity.y = 100;
