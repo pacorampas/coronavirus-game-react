@@ -8,6 +8,7 @@ class PlayerClass {
   SOCIAL_DISTANCING_TIMER = 10
 
   SPRINT_INCREMENT = 2.5
+  SPRINT_TIME_DISABLED = 5 // seconds
 
   constructor(scene, velocity) {
     this.scene = scene
@@ -191,6 +192,7 @@ class PlayerClass {
   disbledSocialDistancing = false
   inputKeysActions() {
     this.scene.input.keyboard.on('keydown-Q', this.socialDistance)
+    this.scene.input.keyboard.on('keydown-R', this.sprintButton.handleClick)
     this.scene.input.keyboard.on('keydown-W', (event) => {
       if (!this.wallEnabled) {
         return
@@ -266,20 +268,54 @@ class PlayerClass {
   }
 
   sprintEnable = false
+  sprintUIDisabled = false
   sprint = () => {
     console.info('sprint')
-    if (this.sprintEnable) {
+    if (this.sprintUIDisabled) {
       return
     }
 
     this.sprintEnable = true
+    this.sprintUIDisabled = true
+
     this.setNewVelocity(this.velocity * this.SPRINT_INCREMENT)
-    setTimeout(() => {
-      this.setNewVelocity(this.velocity)
-      setTimeout(() => {
+    this.scene.time.addEvent({
+      delay: 250,
+      callback: () => {
         this.sprintEnable = false
-      }, 5000)
-    }, 250)
+        this.setNewVelocity(this.velocity)
+      },
+      //args: [],
+      callbackScope: this,
+      loop: false,
+    })
+
+    this.runCountDownSprint({ 
+      onEnd: () => {
+        this.sprintUIDisabled = false
+        this.countDownSprint = this.SPRINT_TIME_DISABLED * 1000
+      }
+    })
+  }
+  
+  countDownSprint = this.SPRINT_TIME_DISABLED * 1000
+  runCountDownSprint({ onEnd }) {
+    if (this.countDownSprint === 0) {
+      onEnd && onEnd()
+      return
+    }
+
+    this.countDownSprint -= 1000
+
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        this.runCountDownSprint({ onEnd })
+      },
+      //args: [],
+      callbackScope: this,
+      loop: false,
+    })
   }
 
   hasRespirator() {
