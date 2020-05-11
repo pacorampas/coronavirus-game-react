@@ -24,7 +24,7 @@ class AppService {
     )
     
     if (index > -1) {
-      this.history.splice(index, 1, newHistoryItem)
+      this.history.splice(index, 0, newHistoryItem)
     } else {
       this.history.push(newHistoryItem)
     }
