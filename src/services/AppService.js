@@ -41,6 +41,10 @@ class AppService {
   saveInLocalStorage() {
     localStorage.setItem('history', JSON.stringify(this.history))
   }
+
+  getBestScore() {
+    return this.history[0]
+  }
 }
 
 export default new AppService()

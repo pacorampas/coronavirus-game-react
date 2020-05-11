@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useCountUp } from 'react-countup'
 import Modal from 'components/modal/Modal'
 import Button from 'components/button/Button'
+import { ReactComponent as IconExit } from './iconExit.svg'
+import { ReactComponent as IconPlay } from './iconPlay.svg'
 import styles from './ModalGameOver.module.css'
 import lottie from 'lottie-web'
 
@@ -61,16 +63,17 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
         <div className={styles.buttons}>
           <Button 
             className={styles.button}
+            variant="primary"
             onClick={hanldeClickRestart}
           >
-            REINTENTAR
+            <IconPlay className={styles.icon} />REINTENTAR
           </Button>
           <Button 
             className={styles.button} 
             variant="negative"
             onClick={hanldeClickExit}
           >
-            SALIR
+            <IconExit className={styles.icon} />SALIR
           </Button>
         </div>
         <div className={styles.animation} ref={confetiRef} />

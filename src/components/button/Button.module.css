@@ -2,15 +2,30 @@
   /* resets */
   outline: 0;
 
+  display: flex;
+  align-items: center;
+  height: 48px;
   border: 0;
   font-family: FiraSans-Bold;
+  font-size: 16px;
+  letter-spacing: 2px;
   padding: 12px 48px;
   border-radius: 6px;
-  background: #009eff;
+  background: #d8d8d8;
   color: #fff;
+  cursor: pointer;
 }
 
 .button:active {
+  background-color: #a6a6a6;
+
+}
+
+.button.primary {
+  background-color: #009eff;
+}
+
+.button.primary:active {
   background-color: #006fb3
 }
 

@@ -1,4 +1,78 @@
-.chartWrapper {
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
   width: 100%;
-  height: 250px;
+  background: #000;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  background-color: #fafafa;
+}
+
+.coronaTime {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+
+  font-family: FiraSans-Bold;
+  font-size: 24px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+}
+
+.icon {
+  margin-right: 6px;
+}
+
+.button {
+  width: 266px;
+}
+
+.button:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.bestPoints {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.bestPoints h2 {
+  font-family: FiraSans-Heavy;
+  font-size: 24px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 0.6px;
+  text-align: right;
+  color: #000b32;
+  margin: 0;
+}
+
+.bestPoints p {
+  font-family: FiraSans-Regular;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: right;
+  color: rgba(0, 11, 50, 0.8);
+  margin: 0;
 }
