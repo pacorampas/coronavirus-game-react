@@ -44,6 +44,7 @@ class PlayerClass {
 
     this.scene.ownVars.wavesManager.onWaveChange(() => {
       this.disbledSocialDistancing = false
+      this.socialDistancingButton.setDisabled({ disabled: false })
     })
   }
 
@@ -331,13 +332,13 @@ class PlayerClass {
     )
 
     this.socialDistancingButton.setDisabled({ disabled: true })
-    this.runCountDownSocialDistance({
-      onEnd: () => {
-        this.disbledSocialDistancing = false
-        this.socialDistancingButton.setDisabled({ disabled: false })
-        this.countDownSocialDistance = this.SOCIAL_DISTANCE_TIME_DISABLED * 1000
-      },
-    })
+    // this.runCountDownSocialDistance({
+    //   onEnd: () => {
+    //     this.disbledSocialDistancing = false
+    //     this.socialDistancingButton.setDisabled({ disabled: false })
+    //     this.countDownSocialDistance = this.SOCIAL_DISTANCE_TIME_DISABLED * 1000
+    //   },
+    // })
   }
 
   countDownSocialDistance = this.SOCIAL_DISTANCE_TIME_DISABLED * 1000
