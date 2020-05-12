@@ -26,17 +26,19 @@ class PlayerClass {
 
     this.sprintButton = new PowerUpButton({
       shortcut: 'R',
+      icon: 'sprint',
       cb: this.sprint,
     })
     this.socialDistancingButton = new PowerUpButton({
       shortcut: 'E',
+      icon: 'confination',
       cb: this.socialDistance,
     })
 
     this.powerUps = new PowerUps({
       scene: this.scene,
       actionableButtons: [this.sprintButton, this.socialDistancingButton],
-      passivePowerUps: ['item_mask', 'item_respirator'],
+      passivePowerUps: ['powerup_medikit', 'powerup_mask'],
     })
 
     this.scene.ownVars.wavesManager.onWaveChange(() => {
@@ -290,14 +292,14 @@ class PlayerClass {
       loop: false,
     })
 
-    this.runCountDownSprint({ 
+    this.runCountDownSprint({
       onEnd: () => {
         this.sprintUIDisabled = false
         this.countDownSprint = this.SPRINT_TIME_DISABLED * 1000
-      }
+      },
     })
   }
-  
+
   countDownSprint = this.SPRINT_TIME_DISABLED * 1000
   runCountDownSprint({ onEnd }) {
     if (this.countDownSprint === 0) {

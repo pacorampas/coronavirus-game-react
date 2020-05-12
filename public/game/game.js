@@ -125,6 +125,19 @@ const initGame = function (
       frameWidth: 256,
       frameHeight: 256,
     })
+
+    // Powerups
+    this.load.image('powerup_mask', 'game/assets/powerup-mask.png')
+    this.load.image(
+      'powerup_mask_disabled',
+      'game/assets/powerup-mask-disabled.png'
+    )
+
+    this.load.image('powerup_medikit', 'game/assets/powerup-medikit.png')
+    this.load.image(
+      'powerup_medikit_disabled',
+      'game/assets/powerup-medikit-disabled.png'
+    )
   }
 
   function create() {
