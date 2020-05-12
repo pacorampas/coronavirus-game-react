@@ -9,6 +9,7 @@ class PlayerClass {
 
   SPRINT_INCREMENT = 2.5
   SPRINT_TIME_DISABLED = 5 // seconds
+  SOCIAL_DISTANCE_TIME_DISABLED = 10 // seconds
 
   constructor(scene, velocity) {
     this.scene = scene
@@ -30,7 +31,7 @@ class PlayerClass {
       cb: this.sprint,
     })
     this.socialDistancingButton = new PowerUpButton({
-      shortcut: 'E',
+      shortcut: 'Q',
       icon: 'confination',
       cb: this.socialDistance,
     })
@@ -101,10 +102,12 @@ class PlayerClass {
           if (playerData.respirator) {
             balls.recoverABall({ ball: _ball, byPlayer: true })
             playerData.respirator = false
+            this.setRespirator({ active: false })
             _player.setData('player', playerData)
             PlayerClass.updateTexture(_player)
           } else if (playerData.mask) {
             playerData.mask = false
+            this.setMask({ active: false })
             _player.setData('player', playerData)
             PlayerClass.updateTexture(_player)
           } else {
@@ -191,9 +194,11 @@ class PlayerClass {
   }
 
   // wallEnabled = true
-  disbledSocialDistancing = false
   inputKeysActions() {
-    this.scene.input.keyboard.on('keydown-Q', this.socialDistance)
+    this.scene.input.keyboard.on(
+      'keydown-Q',
+      this.socialDistancingButton.handleClick
+    )
     this.scene.input.keyboard.on('keydown-R', this.sprintButton.handleClick)
     this.scene.input.keyboard.on('keydown-W', (event) => {
       if (!this.wallEnabled) {
@@ -209,17 +214,6 @@ class PlayerClass {
     //   this.wallEnabled = false
     //   quarentineWallAction.bind(this.scene)(() => this.wallEnabled = true)
     // })
-  }
-
-  socialDistance = () => {
-    if (this.disbledSocialDistancing) {
-      return
-    }
-    this.disbledSocialDistancing = true
-    socialDistancigAction.bind(this.scene)(
-      this.SOCIAL_DISTANCING_LENGTH,
-      this.SOCIAL_DISTANCING_TIMER
-    )
   }
 
   static updateTexture(player) {
@@ -272,7 +266,6 @@ class PlayerClass {
   sprintEnable = false
   sprintUIDisabled = false
   sprint = () => {
-    console.info('sprint')
     if (this.sprintUIDisabled) {
       return
     }
@@ -292,9 +285,11 @@ class PlayerClass {
       loop: false,
     })
 
+    this.sprintButton.setDisabled({ disabled: true })
     this.runCountDownSprint({
       onEnd: () => {
         this.sprintUIDisabled = false
+        this.sprintButton.setDisabled({ disabled: false })
         this.countDownSprint = this.SPRINT_TIME_DISABLED * 1000
       },
     })
@@ -307,6 +302,7 @@ class PlayerClass {
       return
     }
 
+    this.sprintButton.updateCountdown({ timeLeft: this.countDownSprint / 1000 })
     this.countDownSprint -= 1000
 
     this.scene.time.addEvent({
@@ -320,9 +316,61 @@ class PlayerClass {
     })
   }
 
+  disbledSocialDistancing = false
+  socialDistance = () => {
+    if (this.disbledSocialDistancing) {
+      return
+    }
+    this.disbledSocialDistancing = true
+    socialDistancigAction.bind(this.scene)(
+      this.SOCIAL_DISTANCING_LENGTH,
+      this.SOCIAL_DISTANCING_TIMER
+    )
+
+    this.socialDistancingButton.setDisabled({ disabled: true })
+    this.runCountDownSocialDistance({
+      onEnd: () => {
+        this.disbledSocialDistancing = false
+        this.socialDistancingButton.setDisabled({ disabled: false })
+        this.countDownSocialDistance = this.SOCIAL_DISTANCE_TIME_DISABLED * 1000
+      },
+    })
+  }
+
+  countDownSocialDistance = this.SOCIAL_DISTANCE_TIME_DISABLED * 1000
+  runCountDownSocialDistance({ onEnd }) {
+    if (this.countDownSocialDistance === 0) {
+      onEnd && onEnd()
+      return
+    }
+
+    this.socialDistancingButton.updateCountdown({
+      timeLeft: this.countDownSocialDistance / 1000,
+    })
+    this.countDownSocialDistance -= 1000
+
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        this.runCountDownSocialDistance({ onEnd })
+      },
+      //args: [],
+      callbackScope: this,
+      loop: false,
+    })
+  }
+
+  setRespirator({ active }) {
+    this.powerUps.setPassivePowerUp({ active, powerUp: 'powerup_medikit' })
+  }
+
   hasRespirator() {
     const playerData = this.player.getData('player')
     return playerData && playerData.respirator
+  }
+
+  setMask({ active }) {
+    this.powerUps.setPassivePowerUp({ active, powerUp: 'powerup_mask' })
   }
 
   hasMask() {
