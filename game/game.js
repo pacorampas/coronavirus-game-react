@@ -1,6 +1,14 @@
 /* eslint-disable no-undef */
 /* global dat */
-const initGame = function(documentId, ballsLength, socialDistancingLength, playerDisbaled, timeScaleDisable, onGameHover, sizes) {
+const initGame = function (
+  documentId,
+  ballsLength,
+  socialDistancingLength,
+  playerDisbaled,
+  timeScaleDisable,
+  onGameHover,
+  sizes
+) {
   var config = {
     type: Phaser.AUTO,
     width: sizes.width || 1000,
@@ -52,16 +60,16 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       update: update,
     },
   }
-  
+
   const BALLS_LENGTH = ballsLength
-  
+
   var player
   let GLOB_VELOCITY = 100
   var joystick
   var borders
-  
+
   const game = new Phaser.Game(config)
-  
+
   function preload() {
     if (isMobile(this)) {
       this.load.plugin(
@@ -71,15 +79,23 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       )
     }
 
-    this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
+    this.load.script(
+      'webfont',
+      'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
+    )
 
-  
     this.load.image('ball', 'game/assets/person.png')
     this.load.image('infected', 'game/assets/infected.png')
-  
+
     this.load.image('item_mask', 'game/assets/ico-mask.png')
-    this.load.image('item_forced_quarentine', 'game/assets/forced_quarentine.png')
-    this.load.image('item_social_distancing', 'game/assets/social_distancing.png')
+    this.load.image(
+      'item_forced_quarentine',
+      'game/assets/forced_quarentine.png'
+    )
+    this.load.image(
+      'item_social_distancing',
+      'game/assets/social_distancing.png'
+    )
     this.load.image(
       'item_more_social_distancing',
       'game/assets/more_social_distancing.png'
@@ -88,20 +104,42 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
 
     this.load.image('item_dog', 'game/assets/ico-dog.png')
     this.load.image('item_shop', 'game/assets/ico-shop.png')
-  
+
     this.load.image('solid_block', 'game/assets/block.png')
-  
+
     this.load.image('player', 'game/assets/player.png')
-  
-    this.load.spritesheet('person', 'game/assets/sprite_player_down.png', { frameWidth: 256, frameHeight: 256 });
-  
+
+    this.load.spritesheet('person', 'game/assets/sprite_player_down.png', {
+      frameWidth: 256,
+      frameHeight: 256,
+    })
+
     this.load.image('player_mask', 'game/assets/player_mask.png')
     this.load.image('player_respirator', 'game/assets/player_respirator.png')
-    this.load.image('player_mask_respirator', 'game/assets/player_mask_respirator.png')
-  
-    this.load.spritesheet('player_down', 'game/assets/sprite_player_down.png', { frameWidth: 256, frameHeight: 256 });
+    this.load.image(
+      'player_mask_respirator',
+      'game/assets/player_mask_respirator.png'
+    )
+
+    this.load.spritesheet('player_down', 'game/assets/sprite_player_down.png', {
+      frameWidth: 256,
+      frameHeight: 256,
+    })
+
+    // Powerups
+    this.load.image('powerup_mask', 'game/assets/powerup-mask.png')
+    this.load.image(
+      'powerup_mask_disabled',
+      'game/assets/powerup-mask-disabled.png'
+    )
+
+    this.load.image('powerup_medikit', 'game/assets/powerup-medikit.png')
+    this.load.image(
+      'powerup_medikit_disabled',
+      'game/assets/powerup-medikit-disabled.png'
+    )
   }
-  
+
   function create() {
     const wavesManager = new WavesManager({ scene: this })
 
@@ -109,46 +147,46 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       time: 0,
       velocity: GLOB_VELOCITY,
       timeScaleDisable,
-      wavesManager
+      wavesManager,
     }
 
     const self = this
     // fonts
     WebFont.load({
       custom: {
-        families: ['FiraMono-Bold', 'FiraMono-Medium']
+        families: ['FiraMono-Bold', 'FiraMono-Medium'],
       },
-      active: function (a)
-      {
+      active: function (a) {
         wavesManager.initText()
         initTimerText.bind(self)()
-      }
-    });
+      },
+    })
 
     // + 1 is a player
     globalCollectData.initGame(BALLS_LENGTH + 1)
-    
+
     // this.physics.world.setBounds(50, 50, 700, 500);
-  
+
     // graphics = this.add.graphics();
-  
+
     borders = new Borders(this)
-    
+
     if (!playerDisbaled) {
       player = new PlayerClass(this, GLOB_VELOCITY)
       this.ownVars.player = player
     }
-  
+
     balls = new BallsClass(this, GLOB_VELOCITY, BALLS_LENGTH)
     this.ownVars.balls = balls
-    
+
     const handleGameOver = () => {
       timerNextItemReset()
       balls.stop()
-      onGameHover && onGameHover({
-        time: this.ownVars.time,
-        points: wavesManager.getPoints()
-      })
+      onGameHover &&
+        onGameHover({
+          time: this.ownVars.time,
+          points: wavesManager.getPoints(),
+        })
     }
     if (!playerDisbaled) {
       player.collideWithBall(balls, handleGameOver)
@@ -159,19 +197,18 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
     borders.collideWith([balls.getGroup()], (_border, _ball) => {
       balls.setAnimationByDirection(_ball)
     })
-    
-  
+
     //createWorldGui(this.physics.world);
-    
+
     if (!playerDisbaled) {
       if (isMobile(this)) {
         joystick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-          x: config.width - 60 - 40,
-          y: config.height - 60 - 40,
+          x: 12 + 32,
+          y: config.height - 44,
           dir: '4dir',
-          radius: 60,
-          base: this.add.circle(0, 0, 60, 0x888888),
-          thumb: this.add.circle(0, 0, 30, 0xcccccc),
+          radius: 32,
+          base: this.add.circle(0, 0, 32, 0xf3f3f3),
+          thumb: this.add.circle(0, 0, 24, 0xffffff),
         })
         cursors = joystick.createCursorKeys()
         // mobile buttons, like sprint
@@ -179,7 +216,7 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
         cursors = this.input.keyboard.createCursorKeys()
         player.inputKeysActions()
       }
-    
+
       wavesManager.timerNextItem()
       wavesManager.timerNextWall()
       setPointIcon.bind(this)()
@@ -190,28 +227,28 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
       socialDistancigAction.bind(this)(socialDistancingLength)
     }
   }
-  
-  function update(time) {  
+
+  function update(time) {
     if (!playerDisbaled) {
       player.inputs(cursors, time)
     }
   }
-  
+
   function createWorldGui(world) {
     var gui = new dat.GUI({ width: 400 })
-  
+
     var bounds = gui.addFolder('bounds')
     bounds.add(world.bounds, 'x', -400, 400, 10)
     bounds.add(world.bounds, 'y', -300, 300, 10)
     bounds.add(world.bounds, 'width', 0, 800, 10)
     bounds.add(world.bounds, 'height', 0, 600, 10)
-  
+
     var check = gui.addFolder('checkCollision')
     check.add(world.checkCollision, 'left')
     check.add(world.checkCollision, 'up')
     check.add(world.checkCollision, 'right')
     check.add(world.checkCollision, 'down')
-  
+
     var defaults = gui.addFolder('defaults')
     defaults.add(world.defaults, 'debugShowBody')
     defaults.add(world.defaults, 'debugShowStaticBody')
@@ -219,27 +256,27 @@ const initGame = function(documentId, ballsLength, socialDistancingLength, playe
     defaults.addColor(world.defaults, 'bodyDebugColor')
     defaults.addColor(world.defaults, 'staticBodyDebugColor')
     defaults.addColor(world.defaults, 'velocityDebugColor')
-  
+
     var debug = gui.addFolder('debugGraphic')
     debug.add(world.debugGraphic, 'visible')
     debug.add(world.debugGraphic, 'clear')
-  
+
     gui.add(world, 'drawDebug')
-  
+
     gui.add(world, 'forceX')
-  
+
     var gravity = gui.addFolder('gravity')
     gravity.add(world.gravity, 'x', -300, 300, 10)
     gravity.add(world.gravity, 'y', -300, 300, 10)
-  
+
     // gui.add(world, 'isPaused');
-  
+
     gui.add(world, 'OVERLAP_BIAS', -8, 8, 1)
-  
+
     gui.add(world, 'pause')
-  
+
     gui.add(world, 'resume')
-  
+
     return gui
   }
 
