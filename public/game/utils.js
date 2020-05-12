@@ -71,7 +71,7 @@ class PowerUps {
   phaserButtons = []
   phaserPassiveImages = {}
   BUTTON_WIDTH = 48
-  PASSIVE_WIDTH = 46
+  PASSIVE_WIDTH = 32
 
   constructor(config = {}) {
     this.scene = config.scene
@@ -126,7 +126,7 @@ class PowerUps {
       const image = this.scene.add.image(
         coordinates.x - idx * (this.PASSIVE_WIDTH + 16),
         coordinates.y,
-        passivePowerUp
+        `${passivePowerUp}_disabled`
       )
       image.setDisplaySize(this.PASSIVE_WIDTH, this.PASSIVE_WIDTH)
       this.phaserPassiveImages[passivePowerUp] = image
@@ -157,6 +157,16 @@ class PowerUps {
       '0xeeeeee'
     )
   }
+
+  setPassivePowerUp = ({ active, powerUp }) => {
+    if (!this.phaserPassiveImages[powerUp]) {
+      return console.error('Invalid power up provided')
+    }
+
+    this.phaserPassiveImages[powerUp].setTexture(
+      `${powerUp}${active ? '' : '_disabled'}`
+    )
+  }
 }
 
 class PowerUpButton {
@@ -166,6 +176,7 @@ class PowerUpButton {
   constructor(config = {}) {
     this.callback = config.cb
     this.shortcut = config.shortcut || ''
+    this.icon = config.icon || ''
 
     // TODO destroy power ups on game over
     this.createButton()
@@ -178,18 +189,19 @@ class PowerUpButton {
       this.handleClick()
     })
 
+    if (this.icon) {
+      const icon = document.createElement('img')
+      icon.src = `./game/assets/ico-${this.icon}.png`
+
+      this.powerUpButtonHTML.appendChild(icon)
+    }
+
     if (this.shortcut) {
       const shortcutIndicator = document.createElement('span')
       shortcutIndicator.classList.add('power-up-shortcut')
       shortcutIndicator.textContent = this.shortcut
       this.powerUpButtonHTML.appendChild(shortcutIndicator)
     }
-
-    /*this.powerUpButton = this.scene.add.dom(
-      config.width - 36 - this.position * (24 + this.BUTTON_WIDTH),
-      config.height - 44,
-      this.powerUpButtonHTML
-    )*/
   }
 
   handleClick = () => {
