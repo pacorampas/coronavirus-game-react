@@ -189,6 +189,11 @@ class PowerUpButton {
       this.handleClick()
     })
 
+    this.powerUpCountdown = document.createElement('span')
+    this.powerUpCountdown.classList.add('power-up-countdown')
+
+    this.powerUpButtonHTML.appendChild(this.powerUpCountdown)
+
     if (this.icon) {
       const icon = document.createElement('img')
       icon.src = `./game/assets/ico-${this.icon}.png`
@@ -209,6 +214,14 @@ class PowerUpButton {
   }
 
   getDOMButton = () => this.powerUpButtonHTML
+
+  setDisabled = ({ disabled = false }) => {
+    this.powerUpButtonHTML.disabled = disabled
+  }
+
+  updateCountdown = ({ timeLeft }) => {
+    this.powerUpCountdown.textContent = `${timeLeft}s`
+  }
 }
 
 class DirectionsUtilClass {

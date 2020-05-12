@@ -2,10 +2,10 @@
 let timerNextItemInstance
 const ITEMS_ID = {
   respirator: 1,
-  mask: 2
+  mask: 2,
 }
 let itemsInWorld = []
-const timerNextItem = function(minTime, maxTime) {
+const timerNextItem = function (minTime, maxTime) {
   const milliseconds = Phaser.Math.Between(minTime, maxTime)
 
   timerNextItemInstance = this.time.addEvent({
@@ -20,15 +20,17 @@ const timerNextItem = function(minTime, maxTime) {
   })
 }
 
-const randomNextItem = function() {
+const randomNextItem = function () {
   const itemsRandom = []
   const player = this.ownVars.player
-  
+
   const hasRespirator = player.hasRespirator()
   const hasMask = player.hasMask()
-  const respiratorInWorld = itemsInWorld.some(item => item.id === ITEMS_ID.respirator)
-  const maskInWorld = itemsInWorld.some(item => item.id === ITEMS_ID.mask)
-  
+  const respiratorInWorld = itemsInWorld.some(
+    (item) => item.id === ITEMS_ID.respirator
+  )
+  const maskInWorld = itemsInWorld.some((item) => item.id === ITEMS_ID.mask)
+
   if (!hasRespirator && !respiratorInWorld) {
     itemsRandom.push(ITEMS_ID.respirator)
   }
@@ -52,7 +54,7 @@ const randomNextItem = function() {
   }
 }
 
-const setMaskItem = function() {
+const setMaskItem = function () {
   const player = this.ownVars.player
   const widthObject = 34
   const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
@@ -63,7 +65,7 @@ const setMaskItem = function() {
 
   itemsInWorld.push({
     gameObject: mask,
-    id: ITEMS_ID.mask
+    id: ITEMS_ID.mask,
   })
 
   this.physics.add.overlap(player.get(), mask, (_player, _mask) => {
@@ -72,12 +74,14 @@ const setMaskItem = function() {
     _player.setData('player', { ...prevData, mask: true })
     PlayerClass.updateTexture(_player)
 
+    player.setMask({ active: true })
+
     _mask.destroy()
-    itemsInWorld = itemsInWorld.filter(item => item.id !== ITEMS_ID.mask)
+    itemsInWorld = itemsInWorld.filter((item) => item.id !== ITEMS_ID.mask)
   })
 }
 
-const setRespirator = function() {
+const setRespirator = function () {
   const player = this.ownVars.player
   const widthObject = 34
   const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
@@ -88,7 +92,7 @@ const setRespirator = function() {
 
   itemsInWorld.push({
     gameObject: respirator,
-    id: ITEMS_ID.respirator
+    id: ITEMS_ID.respirator,
   })
 
   this.physics.add.overlap(player.get(), respirator, (_player, _respirator) => {
@@ -97,21 +101,24 @@ const setRespirator = function() {
     _player.setData('player', { ...prevData, respirator: true })
 
     PlayerClass.updateTexture(_player)
+    player.setRespirator({ active: true })
 
     _respirator.destroy()
-    itemsInWorld = itemsInWorld.filter(item => item.id !== ITEMS_ID.respirator)
+    itemsInWorld = itemsInWorld.filter(
+      (item) => item.id !== ITEMS_ID.respirator
+    )
   })
 }
 
-const timerNextItemReset = function() {
-  itemsInWorld.forEach(item => {
+const timerNextItemReset = function () {
+  itemsInWorld.forEach((item) => {
     item.gameObject.destroy()
   })
   itemsInWorld = []
   timerNextItemInstance && timerNextItemInstance.remove()
 }
 
-const setPointIcon = function() {
+const setPointIcon = function () {
   const player = this.ownVars.player
   const widthObject = 34
   const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
