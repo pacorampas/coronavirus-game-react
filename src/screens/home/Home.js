@@ -13,7 +13,7 @@ function Home({ setScreenActive }) {
     setScreenActive(SCREENS_IDS.game)
   }
 
-  let bestScore = AppService.getBestScore().points
+  let bestScore = AppService.getBestScore()
   bestScore = (bestScore && bestScore.points) || 0
  
   return (
