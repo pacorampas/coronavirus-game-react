@@ -38,7 +38,7 @@ function Home({ setScreenActive }) {
         >
           ¿CÓMO FUNCIONA?
         </Button>
-        {/* <ModalGameOver state={2} points={3000} bonusTime={376} /> */}
+        {/* <ModalGameOver state={2} points={3000} bonusTime={376} newBest={true} /> */}
       </div>
     </div>
   );
