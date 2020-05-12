@@ -58,7 +58,8 @@ const setMaskItem = function () {
   const player = this.ownVars.player
   const widthObject = 34
   const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
-  const y = Phaser.Math.Between(0, this.game.config.height - widthObject)
+  // 176 border height
+  const y = Phaser.Math.Between(0, this.game.config.height - widthObject - 176)
 
   const mask = this.physics.add.image(x, y, 'item_mask')
   mask.setDisplaySize(widthObject, widthObject)
@@ -72,9 +73,9 @@ const setMaskItem = function () {
     const prevData = _player.getData('player')
 
     _player.setData('player', { ...prevData, mask: true })
-    PlayerClass.updateTexture(_player)
-
+    
     player.setMask({ active: true })
+    player.updateTexture(_player)
 
     _mask.destroy()
     itemsInWorld = itemsInWorld.filter((item) => item.id !== ITEMS_ID.mask)
@@ -85,7 +86,8 @@ const setRespirator = function () {
   const player = this.ownVars.player
   const widthObject = 34
   const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
-  const y = Phaser.Math.Between(0, this.game.config.height - widthObject)
+  // 176 border height
+  const y = Phaser.Math.Between(0, this.game.config.height - widthObject - 176)
 
   const respirator = this.physics.add.image(x, y, 'item_respirator')
   respirator.setDisplaySize(widthObject, widthObject)
@@ -100,8 +102,8 @@ const setRespirator = function () {
 
     _player.setData('player', { ...prevData, respirator: true })
 
-    PlayerClass.updateTexture(_player)
     player.setRespirator({ active: true })
+    player.updateTexture(_player)
 
     _respirator.destroy()
     itemsInWorld = itemsInWorld.filter(
@@ -122,7 +124,8 @@ const setPointIcon = function () {
   const player = this.ownVars.player
   const widthObject = 34
   const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
-  const y = Phaser.Math.Between(0, this.game.config.height - widthObject)
+  // 176 border height
+  const y = Phaser.Math.Between(0, this.game.config.height - widthObject - 176)
 
   const itemsName = ['item_dog', 'item_shop']
   const randomIndex = Phaser.Math.Between(0, itemsName.length - 1)
