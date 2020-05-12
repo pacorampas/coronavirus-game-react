@@ -102,14 +102,14 @@ class PlayerClass {
           if (playerData.respirator) {
             balls.recoverABall({ ball: _ball, byPlayer: true })
             playerData.respirator = false
-            this.setRespirator({ active: false })
+            // this.setRespirator({ active: false })
             _player.setData('player', playerData)
-            PlayerClass.updateTexture(_player)
+            this.updateTexture(_player)
           } else if (playerData.mask) {
             playerData.mask = false
-            this.setMask({ active: false })
+            // this.setMask({ active: false })
             _player.setData('player', playerData)
-            PlayerClass.updateTexture(_player)
+            this.updateTexture(_player)
           } else {
             const EVENTS = globalCollectData.getEventsConst()
             const event = EVENTS.playerInfected
@@ -122,7 +122,7 @@ class PlayerClass {
           if (playerData.respirator) {
             playerData.respirator = false
             _player.setData('player', playerData)
-            PlayerClass.updateTexture(_player)
+            this.updateTexture(_player)
           }
         }
 
@@ -216,8 +216,11 @@ class PlayerClass {
     // })
   }
 
-  static updateTexture(player) {
+  updateTexture(player) {
     const data = player.getData('player')
+
+    this.powerUps.setPassivePowerUp({ active: data.mask, powerUp: 'powerup_mask' })
+    this.powerUps.setPassivePowerUp({ active: data.respirator, powerUp: 'powerup_medikit' })
 
     if (data.mask && data.respirator) {
       player.setTexture('player_mask_respirator')
