@@ -13,7 +13,8 @@ function Home({ setScreenActive }) {
     setScreenActive(SCREENS_IDS.game)
   }
 
-  const bestScore = AppService.getBestScore().points || 0
+  let bestScore = AppService.getBestScore().points
+  bestScore = (bestScore && bestScore.points) || 0
  
   return (
     <div className={styles.home}>
