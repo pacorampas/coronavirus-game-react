@@ -5,6 +5,7 @@ import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import AppService from 'services/AppService'
 import Chart from './Chart'
+import { initGame } from 'game/game'
 import styles from './Game.module.css'
 
 const GAME = {

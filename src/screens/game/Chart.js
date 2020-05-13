@@ -10,6 +10,8 @@ import {
   ResponsiveContainer,
   Area 
 } from 'recharts'
+import CollectData from 'game/collectData'
+
 
 const prepateDataToChart = data => {
 
@@ -35,7 +37,7 @@ function Chart() {
   const [gameData, setGameData] = useState([])
   
   useEffect(() => {
-    globalCollectData.onChangeData(data => {
+    CollectData.onChangeData(data => {
       const dataPrepared = prepateDataToChart(data)
       setGameData(dataPrepared)
     })

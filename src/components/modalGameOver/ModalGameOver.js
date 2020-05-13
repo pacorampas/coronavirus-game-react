@@ -43,7 +43,8 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
       renderer: 'svg',
       loop: false,
       autoplay: false,
-      path: 'https://assets7.lottiefiles.com/packages/lf20_aEFaHc.json'
+      // https://assets7.lottiefiles.com/packages/lf20_aEFaHc.json'
+      path: `${process.env.PUBLIC_URL}/assets/confentiAnim.json`
     })
 
     setTimeout(() => {

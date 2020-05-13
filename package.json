@@ -21,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gitResetChanges": "git checkout .",
+    "gitResetChanges": "git checkout package.json",
     "ghPagesHomepage": "npx json -I -f package.json -e 'this.homepage=\"http://pacorampas.github.io/coronavirus-game-react\"'",
     "deploy": "npm run ghPagesHomepage && npm run build && gh-pages -d build && npm run gitResetChanges"
   },
