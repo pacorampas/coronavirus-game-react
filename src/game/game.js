@@ -188,7 +188,7 @@ export const initGame = function (
     borders = new Borders(this)
 
     if (!playerDisbaled) {
-      player = new PlayerClass(this, GLOB_VELOCITY)
+      player = new PlayerClass(this, GLOB_VELOCITY, BALLS_LENGTH)
       this.ownVars.player = player
     }
 

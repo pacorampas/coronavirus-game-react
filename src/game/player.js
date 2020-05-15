@@ -8,16 +8,18 @@ export default class PlayerClass {
   sprintButton
   socialDistancingButton
 
-  SOCIAL_DISTANCING_LENGTH = 20
+  SOCIAL_DISTANCING_LENGTH
   SOCIAL_DISTANCING_TIMER = 10
 
   SPRINT_INCREMENT = 2.5
   SPRINT_TIME_DISABLED = 5 // seconds
   SOCIAL_DISTANCE_TIME_DISABLED = 10 // seconds
 
-  constructor(scene, velocity) {
+  constructor(scene, velocity, BALLS_LENGTH) {
     this.scene = scene
     this.velocity = velocity
+
+    this.SOCIAL_DISTANCING_LENGTH = Math.round(BALLS_LENGTH * 0.7)
 
     this.player = this.initSprite()
 
