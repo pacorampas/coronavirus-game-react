@@ -38,7 +38,7 @@ function ModalPortraitToLandscape({ state, onAccept, onCancel, ...rest }) {
 
           <div className={styles.wrapperRecord}>
             {!isLandscape ? 
-              <p className={styles.title}>Úsame en vertical</p> :
+              <p className={styles.title}>Úsame en horizantal</p> :
               <p className={styles.title}>Perfecto, ya puedes comenzar</p>
             }
           </div>
