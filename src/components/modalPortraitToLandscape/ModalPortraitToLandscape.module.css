@@ -74,17 +74,25 @@
   transition: opacity 0.2s;
 }
 
-.button {
-  flex: 1;
-}
-
 .buttons.show {
   pointer-events: auto;
   opacity: 1;
 }
 
+.button {
+  flex: 1;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.2s;
+}
+
 .button:not(:last-child) {
   margin-right: 12px;
+}
+
+.button.hide {
+  pointer-events: none;
+  opacity: 0.2;
 }
 
 .animation {

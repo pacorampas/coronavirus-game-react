@@ -77,6 +77,7 @@ export const initGame = function (
   var joystick
   var borders
   var cursors
+  var swipeInput
 
   const game = new Phaser.Game(config)
 
@@ -87,6 +88,11 @@ export const initGame = function (
         'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexvirtualjoystickplugin.min.js',
         true
       )
+      this.load.scenePlugin({
+        key: 'rexgesturesplugin',
+        url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexgesturesplugin.min.js',
+        sceneKey: 'rexGestures'
+      }) 
     }
 
     this.load.script(
@@ -210,17 +216,18 @@ export const initGame = function (
 
     //createWorldGui(this.physics.world);
     if (!playerDisbaled) {
-      if (isMobile(this)) {
-        joystick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-          x: 12 + 32,
-          y: config.height - 44,
-          dir: '4dir',
-          radius: 32,
-          base: this.add.circle(0, 0, 32, 0xf3f3f3),
-          thumb: this.add.circle(0, 0, 24, 0xffffff),
-        })
-        cursors = joystick.createCursorKeys()
-        // mobile buttons, like sprint
+      if (true && isMobile(this)) {
+        // joystick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
+        //   x: 12 + 32,
+        //   y: config.height - 44,
+        //   dir: '4dir',
+        //   radius: 32,
+        //   base: this.add.circle(0, 0, 32, 0xf3f3f3),
+        //   thumb: this.add.circle(0, 0, 24, 0xffffff),
+        // })
+        // cursors = joystick.createCursorKeys()
+
+        swipeInput = this.rexGestures.add.swipe({ threshold: 5, velocityThreshold: 10 , dir: '4dir' })
       } else {
         cursors = this.input.keyboard.createCursorKeys()
         player.inputKeysActions()
@@ -238,8 +245,11 @@ export const initGame = function (
   }
 
   function update(time) {
-    if (!playerDisbaled) {
+    if (cursors && !playerDisbaled) {
       player.inputs(cursors, time)
+    }
+    if (swipeInput && swipeInput.isSwiped) {
+      player.inputsSwipe(swipeInput, time)
     }
   }
 

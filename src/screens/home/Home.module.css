@@ -6,6 +6,9 @@
   height: 100%;
   width: 100%;
   background: #000;
+  overflow: hidden;
+
+  zoom: 100%;
 }
 
 .wrapper {
@@ -14,8 +17,10 @@
   align-items: center;
   flex-direction: column;
   position: relative;
-  width: 1000px;
-  height: 600px;
+  height: 100%;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 600px;
   background-color: #fafafa;
 }
 

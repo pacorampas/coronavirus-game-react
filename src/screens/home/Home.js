@@ -7,6 +7,7 @@ import { ReactComponent as IconPlay } from './iconPlay.svg'
 import AppService from 'services/AppService'
 
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
+import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
 
 function Home({ setScreenActive }) {
   const handleClickGame = () => {
@@ -38,7 +39,8 @@ function Home({ setScreenActive }) {
         >
           ¿CÓMO FUNCIONA?
         </Button>
-        {/* <ModalGameOver state={2} points={3000} bonusTime={376} newBest={true} /> */}
+        {/* <ModalGameOver state={2} points={3000} bonusTime={376} newBest={false} /> */}
+        {/* <ModalPortraitToLandscape state={2} /> */}
       </div>
     </div>
   );

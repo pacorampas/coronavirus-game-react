@@ -8,6 +8,8 @@ export default class BallsClass {
     this.scene = scene
     this.velocity = velocity
 
+
+
     this.balls = scene.physics.add.group({
       key: 'ball',
       frameQuantity: ballsLength,
@@ -19,7 +21,13 @@ export default class BallsClass {
     })
 
     const ballsChildren = this.balls.getChildren()
-    Phaser.Actions.RandomRectangle(ballsChildren, scene.physics.world.bounds)
+    var rect = this.scene.add.rectangle(
+      0, 
+      0, 
+      this.scene.game.config.width, 
+      this.scene.game.config.height - 180
+    )
+    Phaser.Actions.RandomRectangle(ballsChildren, rect)
 
     ballsChildren.forEach((ball) => {
       ball.setSize(60, 60, true)

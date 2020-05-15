@@ -13,6 +13,7 @@ import AppService from 'services/AppService'
 function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, ...rest }) {
   const confetiRef = useRef()
   const anim = useRef()
+  const [showBonusTimeWrapper, setBonusTimeWrapper] = useState(false)
   const [showNewBestText, setShowNewBestText] = useState(false)
   const [showBonusTime, setShowBonusTime] = useState(false)
   const [showLastBest, setShowLastBest] = useState(false)
@@ -26,14 +27,17 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
   useEffect(() => {
 
     setTimeout(() => {
+      setBonusTimeWrapper(true)
       setShowBonusTime(true)
     }, 1500)
 
     if (!newBest) {
       setTimeout(() => {
         setShowBonusTime(false)
-        setShowLastBest(true)
         setShowButtons(true)
+        setTimeout(() => {
+          setShowLastBest(true)
+        }, 100)
       }, 6500)
       return
     }
@@ -48,9 +52,13 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
     })
 
     setTimeout(() => {
-      anim.current.goToAndPlay(0)
+      setBonusTimeWrapper(true)
       setShowBonusTime(false)
-      setShowNewBestText(true)
+      
+      setTimeout(() => {
+        anim.current.goToAndPlay(0)
+        setShowNewBestText(true)
+      }, 100)
 
       setTimeout(() => {
         setShowButtons(true)
@@ -82,19 +90,31 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
             </p>
           </div>
 
-          <div className={c(styles.bonusTimeWrapper, showBonusTime && styles.show)}>
-            <p className={styles.text}>Bonus de tiempo</p>
-            <p className={styles.bonusPoints}>+ {bonusTime - Number(countUp)}</p>
+          <div className={c(styles.bonusTimeWrapper, showBonusTimeWrapper && styles.show)}>
+
+            <div className={c(styles.bonusTimeWrapperAnim, showBonusTime && styles.show)}>
+              <p className={styles.text}>Bonus de tiempo</p>
+              <p className={styles.bonusPoints}>+ {bonusTime - Number(countUp)}</p>
+            </div>
+
+            <div className={c(styles.bonusTimeWrapperAnim, showLastBest && styles.show)}>
+              <p className={styles.text}>Tu mejor puntuación</p>
+              <p className={styles.bonusPoints}>{bestScore}</p>
+            </div>
+
+            <div className={c(styles.bonusTimeWrapperAnim, showNewBestText && styles.show)}>
+              <p className={styles.bonusPoints}>¡NUEVO RECORD!</p>
+            </div>
           </div>
 
-          <div className={c(styles.bonusTimeWrapper, showLastBest && styles.show)}>
+          {/* <div className={c(styles.bonusTimeWrapper, showLastBest && styles.show)}>
             <p className={styles.text}>Tu mejor puntuación</p>
             <p className={styles.bonusPoints}>{bestScore}</p>
-          </div>
+          </div> */}
 
-          <div className={c(styles.bonusTimeWrapper, showNewBestText && styles.show)}>
+          {/* <div className={c(styles.bonusTimeWrapper, showNewBestText && styles.show)}>
             <p className={styles.bonusPoints}>¡NUEVO RECORD!</p>
-          </div>
+          </div> */}
         </div>
         <div className={c(styles.buttons, showButtons && styles.show)}>
           <Button 

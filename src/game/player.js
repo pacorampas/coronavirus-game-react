@@ -151,51 +151,84 @@ export default class PlayerClass {
     down: 3,
     left: 4,
   }
+
+  fastDoubleInput = (newInput, time) => {
+    if (newInput !== this.prevCursorInput) {
+      this.prevTimeInput = time
+      return false
+    }
+    const diffTime = time - this.prevTimeInput
+    this.prevTimeInput = time
+
+    if (diffTime <= this.TIME_DOUBLE_INPUT) {
+      this.sprint()
+      return true
+    }
+  }
+
+  inputLeft(time) {
+    this.player.setVelocityY(0)
+    this.player.setVelocityX(this.velocity * -1)
+    this.directions.setAnimationByDirection(this.player)
+    this.fastDoubleInput(this.CURSORS_INPUT_CODE.left, time)
+    this.prevCursorInput = this.CURSORS_INPUT_CODE.left
+  }
+
+  inputRight(time) {
+    this.player.setVelocityY(0)
+    this.player.setVelocityX(this.velocity)
+    this.directions.setAnimationByDirection(this.right)
+    this.fastDoubleInput(this.CURSORS_INPUT_CODE.right, time)
+    this.prevCursorInput = this.CURSORS_INPUT_CODE.right
+  }
+
+  inputUp(time) {
+    this.player.setVelocityX(0)
+    this.player.setVelocityY(this.velocity * -1)
+    this.directions.setAnimationByDirection(this.player)
+    this.fastDoubleInput(this.CURSORS_INPUT_CODE.up, time)
+    this.prevCursorInput = this.CURSORS_INPUT_CODE.up
+  }
+
+  inputDown(time) {
+    this.player.setVelocityX(0)
+    this.player.setVelocityY(this.velocity)
+    this.directions.setAnimationByDirection(this.player)
+    this.fastDoubleInput(this.CURSORS_INPUT_CODE.down, time)
+    this.prevCursorInput = this.CURSORS_INPUT_CODE.down
+  }
+
   inputs(cursors, time) {
     if (!this.player.active) {
       return
     }
 
-    const fastDoubleInput = (newInput) => {
-      if (newInput !== this.prevCursorInput) {
-        this.prevTimeInput = time
-        return false
-      }
-      const diffTime = time - this.prevTimeInput
-      this.prevTimeInput = time
-
-      if (diffTime <= this.TIME_DOUBLE_INPUT) {
-        this.sprint()
-        return true
-      }
-    }
-
     if (Phaser.Input.Keyboard.JustDown(cursors.left)) {
-      this.player.setVelocityY(0)
-      this.player.setVelocityX(this.velocity * -1)
-      this.directions.setAnimationByDirection(this.player)
-      fastDoubleInput(this.CURSORS_INPUT_CODE.left)
-      this.prevCursorInput = this.CURSORS_INPUT_CODE.left
+      this.inputLeft(time)
     } else if (Phaser.Input.Keyboard.JustDown(cursors.right)) {
-      this.player.setVelocityY(0)
-      this.player.setVelocityX(this.velocity)
-      this.directions.setAnimationByDirection(this.right)
-      fastDoubleInput(this.CURSORS_INPUT_CODE.right)
-      this.prevCursorInput = this.CURSORS_INPUT_CODE.right
+      this.inputRight(time)
     }
 
     if (Phaser.Input.Keyboard.JustDown(cursors.up)) {
-      this.player.setVelocityX(0)
-      this.player.setVelocityY(this.velocity * -1)
-      this.directions.setAnimationByDirection(this.player)
-      fastDoubleInput(this.CURSORS_INPUT_CODE.up)
-      this.prevCursorInput = this.CURSORS_INPUT_CODE.up
+      this.inputUp(time)
     } else if (Phaser.Input.Keyboard.JustDown(cursors.down)) {
-      this.player.setVelocityX(0)
-      this.player.setVelocityY(this.velocity)
-      this.directions.setAnimationByDirection(this.player)
-      fastDoubleInput(this.CURSORS_INPUT_CODE.down)
-      this.prevCursorInput = this.CURSORS_INPUT_CODE.down
+      this.inputDown(time)
+    }
+  }
+
+  inputsSwipe(swipe, time) {
+    if (!this.player.active) {
+      return
+    }
+
+    if (swipe.left) {
+      this.inputLeft(time)
+    } else if (swipe.right) {
+      this.inputRight(time)
+    } else if (swipe.up) {
+      this.inputUp(time)
+    } else if (swipe.down) {
+      this.inputDown(time)
     }
   }
 
