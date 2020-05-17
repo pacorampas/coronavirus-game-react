@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ball {
+  width: 24px;
+  height: 24px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: #d8d8d8;
+}
+
+.ball:first-child,
+.ball:last-child {
+  opacity: 0.5;
+}
+
+.ball.infected {
+  width: 24px;
+  height: 24px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: #ff656d;
+}
+
+.ball.recovered {
+  width: 24px;
+  height: 24px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: #62dcb6;
+}
+
+.ball.big {
+  width: 36px;
+  height: 36px;
+}

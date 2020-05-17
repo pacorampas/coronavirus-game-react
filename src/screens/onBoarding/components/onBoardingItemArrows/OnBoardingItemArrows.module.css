@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrows {
+  width: 148px;
+  height: 148px;
+}

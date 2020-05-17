@@ -1,0 +1,72 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 48px;
+  background-color: rgba(250, 250, 250, 0.95);
+  box-sizing: border-box;
+}
+
+.title {
+  font-family: FiraSans-Bold;
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #000b32;
+
+  margin: 0 0 24px;
+}
+
+.subTitle {
+  font-family: FiraSans-bold;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.23px;
+  text-align: center;
+
+  margin: 0 0 8px;
+}
+
+.subTitle.mask {
+  color: #8671ff;
+}
+
+.subTitle.medical {
+  color: #f174ff;
+}
+
+.subTitle.shop {
+  color: #dab087;
+}
+
+.subTitle.dog {
+  color: #86cff7;
+}
+
+.text {
+  font-family: FiraSans-Regular;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.23px;
+  text-align: center;
+  color: #000b32;
+  max-width: 424px;
+
+  margin: 0 0 24px;
+}
+
+.content {
+  margin: 0 0 24px;
+}

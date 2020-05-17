@@ -11,7 +11,7 @@ import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalP
 
 function Home({ setScreenActive }) {
   const handleClickGame = () => {
-    setScreenActive(SCREENS_IDS.game)
+    setScreenActive(SCREENS_IDS.onBorading)
   }
 
   let bestScore = AppService.getBestScore()
