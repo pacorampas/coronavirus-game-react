@@ -87,6 +87,7 @@ export default class BallsClass {
   uninfectABall({ ball, noSave, byPlayer }) {
     ball.setData('infected', false)
     ball.setData('recovered', false)
+    ball.setTexture('ball')
     ball.setTintFill('0xd4d6dc')
 
     if (noSave) {
@@ -104,6 +105,7 @@ export default class BallsClass {
     }
     ball.setData('infected', false)
     ball.setData('recovered', true)
+    ball.setTexture('ball')
     ball.setTintFill('0x62dcb6')
 
     const wavesManger = this.scene.ownVars.wavesManager
