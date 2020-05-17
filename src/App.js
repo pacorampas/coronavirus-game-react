@@ -2,15 +2,17 @@
 import React, { useState } from 'react'
 import HomeScreen from './screens/home/Home'
 import GameScreen from './screens/game/Game'
+import OnBorading from './screens/onBoarding/OnBoarding'
 import './App.css'
 
 export const SCREENS_IDS = {
   home: 1,
-  game: 2
+  game: 2,
+  onBorading: 3
 }
 
 function App() {
-  const [screenActive, setScreenActive] = useState(SCREENS_IDS.home)
+  const [screenActive, setScreenActive] = useState(SCREENS_IDS.onBorading)
 
   const props = {
     setScreenActive
@@ -21,6 +23,8 @@ function App() {
       return <HomeScreen {...props} />
     case SCREENS_IDS.game:
       return <GameScreen {...props} />
+    case SCREENS_IDS.onBorading:
+      return <OnBorading {...props} />
     default:
       return <HomeScreen {...props} />
   }
