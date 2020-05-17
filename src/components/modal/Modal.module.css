@@ -27,6 +27,7 @@
 }
 
 .modal--leaving {
+  pointer-events: none;
   animation-name: leaving;
   animation-duration: 1s;
   animation-fill-mode: forwards;
