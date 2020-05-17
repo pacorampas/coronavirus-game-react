@@ -110,24 +110,22 @@ export default class PlayerClass {
           if (playerData.respirator) {
             balls.recoverABall({ ball: _ball, byPlayer: true })
             playerData.respirator = false
-            // this.setRespirator({ active: false })
             _player.setData('player', playerData)
             this.updateTexture(_player)
           } else if (playerData.mask) {
             playerData.mask = false
-            // this.setMask({ active: false })
             _player.setData('player', playerData)
             this.updateTexture(_player)
           } else {
             const EVENTS = CollectData.getEventsConst()
             const event = EVENTS.playerInfected
             CollectData.set({ event, gameTime })
-
             _player.destroy()
             onGameOver()
           }
         } else {
           if (playerData.respirator) {
+            balls.recoverABall({ ball: _ball, byPlayer: true })
             playerData.respirator = false
             _player.setData('player', playerData)
             this.updateTexture(_player)

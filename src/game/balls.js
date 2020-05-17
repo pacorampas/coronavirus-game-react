@@ -99,7 +99,7 @@ export default class BallsClass {
   }
 
   recoverABall({ ball, byPlayer }) {
-    if (!ball.getData('infected')) {
+    if (ball.getData('recovered')) {
       return
     }
     ball.setData('infected', false)
