@@ -151,4 +151,9 @@
     margin-right: 0;
     margin-bottom: 8px;
   }
+  .button {
+    flex: 1;
+    width: 100%;
+    min-width: 100%;
+  }
 }

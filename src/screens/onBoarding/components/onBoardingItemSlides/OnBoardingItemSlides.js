@@ -20,11 +20,12 @@ function OnBoardingItemSlides({
   const mapActiveWithIcon = {
     1: ['mask'],
     2: ['medical'],
-    3: ['shop', 'dog']
+    3: ['shop'],
+    4: ['dog']
   }
 
   const handleNext = () => {
-    if (active === 3) {
+    if (active === Object.keys(mapActiveWithIcon).length) {
       onNext && onNext()
       return
     }
@@ -55,19 +56,21 @@ function OnBoardingItemSlides({
 
         <div className={styles.slide}>
           <h2 className={c(styles.subTitle, styles['medical'])}>Kit Médico</h2>
-          <p className={styles.text}>"Recógelo y podrás curar a las bolas infectadas. Tiene 1 solo uso.</p>
+          <p className={styles.text}>Recógelo y podrás curar a las bolas infectadas. Tiene 1 solo uso.</p>
         </div>
 
         <div className={styles.slide}>
-          <h2 className={c(styles.subTitle)}>
-            <span className={c(styles.shop)}>
-              Comprar
-            </span> o{' '}
-            <span className={c(styles.dog)}>
-              pasear al perro
-            </span>
+          <h2 className={c(styles.subTitle, styles['shop'])}>
+              Ir a Comprar
           </h2>
-          <p className={styles.text}>Recógelo y sumarás puntos, en cada oleada el valor se incrementa. ¡No los dejes escapar!</p>
+          <p className={styles.text}>A pesar de la pandemia hay que hacer la compra, cuando veas este objeto recógelo y obten puntos.</p>
+        </div>
+
+        <div className={styles.slide}>
+          <h2 className={c(styles.subTitle, styles['dog'])}>
+              Pasear al perro
+          </h2>
+          <p className={styles.text}>Tu mascota sigue necesitando cuidados. Al recogerlo obtendrás puntos, igual que al ir a la compra.</p>
         </div>
 
         {/* <div className={styles.slide}>

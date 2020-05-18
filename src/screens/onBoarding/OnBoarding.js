@@ -69,7 +69,7 @@ function OnBorading({ setScreenActive }) {
         <CarouselItem id={idItems[0]}>
           <OnBoardingItem
             title="OBJETIVO DEL JUEGO"
-            text="Esquiva a las bolas infectadas para conseguir sobrevivir a la epidemia."
+            text="Esquiva a las bolas infectadas para conseguir sobrevivir a la pandemia."
             content={<OnBoardingItemBalls variant="infected" />}
             onNext={hanldeNext}
           />

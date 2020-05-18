@@ -72,7 +72,7 @@ function Game({ setScreenActive }) {
     } : desktopGameSize
 
     setGameSize(gameSize)
-    const ballsLenght = mobileDetect.mobile() ? 10 : 35
+    const ballsLenght = mobileDetect.mobile() ? 16 : 35
     game.current = initGame('coronavirusGame', ballsLenght, 0, false, false, handleGameOver, gameSize)
 
     return () => {
