@@ -1,18 +1,56 @@
 /* eslint-disable no-undef */
-import React from 'react'
+import React, { useState } from 'react'
 import { SCREENS_IDS } from 'App'
 import Button from 'components/button/Button'
 import styles from './Home.module.css'
 import { ReactComponent as IconPlay } from './iconPlay.svg'
 import AppService from 'services/AppService'
-
+import MobileDetect from 'mobile-detect'
+import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
 
 function Home({ setScreenActive }) {
+  const [showModalPortrait, setShowModalPortrait] = useState(false)
+  const mobileDetect = new MobileDetect(navigator.userAgent)
+
   const handleClickGame = () => {
+    const screenWindth = window.innerWidth
+    const screenHeight = window.innerHeight
+    const isLandscape = screenWindth > screenHeight
+
+    if (
+      !isLandscape && 
+      mobileDetect.mobile()
+    ) {
+      setShowModalPortrait(true)
+    } else {
+      goToGame()
+    }
+  }
+
+  const handleClickOnBoarding = () => {
     setScreenActive(SCREENS_IDS.onBorading)
   }
+
+  const goToGame = () => {
+    console.log(AppService.onBoardingGameShowed)
+    if (AppService.onBoardingGameShowed) {
+      setScreenActive(SCREENS_IDS.game)
+    } else {
+      setScreenActive(SCREENS_IDS.onBorading)
+    }
+  }
+
+  const handleModalPortraitAccept = () => {
+    setShowModalPortrait(false)
+    goToGame()
+  }
+
+  const handleModalPortraitCancel = () => {
+    setShowModalPortrait(false)
+  }
+  
 
   let bestScore = AppService.getBestScore()
   bestScore = (bestScore && bestScore.points) || 0
@@ -35,10 +73,15 @@ function Home({ setScreenActive }) {
         </Button>
         <Button 
           className={styles.button}
-          onClick={() => alert('Esto está WIP, ;)')}
+          onClick={handleClickOnBoarding}
         >
           ¿CÓMO FUNCIONA?
         </Button>
+        <ModalPortraitToLandscape 
+          state={showModalPortrait ? ANIMATE_STATES.entering : ANIMATE_STATES.waitingToEnter} 
+          onAccept={handleModalPortraitAccept} 
+          onCancel={handleModalPortraitCancel} 
+        />
         {/* <ModalGameOver state={2} points={3000} bonusTime={376} newBest={false} /> */}
         {/* <ModalPortraitToLandscape state={2} /> */}
       </div>

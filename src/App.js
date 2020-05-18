@@ -12,7 +12,7 @@ export const SCREENS_IDS = {
 }
 
 function App() {
-  const [screenActive, setScreenActive] = useState(SCREENS_IDS.onBorading)
+  const [screenActive, setScreenActive] = useState(SCREENS_IDS.home)
 
   const props = {
     setScreenActive

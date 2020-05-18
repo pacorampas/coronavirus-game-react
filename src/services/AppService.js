@@ -4,6 +4,8 @@ class AppService {
   constructor() {
     const historyJson = localStorage.getItem('history')
     this.history = historyJson ? JSON.parse(historyJson) : []
+
+    this.onBoardingGameShowed = localStorage.getItem('onBoardingGameShowed')
   }
 
   setNewPuntation(points) {
@@ -44,6 +46,15 @@ class AppService {
 
   getBestScore() {
     return this.history[0]
+  }
+
+  onBoardingGameShowed() {
+    return this.onBoardingGameShowed
+  }
+
+  setOnBoardingGameShowed(value) {
+    this.onBoardingGameShowed = !!value
+    localStorage.setItem('onBoardingGameShowed', this.onBoardingGameShowed)
   }
 }
 

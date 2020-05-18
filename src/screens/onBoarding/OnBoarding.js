@@ -8,19 +8,48 @@ import OnBoardingItemIcons from './components/onBoardingItemIcons/OnBoardingItem
 import OnBoardingItemBalls from './components/onBoardingItemBalls/OnBoardingItemBalls'
 import OnBoardingItemArrows from './components/onBoardingItemArrows/OnBoardingItemArrows'
 import OnBoardingItemSlides from './components/onBoardingItemSlides/OnBoardingItemSlides'
+import MobileDetect from 'mobile-detect'
+import { ANIMATE_STATES } from 'utils/useAnimationEnd'
+import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
+import AppService from 'services/AppService'
 import styles from './OnBoarding.module.css'
 
 function OnBorading({ setScreenActive }) {
   const idItems = ['1', '2', '3', '4'] 
   const [indexActive, setIndexActive] = useState(0)
 
+  const [showModalPortrait, setShowModalPortrait] = useState(false)
+  const mobileDetect = new MobileDetect(navigator.userAgent)
+
   const hanldeNext = () => {
+    AppService.setOnBoardingGameShowed(true)
+    
     if (idItems.length - 1 === indexActive) {
-      setScreenActive(SCREENS_IDS.game)
+      const screenWindth = window.innerWidth
+      const screenHeight = window.innerHeight
+      const isLandscape = screenWindth > screenHeight
+
+      if (
+        !isLandscape && 
+        mobileDetect.mobile()
+      ) {
+        setShowModalPortrait(true)
+      } else {
+        setScreenActive(SCREENS_IDS.game)
+      }
       return
     }
     
     setIndexActive(indexActive + 1)
+  }
+
+  const handleModalPortraitAccept = () => {
+    setShowModalPortrait(false)
+    setScreenActive(SCREENS_IDS.game)
+  }
+
+  const handleModalPortraitCancel = () => {
+    setShowModalPortrait(false)
   }
 
   const hanldeBack = () => {
@@ -71,6 +100,12 @@ function OnBorading({ setScreenActive }) {
       </Carousel>
       {/* <button onClick={hanldeBack}>Back</button>
       <button onClick={hanldeNext}>Next</button> */}
+
+      <ModalPortraitToLandscape 
+        state={showModalPortrait ? ANIMATE_STATES.entering : ANIMATE_STATES.waitingToEnter} 
+        onAccept={handleModalPortraitAccept} 
+        onCancel={handleModalPortraitCancel} 
+      />
     </div>
   );
 }

@@ -6,7 +6,6 @@ import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import AppService from 'services/AppService'
 import Chart from './Chart'
 import { initGame } from 'game/game'
-import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
 import styles from './Game.module.css'
 
 import MobileDetect from 'mobile-detect'
@@ -18,7 +17,6 @@ const desktopGameSize = {
 
 function Game({ setScreenActive }) {
   const game = useRef()
-  const [blockRender, setBlockRender] = useState(true)
   const [modalState, setModalState] = useState()
   const [showModalGameOver, setShowModalGameOver] = useState(false)
   const [exit, setExit] = useState(false)
@@ -59,9 +57,6 @@ function Game({ setScreenActive }) {
   }
     
   useEffect(() => {
-    if (blockRender) {
-      return
-    }
     const handleGameOver = ({ time, points }) => {
       const newBonusPoints = Math.round(time * 2.683)
       setPoints(points)
@@ -83,38 +78,7 @@ function Game({ setScreenActive }) {
     return () => {
       game.current.destroy()
     }
-  }, [blockRender])
-
-  useEffect(() => {
-    const screenWindth = window.innerWidth
-    const screenHeight = window.innerHeight
-    const isLandscape = screenWindth > screenHeight
-
-    if (
-      !isLandscape && 
-      mobileDetect.mobile()
-    ) {
-      setBlockRender(true)
-    } else {
-      setBlockRender(false)
-    }
   }, [])
-
-  const handleModalPortraitAccept = () => {
-    setBlockRender(false)
-  }
-
-  const handleModalPortraitCancel = () => {
-    setScreenActive(SCREENS_IDS.home)
-  }
-
-  if (blockRender) {
-    return <ModalPortraitToLandscape 
-      state={ANIMATE_STATES.entering} 
-      onAccept={handleModalPortraitAccept} 
-      onCancel={handleModalPortraitCancel} 
-    />
-  }
 
   return (
     <div className={styles.game}>

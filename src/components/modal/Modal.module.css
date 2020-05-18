@@ -10,6 +10,7 @@
 }
 
 .modal--waiting-to-enter {
+  pointer-events: none;
   opacity: 0;
   animation-name: enter;
   animation-duration: 1s;
