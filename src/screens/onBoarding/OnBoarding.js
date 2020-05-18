@@ -7,10 +7,11 @@ import OnBoardingItem from './OnBoardingItem'
 import OnBoardingItemIcons from './components/onBoardingItemIcons/OnBoardingItemIcons'
 import OnBoardingItemBalls from './components/onBoardingItemBalls/OnBoardingItemBalls'
 import OnBoardingItemArrows from './components/onBoardingItemArrows/OnBoardingItemArrows'
+import OnBoardingItemSlides from './components/onBoardingItemSlides/OnBoardingItemSlides'
 import styles from './OnBoarding.module.css'
 
 function OnBorading({ setScreenActive }) {
-  const idItems = ['1', '2', '3', '4', '5', '6', '7'] 
+  const idItems = ['1', '2', '3', '4'] 
   const [indexActive, setIndexActive] = useState(0)
 
   const hanldeNext = () => {
@@ -64,47 +65,7 @@ function OnBorading({ setScreenActive }) {
         </CarouselItem>
 
         <CarouselItem id={idItems[3]}>
-          <OnBoardingItem
-            title="BONIFICACIONES"
-            subTitle="Mascarilla"
-            subTitleVariant="mask"
-            text="Recógela para que puedas moverte libremente sin que las bolas infectadas te afecten. Tiene 1 solo uso."
-            content={<OnBoardingItemIcons active="mask" />}
-            onNext={hanldeNext}
-          />
-        </CarouselItem>
-
-        <CarouselItem id={idItems[4]}>
-          <OnBoardingItem
-            title="BONIFICACIONES"
-            subTitle="Kit Médico"
-            subTitleVariant="medical"
-            text="Recógelo y podrás curar a las bolas infectadas. Tiene 1 solo uso."
-            content={<OnBoardingItemIcons active="medical" />}
-            onNext={hanldeNext}
-          />
-        </CarouselItem>
-
-        <CarouselItem id={idItems[5]}>
-          <OnBoardingItem
-            title="BONIFICACIONES"
-            subTitle="Ir a la compra"
-            subTitleVariant="shop"
-            text="Recógelo y sumarás una bonificación de 25 puntos, además por cada oleada que consigas superar sumará 5 puntos extra."
-            content={<OnBoardingItemIcons active="shop" />}
-            onNext={hanldeNext}
-          />
-        </CarouselItem>
-
-        <CarouselItem id={idItems[6]}>
-          <OnBoardingItem
-            title="BONIFICACIONES"
-            subTitle="Pasear al perro"
-            subTitleVariant="dog"
-            text="Recógelo y sumarás una bonificación de 25 puntos, además por cada oleada que consigas superar sumará 5 puntos extra."
-            content={<OnBoardingItemIcons active="dog" />}
-            onNext={hanldeNext}
-          />
+          <OnBoardingItemSlides onNext={hanldeNext} />
         </CarouselItem>
 
       </Carousel>

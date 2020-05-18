@@ -6,16 +6,20 @@ import { ReactComponent as IconShop } from '../assets/icoShop.svg'
 import { ReactComponent as IconDog } from '../assets/icoDog.svg'
 import styles from './OnBoardingItemsIcons.module.css'
 
-function OnBoardingItemsIcons({ className, active, ...rest }) {
+function OnBoardingItemsIcons({ className, actives, ...rest }) {
+  const setActive = name => {
+    return actives &&
+      actives.some(n => n === name)
+  }
   return (
     <div 
       className={c(className, styles.wrapper)}
       {...rest}
     >
-      <IconMask className={c(styles.icon, active === 'mask' && styles.active)} />
-      <IconMedicalKit className={c(styles.icon, active === 'medical' && styles.active)} />
-      <IconShop className={c(styles.icon, active === 'shop' && styles.active)} />
-      <IconDog className={c(styles.icon, active === 'dog' && styles.active)} />
+      <IconMask className={c(styles.icon, setActive('mask') && styles.active)} />
+      <IconMedicalKit className={c(styles.icon, setActive('medical') && styles.active)} />
+      <IconShop className={c(styles.icon, setActive('shop') && styles.active)} />
+      <IconDog className={c(styles.icon, setActive('dog') && styles.active)} />
     </div>
   )
 }
