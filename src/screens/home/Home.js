@@ -77,11 +77,13 @@ function Home({ setScreenActive }) {
         >
           ¿CÓMO FUNCIONA?
         </Button>
-        <ModalPortraitToLandscape 
-          state={showModalPortrait ? ANIMATE_STATES.entering : ANIMATE_STATES.waitingToEnter} 
-          onAccept={handleModalPortraitAccept} 
-          onCancel={handleModalPortraitCancel} 
-        />
+        {showModalPortrait &&
+          <ModalPortraitToLandscape 
+            state={ANIMATE_STATES.entering} 
+            onAccept={handleModalPortraitAccept} 
+            onCancel={handleModalPortraitCancel} 
+          />
+        }
         {/* <ModalGameOver state={2} points={3000} bonusTime={376} newBest={false} /> */}
         {/* <ModalPortraitToLandscape state={2} /> */}
       </div>

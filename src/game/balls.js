@@ -25,7 +25,7 @@ export default class BallsClass {
       0, 
       0, 
       this.scene.game.config.width, 
-      this.scene.game.config.height - 180
+      this.scene.game.config.height
     )
     Phaser.Actions.RandomRectangle(ballsChildren, rect)
 

@@ -101,11 +101,13 @@ function OnBorading({ setScreenActive }) {
       {/* <button onClick={hanldeBack}>Back</button>
       <button onClick={hanldeNext}>Next</button> */}
 
-      <ModalPortraitToLandscape 
-        state={showModalPortrait ? ANIMATE_STATES.entering : ANIMATE_STATES.waitingToEnter} 
-        onAccept={handleModalPortraitAccept} 
-        onCancel={handleModalPortraitCancel} 
-      />
+      {showModalPortrait &&
+        <ModalPortraitToLandscape 
+          state={ANIMATE_STATES.entering} 
+          onAccept={handleModalPortraitAccept} 
+          onCancel={handleModalPortraitCancel} 
+        />
+      }
     </div>
   );
 }
