@@ -44,7 +44,7 @@ export default class PlayerClass {
 
     this.powerUps = new PowerUps({
       scene: this.scene,
-      actionableButtons: [this.sprintButton, this.socialDistancingButton],
+      actionableButtons: [this.socialDistancingButton, this.sprintButton],
       passivePowerUps: ['powerup_medikit', 'powerup_mask'],
     })
 

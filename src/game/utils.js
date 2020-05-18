@@ -4,7 +4,7 @@ import { quarentineWallAction } from './actions'
 
 export const initTimerText = function () {
   const { time } = this.ownVars
-  this.ownVars.timeText = this.add.text(12, 12)
+  this.ownVars.timeText = this.add.text(12, this.game.config.height - 40)
   this.ownVars.timeText.setStyle({
     fontFamily: 'FiraMono-Bold',
     fontSize: '24px',
@@ -82,16 +82,13 @@ export class PowerUps {
     this.passivePowerUps = config.passivePowerUps || []
     this.addActionableButtons()
     this.addPassivePowerUps()
-
-    this.drawSceneSeparator()
-    this.passivePowerUps.length > 0 && this.drawSeparator()
   }
 
   getActionableButtonsWidth = () => {
     const { actionableButtons } = this
     const numOfButtons = actionableButtons.length
 
-    return numOfButtons * this.BUTTON_WIDTH + numOfButtons * 24 + 12
+    return this.BUTTON_WIDTH + numOfButtons * 24 + 12
   }
 
   addActionableButtons = () => {
@@ -100,11 +97,23 @@ export class PowerUps {
     const { actionableButtons } = this
 
     actionableButtons.forEach((powerUpButton, idx) => {
-      const powerUpPhaserButton = this.scene.add.dom(
-        config.width - 36 - idx * (24 + this.BUTTON_WIDTH),
-        config.height - 44,
-        powerUpButton.getDOMButton()
-      )
+      let powerUpPhaserButton
+
+      // esto es muy cutre, funciona porque solo tengo dos
+      // y quiero uno en el corner derecho y otro en el izq
+      if (idx === 0) {
+        powerUpPhaserButton = this.scene.add.dom(
+          config.width - 36 - idx * (24 + this.BUTTON_WIDTH),
+          36,
+          powerUpButton.getDOMButton()
+        )
+      } else {
+        powerUpPhaserButton = this.scene.add.dom(
+          36,
+          36,
+          powerUpButton.getDOMButton()
+        )
+      }
 
       this.phaserButtons.push(powerUpPhaserButton)
     })
@@ -112,17 +121,14 @@ export class PowerUps {
 
   addPassivePowerUps = () => {
     const { passivePowerUps } = this
-    const { game } = this.scene
-    const { config } = game
 
     const coordinates = {
       // 24: space between buttons
       // 12: space between screen right border and first button
       // 16: extra space between actionable buttons and passive ones
       x:
-        config.width -
-        (this.getActionableButtonsWidth() + 16 + this.PASSIVE_WIDTH),
-      y: config.height - 44,
+        ((this.BUTTON_WIDTH + 24) + 36 + this.PASSIVE_WIDTH),
+      y: 38,
     }
 
     passivePowerUps.forEach((passivePowerUp, idx) => {
@@ -134,31 +140,6 @@ export class PowerUps {
       image.setDisplaySize(this.PASSIVE_WIDTH, this.PASSIVE_WIDTH)
       this.phaserPassiveImages[passivePowerUp] = image
     })
-  }
-
-  drawSceneSeparator = () => {
-    const { game } = this.scene
-    const { config } = game
-    this.scene.add.rectangle(
-      config.width / 2,
-      config.height - 88,
-      config.width,
-      1,
-      '0xeeeeee'
-    )
-  }
-
-  drawSeparator = () => {
-    const actionableButtonsWidth = this.getActionableButtonsWidth()
-    const { game } = this.scene
-    const { config } = game
-    this.scene.add.rectangle(
-      config.width - actionableButtonsWidth,
-      config.height - 44,
-      1,
-      88,
-      '0xeeeeee'
-    )
   }
 
   setPassivePowerUp = ({ active, powerUp }) => {
@@ -336,7 +317,7 @@ export class WavesManager {
     })
     this.updateWaveText()
 
-    this.pointsText = this.scene.add.text(0, 12)
+    this.pointsText = this.scene.add.text(0, this.scene.game.config.height - 40)
     this.pointsText.setStyle({
       fontFamily: 'FiraMono-Bold',
       fontSize: '24px',

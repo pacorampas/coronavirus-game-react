@@ -13,17 +13,18 @@ code {
 }
 
 .power-up {
+  opacity: 0.75 !important;
   height: 48px;
   width: 48px;
   border-radius: 6px;
-  background-color: rgba(51, 51, 51, 0.1);
+  background-color: #1f2e66;
   outline: none;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
-  border: solid 2px rgba(51, 51, 51, 0.1);
+  border: solid 2px #1f2e66;
 }
 
 .power-up .power-up-countdown {
@@ -46,8 +47,7 @@ code {
 }
 
 .power-up:disabled {
-  border: solid 2px #ffaf48;
-  background-color: rgba(0, 11, 50, 0.8);
+  opacity: 0.2 !important;
 }
 
 .power-up:disabled .power-up-countdown {
@@ -73,7 +73,7 @@ code {
   border: solid 2px #eaeaea;
   background-color: #ffffff;
   border-radius: 12px;
-  line-height: 22px;
+  line-height: 20px;
   left: -7px;
   bottom: -7px;
   color: #000b32;
@@ -85,6 +85,6 @@ code {
 }
 
 .power-up:disabled .power-up-shortcut {
-  border: solid 2px #ffaf48;
+  border: solid 2px #1f2e66;
   color: #000b32;
 }

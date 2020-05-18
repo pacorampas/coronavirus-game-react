@@ -14,7 +14,7 @@ export default class Borders {
       this.scene.game.config.width / 2,
       this.scene.game.config.height
     )
-    this.borderDown.setSize(this.scene.game.config.width, 176, true)
+    this.borderDown.setSize(this.scene.game.config.width, this.BORDER_WIDTH, true)
     this.borderDown.setImmovable(true)
 
     this.borderRight = this.scene.physics.add.image(

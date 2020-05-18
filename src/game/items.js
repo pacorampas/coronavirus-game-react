@@ -57,9 +57,9 @@ const randomNextItem = function () {
 const setMaskItem = function () {
   const player = this.ownVars.player
   const widthObject = 34
-  const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
+  const x = Phaser.Math.Between(widthObject * 2.5, this.game.config.width - widthObject * 2.5)
   // 176 border height
-  const y = Phaser.Math.Between(0, this.game.config.height - widthObject - 176)
+  const y = Phaser.Math.Between( widthObject * 3.5, this.game.config.height - widthObject * 2.5)
 
   const mask = this.physics.add.image(x, y, 'item_mask')
   mask.setDisplaySize(widthObject, widthObject)
@@ -85,9 +85,9 @@ const setMaskItem = function () {
 const setRespirator = function () {
   const player = this.ownVars.player
   const widthObject = 34
-  const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
+  const x = Phaser.Math.Between(widthObject * 2.5, this.game.config.width - widthObject * 2.5)
   // 176 border height
-  const y = Phaser.Math.Between(0, this.game.config.height - widthObject - 176)
+  const y = Phaser.Math.Between(widthObject * 2.5, this.game.config.height - widthObject * 2.5)
 
   const respirator = this.physics.add.image(x, y, 'item_respirator')
   respirator.setDisplaySize(widthObject, widthObject)
@@ -123,9 +123,9 @@ export const timerNextItemReset = function () {
 export const setPointIcon = function () {
   const player = this.ownVars.player
   const widthObject = 34
-  const x = Phaser.Math.Between(0, this.game.config.width - widthObject)
+  const x = Phaser.Math.Between(widthObject * 2.5, this.game.config.width - widthObject * 2.5)
   // 176 border height
-  const y = Phaser.Math.Between(0, this.game.config.height - widthObject - 176)
+  const y = Phaser.Math.Between(widthObject * 2.5, this.game.config.height - widthObject * 2.5)
 
   const itemsName = ['item_dog', 'item_shop']
   const randomIndex = Phaser.Math.Between(0, itemsName.length - 1)
