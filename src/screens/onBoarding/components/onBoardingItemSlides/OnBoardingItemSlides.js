@@ -1,41 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import c from 'classnames'
 import OnBoradingItemIcons from '../onBoardingItemIcons/OnBoardingItemIcons'
-import Button from 'components/button/Button'
+import CarouselItem from 'components/carousel/CarouselItem'
 import styles from './OnBoardingItemSlides.module.css'
 
 function OnBoardingItemSlides({ 
-  className, 
-  title, 
-  text, 
-  subTitle, 
-  subTitleVariant, 
-  content,
-  onNext,
+  className,
+  activeId,
   ...rest
 }) {
-
-  const [active, setActive] = useState(1)
-
-  const mapActiveWithIcon = {
-    1: ['mask'],
-    2: ['medical'],
-    3: ['shop'],
-    4: ['dog']
-  }
-
-  const handleNext = () => {
-    if (active === Object.keys(mapActiveWithIcon).length) {
-      onNext && onNext()
-      return
-    }
-
-    setActive(active + 1)
-  }
-
   return (
-    <div
-
+    <CarouselItem
       className={c(className, styles.item)} 
       {...rest}
     >
@@ -45,9 +20,9 @@ function OnBoardingItemSlides({
         </h1>
       </div>
       <div className={styles.content}>
-        <OnBoradingItemIcons actives={mapActiveWithIcon[active]} />
+        <OnBoradingItemIcons actives={[activeId]} />
       </div>
-      <div className={c(styles.slides, styles[`active${active}`])}>
+      <div className={c(styles.slides, styles[`active${activeId}`])}>
        
         <div className={styles.slide}>
           <h2 className={c(styles.subTitle, styles['mask'])}>Mascarilla</h2>
@@ -72,15 +47,8 @@ function OnBoardingItemSlides({
           </h2>
           <p className={styles.text}>Tu mascota sigue necesitando cuidados. Al recogerlo obtendrás puntos, igual que al ir a la compra.</p>
         </div>
-
-        {/* <div className={styles.slide}>
-          <h2 className={c(styles.subTitle, styles['dog'])}>Pasear al perro</h2>
-          <p className={styles.text}>Recógelo y sumarás puntos, en cada oleada el valor se incrementa. ¡No los dejes escapar!</p>
-        </div> */}
-
       </div>
-      <Button variant="primary" onClick={handleNext}>Next</Button>
-    </div>
+    </CarouselItem>
   );
 }
 

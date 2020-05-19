@@ -25,6 +25,13 @@ code {
   justify-content: center;
   transition: background-color 0.3s ease;
   border: solid 2px #1f2e66;
+
+  transition: height 0.25s, width 0.25s;
+}
+
+.power-up.big {
+  height: 72px;
+  width: 72px;
 }
 
 .power-up .power-up-countdown {

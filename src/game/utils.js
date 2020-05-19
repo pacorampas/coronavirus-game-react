@@ -43,6 +43,10 @@ export const isMobile = function (scene) {
   return !scene.sys.game.device.os.desktop
 }
 
+export const isDesktop = function (scene) {
+  return !!scene.sys.game.device.os.desktop
+}
+
 class TextButton extends Phaser.GameObjects.Text {
   constructor(scene, x, y, text, style, callback) {
     super(scene, x, y, text, style)

@@ -1,67 +1,58 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { DISPLAY_NAME as DISPLAY_NAME_CAROUSEL_ITEM } from './CarouselItem'
 
-function useCarousel({ children, active }) {
-  const [items, setItems] = useState([]) 
+function useCarousel({ slidesId, activeId }) {
+  const [idActiveInternal, setIdActiveInternal] = useState(activeId)
+  const [indexActiveInternal, setIndexActiveInternal] = useState()
+  const [nextDisabled, setNextDisabled] = useState(true)
+  const [backDisabled, setBackDisabled] = useState(true)
 
-  const getActiveStyle = useCallback(({ items }) => {
-    const indexActive = items.findIndex(childItem => childItem.props.id === active)
+  const getIndexItemById = useCallback(id => {
+    const index = slidesId.findIndex(_id => _id === id)
+    return index
+  }, [slidesId])
 
-    return items.map(child => {
-      const { props } = child
+  const handleClickBack = useCallback(() => {
+    const index = getIndexItemById(idActiveInternal)
+    if (index === 0) {
+      return
+    }
+    
+    const nextIndex = index - 1
+    const nextActive = slidesId[nextIndex]
+    setIdActiveInternal(nextActive)
+  }, [idActiveInternal, slidesId, getIndexItemById])
 
-      const nextProps = {
-        ...props,
-        style: {
-          ...props.style,
-          transform: `translate3d(${indexActive * -100}%, 0, 0)`
-        }
-      }
+  const handleClickNext = useCallback(() => {
+    const index = getIndexItemById(idActiveInternal)
 
-      return React.cloneElement(
-        child,
-        nextProps
-      )
-    })
-  }, [active])
+    if (index === slidesId.length - 1) {
+      return
+    }
 
-  const handleChangeChildrens = useCallback(() => {
-    const nextItems = React.Children.map(children, child => {
-
-      if (child.type.type.displayName === DISPLAY_NAME_CAROUSEL_ITEM) {
-        const hasId = child.props.id || child.props.id === 0
-        if (!hasId) {
-          console.error('[Carousel] CarouselItem not handled because not have id')
-          return null
-        }
-
-        const childItem = items.find(item => item.props.id === child.props.id)
-        
-        let nextProps = childItem ? {
-          ...childItem.props, 
-          ...child.props
-        } : child.props
-
-        return React.cloneElement(
-          child,
-          { 
-            ...nextProps,
-            key: nextProps.id
-          }
-        )
-      }
-    })
-
-    const nextItemWithStyles = getActiveStyle({ items: nextItems })
-    setItems(nextItemWithStyles)
-
-  }, [children, items])
+    const nextIndex = index + 1
+    const nextActive = slidesId[nextIndex]
+    setIdActiveInternal(nextActive)
+  }, [idActiveInternal, slidesId, getIndexItemById])
 
   useEffect(() => {
-    handleChangeChildrens()
-  }, [children, active])
+    const indexActive = slidesId.findIndex(id => id === idActiveInternal)
 
-  return [items]
+    setIndexActiveInternal(indexActive)
+    setNextDisabled(indexActive === slidesId.length - 1)
+    setBackDisabled(indexActive === 0)
+  }, [slidesId, idActiveInternal])
+
+  return [
+    idActiveInternal,
+    indexActiveInternal, 
+    {
+      next: handleClickNext,
+      nextDisabled
+    }, {
+      back: handleClickBack,
+      backDisabled
+    }
+  ]
 }
 
 export default useCarousel

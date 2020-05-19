@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { directionsUtil, PowerUpButton, PowerUps } from './utils'
+import { directionsUtil, PowerUpButton, PowerUps, isDesktop } from './utils'
 import CollectData from './collectData'
 import { socialDistancigAction } from './actions'
 
@@ -32,12 +32,12 @@ export default class PlayerClass {
     this.player.setBounce(1)
 
     this.sprintButton = new PowerUpButton({
-      shortcut: 'R',
+      shortcut: isDesktop(this.scene) && 'R',
       icon: 'sprint',
       cb: this.sprint,
     })
     this.socialDistancingButton = new PowerUpButton({
-      shortcut: 'Q',
+      shortcut: isDesktop(this.scene) && 'E',
       icon: 'confination',
       cb: this.socialDistance,
     })
@@ -45,7 +45,7 @@ export default class PlayerClass {
     this.powerUps = new PowerUps({
       scene: this.scene,
       actionableButtons: [this.socialDistancingButton, this.sprintButton],
-      passivePowerUps: ['powerup_medikit', 'powerup_mask'],
+      // passivePowerUps: ['powerup_medikit', 'powerup_mask'],
     })
 
     this.scene.ownVars.wavesManager.onWaveChange(() => {
