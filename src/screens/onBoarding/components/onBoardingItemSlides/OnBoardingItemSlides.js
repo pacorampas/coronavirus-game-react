@@ -2,13 +2,17 @@ import React from 'react'
 import c from 'classnames'
 import OnBoradingItemIcons from '../onBoardingItemIcons/OnBoardingItemIcons'
 import CarouselItem from 'components/carousel/CarouselItem'
+import useOwnIdActive from '../../useOwnIdActive'
 import styles from './OnBoardingItemSlides.module.css'
 
 function OnBoardingItemSlides({ 
   className,
   activeId,
+  id,
   ...rest
 }) {
+  const ownIdActive = useOwnIdActive({ id, activeId })
+
   return (
     <CarouselItem
       className={c(className, styles.item)} 
@@ -20,9 +24,9 @@ function OnBoardingItemSlides({
         </h1>
       </div>
       <div className={styles.content}>
-        <OnBoradingItemIcons actives={[activeId]} />
+        <OnBoradingItemIcons actives={[ownIdActive]} />
       </div>
-      <div className={c(styles.slides, styles[`active${activeId}`])}>
+      <div className={c(styles.slides, styles[`active${ownIdActive}`])}>
        
         <div className={styles.slide}>
           <h2 className={c(styles.subTitle, styles['mask'])}>Mascarilla</h2>

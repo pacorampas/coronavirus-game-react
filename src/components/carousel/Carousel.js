@@ -1,12 +1,13 @@
 import React from 'react'
 import c from 'classnames'
 import useCarousel from './useCarousel'
+import { ReactComponent as IconArrow } from './arrow.svg'
 import styles from './Carousel.module.css'
 
 function Carousel({ children, className, active, ...rest }) {
   let indicator 
   let ids = []
-  
+
   React.Children.forEach(children, child => {
     // eslint-disable-next-line default-case
     switch(child.props.name) {
@@ -14,7 +15,6 @@ function Carousel({ children, className, active, ...rest }) {
         ids.push(child.props.id)
         return
       case 'indicator':
-        console.log('paso')
         indicator = child
         return
     }
@@ -92,8 +92,16 @@ function Carousel({ children, className, active, ...rest }) {
         })}
       </div>
 
-      {!backDisabled && <div className={c(styles.back)} onClick={back} />}
-      {!nextDisabled && <div className={c(styles.next)} onClick={next} />}
+      {!backDisabled && 
+        <div className={c(styles.back)} onClick={back}>
+          <IconArrow className={c(styles.iconBack)} />
+        </div>
+      }
+      {!nextDisabled && 
+        <div className={c(styles.next)} onClick={next}>
+          <IconArrow className={c(styles.iconNext)} />
+        </div>
+      }
     </div>
   );
 }

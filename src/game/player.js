@@ -235,17 +235,17 @@ export default class PlayerClass {
   // wallEnabled = true
   inputKeysActions() {
     this.scene.input.keyboard.on(
-      'keydown-Q',
+      'keydown-E',
       this.socialDistancingButton.handleClick
     )
     this.scene.input.keyboard.on('keydown-R', this.sprintButton.handleClick)
-    this.scene.input.keyboard.on('keydown-W', (event) => {
-      if (!this.wallEnabled) {
-        return
-      }
-      this.wallEnabled = false
-      quarentineWallAction.bind(this.scene)(() => (this.wallEnabled = true), this.balls)
-    })
+    // this.scene.input.keyboard.on('keydown-W', (event) => {
+    //   if (!this.wallEnabled) {
+    //     return
+    //   }
+    //   this.wallEnabled = false
+    //   quarentineWallAction.bind(this.scene)(() => (this.wallEnabled = true), this.balls)
+    // })
     // this.scene.input.keyboard.on('keydown-W', event => {
     //   if (!this.wallEnabled) {
     //     return

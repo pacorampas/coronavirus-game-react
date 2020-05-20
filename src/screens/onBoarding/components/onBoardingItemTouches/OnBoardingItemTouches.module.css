@@ -5,13 +5,13 @@
 }
 
 .touchesRight {
-  position: relative;
-  top: -46px;
-  right: 195px;
+  position: absolute;
+  top: 70px;
+  left: 100px;
 }
 
 .touchesLeft {
-  position: relative;
-  top: 140px;
-  right: -195px;
+  position: absolute;
+  bottom: 40px;
+  right: 100px;
 }

@@ -34,7 +34,6 @@ function Home({ setScreenActive }) {
   }
 
   const goToGame = () => {
-    console.log(AppService.onBoardingGameShowed)
     if (AppService.onBoardingGameShowed) {
       setScreenActive(SCREENS_IDS.game)
     } else {

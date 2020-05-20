@@ -10,11 +10,11 @@ import OnBoardingItemArrows from './components/onBoardingItemArrows/OnBoardingIt
 import OnBoardingItemTouches from './components/onBoardingItemTouches/OnBoardingItemTouches'
 import OnBoardingItemSlides from './components/onBoardingItemSlides/OnBoardingItemSlides'
 import OnBoardingSlidesActions from './components/onBoardingSlidesActions/OnBoardingSlidesActions'
+import OnBoardingReady from './components/onBoardingReady/OnBoardingReady'
 import CarouselIndicator from 'components/carousel/CarouselIndicator'
 import MobileDetect from 'mobile-detect'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
-import AppService from 'services/AppService'
 
 import styles from './OnBoarding.module.css'
 
@@ -30,6 +30,21 @@ function OnBorading({ setScreenActive }) {
 
   const handleModalPortraitCancel = () => {
     setShowModalPortrait(false)
+  }
+
+  const handleOnPlay = () => {
+    const screenWindth = window.innerWidth
+    const screenHeight = window.innerHeight
+    const isLandscape = screenWindth > screenHeight
+
+    if (
+      !isLandscape && 
+      mobileDetect.mobile()
+    ) {
+      setShowModalPortrait(true)
+    } else {
+      setScreenActive(SCREENS_IDS.game)
+    }
   }
   
   return (
@@ -77,6 +92,8 @@ function OnBorading({ setScreenActive }) {
         <OnBoardingSlidesActions id={['sprint', 'socialDistancing']} name="slide" />
 
         <OnBoardingItemSlides id={['mask', 'medical', 'shop', 'dog']} name="slide" />
+
+        <OnBoardingReady id="ready" name="slide" onPlay={handleOnPlay} />
 
       </Carousel>
 

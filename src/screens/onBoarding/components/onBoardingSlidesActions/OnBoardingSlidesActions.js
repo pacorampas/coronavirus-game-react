@@ -2,15 +2,22 @@ import React from 'react'
 import c from 'classnames'
 import CarouselItem from 'components/carousel/CarouselItem'
 import MobileDetect from 'mobile-detect'
+import { ReactComponent as IconSprint } from '../assets/icoSprint.svg'
+import { ReactComponent as IconConfination } from '../assets/icoConfination.svg'
+import useOwnIdActive from '../../useOwnIdActive'
 import styles from './OnBoardingSlidesActions.module.css'
 
 function OnBoardingSlidesActions({ 
   className, 
   activeId,
+  id,
   ...rest
 }) {
 
+  const ownIdActive = useOwnIdActive({ id, activeId })
+
   const mobileDetect = new MobileDetect(navigator.userAgent)
+
 
   return (
     <CarouselItem
@@ -23,10 +30,14 @@ function OnBoardingSlidesActions({
         </h1>
       </div>
       <div className={styles.content}>
-        <button className={c(styles.powerUp, 'power-up', activeId === 'sprint' && 'big')} />
-        <button className={c(styles.powerUp, 'power-up', activeId === 'socialDistancing' && 'big')} />
+        <button className={c(styles.powerUp, 'power-up', ownIdActive === 'sprint' && 'big')}>
+          <IconSprint className={styles.icon} />
+        </button>
+        <button className={c(styles.powerUp, 'power-up',  ownIdActive === 'socialDistancing' && 'big')}>
+          <IconConfination className={styles.icon} />
+        </button>
       </div>
-      <div className={c(styles.slides, styles[`active${activeId}`])}>
+      <div className={c(styles.slides, styles[`active${ownIdActive}`])}>
        
         <div className={styles.slide}>
           <h2 className={c(styles.subTitle, styles.butonActionColor)}>Sprint</h2>
