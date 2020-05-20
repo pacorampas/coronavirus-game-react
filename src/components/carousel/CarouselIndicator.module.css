@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+}
+
+.indicator {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #eaeaea;
+  transition: background-color 0.25s;
+}
+
+.indicator.active {
+  background-color: transparent;
+}
+
+.indicator:not(:last-child) {
+  margin-right: 8px;
+}
+
+.indicator:before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  border: solid 2px #009eff;
+  opacity: 0;
+  border-radius: 50%;
+  transition: opacity 0.25s;
+}
+
+.indicator.active:before {
+  opacity: 1;
+}

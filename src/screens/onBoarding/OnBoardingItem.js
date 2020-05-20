@@ -24,7 +24,6 @@ function OnBoradingItem({
       <div className={styles.content}>{content}</div>
       {subTitle && <h2 className={c(styles.subTitle, styles[subTitleVariant])}>{subTitle}</h2>}
       <p className={styles.text}>{text}</p>
-      <Button variant="primary" onClick={onNext}>Next</Button>
     </div>
   );
 }

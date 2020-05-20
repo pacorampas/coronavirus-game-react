@@ -1,9 +1,23 @@
 .carousel {
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-wrap: nowrap;
   width: 100%;
   height: 100%;
+}
+
+.indicatorWrapper {
+  margin: 24px 0 8px;
+}
+
+.slidesWrapper {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  flex: 1;
 }
 
 .back,

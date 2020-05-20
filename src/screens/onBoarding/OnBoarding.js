@@ -10,6 +10,7 @@ import OnBoardingItemArrows from './components/onBoardingItemArrows/OnBoardingIt
 import OnBoardingItemTouches from './components/onBoardingItemTouches/OnBoardingItemTouches'
 import OnBoardingItemSlides from './components/onBoardingItemSlides/OnBoardingItemSlides'
 import OnBoardingSlidesActions from './components/onBoardingSlidesActions/OnBoardingSlidesActions'
+import CarouselIndicator from 'components/carousel/CarouselIndicator'
 import MobileDetect from 'mobile-detect'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
@@ -35,51 +36,49 @@ function OnBorading({ setScreenActive }) {
     <div className={styles.onBoarding}>
       <Carousel className={styles.wrapper} active="goal">
 
-        <CarouselItem id="goal">
+        <CarouselIndicator name="indicator" />
+
+        <CarouselItem id="goal" name="slide">
           <OnBoardingItem
             title="OBJETIVO DEL JUEGO"
             text="Esquiva a las bolas infectadas para conseguir sobrevivir a la pandemia."
             content={<OnBoardingItemBalls variant="infected" />}
-            onNext={() => {}}
           />
         </CarouselItem>
 
         {mobileDetect.mobile() ?
-          <CarouselItem id="directions">
+          <CarouselItem id="directions" name="slide">
             <OnBoardingItem
               title="MOVIMIENTO"
               text="Sobre cualquier parte de la pantalla haz un deslizamiénto rápido hacia la dirección a la que quieres ir."
               content={<OnBoardingItemTouches />}
-              onNext={() => {}}
+
             />
           </CarouselItem>
           :
-          <CarouselItem id="directions">
+          <CarouselItem id="directions" name="slide">
             <OnBoardingItem
               title="MOVIMIENTO"
               text="Usa las flechas del teclado para esquivar las bolas infectadas."
               content={<OnBoardingItemArrows />}
-              onNext={() => {}}
+
             />
           </CarouselItem>
         }
 
-        <CarouselItem id="waves">
+        <CarouselItem id="waves" name="slide">
           <OnBoardingItem
             title="OLEADAS"
             text="Cuando todas las bolas se recuperen puede comenzar otra oleada. Sigue alerta."
             content={<OnBoardingItemBalls variant="recovered" />}
-            onNext={() => {}}
           />
         </CarouselItem>
 
-        <OnBoardingSlidesActions id={['sprint', 'socialDistancing']} onNext={() => {}} />
+        <OnBoardingSlidesActions id={['sprint', 'socialDistancing']} name="slide" />
 
-        <OnBoardingItemSlides id={['mask', 'medical', 'shop', 'dog']} onNext={() => {}} />
+        <OnBoardingItemSlides id={['mask', 'medical', 'shop', 'dog']} name="slide" />
 
       </Carousel>
-      {/* <button onClick={hanldeBack}>Back</button>
-      <button onClick={() => {}}>Next</button> */}
 
       {showModalPortrait &&
         <ModalPortraitToLandscape 
