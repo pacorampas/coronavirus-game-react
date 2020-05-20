@@ -19,7 +19,7 @@
   position: relative;
   height: 100%;
   width: 100%;
-  max-width: 1000px;
+  max-width: 900px;
   max-height: 600px;
   background-color: #fafafa;
 }
@@ -80,4 +80,12 @@
   text-align: right;
   color: rgba(0, 11, 50, 0.8);
   margin: 0;
+}
+
+@media (min-width: 610px) {
+  .wrapper {
+    overflow: hidden;
+    border-radius: 6px;
+    margin: 10px;
+  }
 }
