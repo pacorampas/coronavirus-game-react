@@ -33,12 +33,12 @@ export const quarentineWallAction = function(cb, balls) {
   const x = Phaser.Math.Between(200, max)
   // const x = this.game.config.width / 2
 
-  const w = 4 
+  const w = 24 
   const h = this.game.config.height / 2
 
   // x, y, w, h
-  var r1 = this.add.rectangle(0, 0, w, h, 0x333333)
-  var r2 = this.add.rectangle(0, 0, w, h, 0x333333)
+  var r1 = this.add.rectangle(0, 0, w, h, 0xd4d6dc)
+  var r2 = this.add.rectangle(0, 0, w, h, 0xd4d6dc)
 
   this.physics.add.existing(r1);
   this.physics.add.existing(r2);

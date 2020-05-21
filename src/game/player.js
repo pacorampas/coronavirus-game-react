@@ -153,7 +153,7 @@ export default class PlayerClass {
 
         this.directions.setAnimationByDirection(_player)
         this.directions.setAnimationByDirection(_ball)
-      }, 250)
+      }, 50)
     )
   }
 
