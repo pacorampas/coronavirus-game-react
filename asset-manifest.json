@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/coronavirus-game-react/static/css/main.4967f0ea.chunk.css",
-    "main.js": "/coronavirus-game-react/static/js/main.b6c9a10a.chunk.js",
-    "main.js.map": "/coronavirus-game-react/static/js/main.b6c9a10a.chunk.js.map",
+    "main.css": "/coronavirus-game-react/static/css/main.a9135db5.chunk.css",
+    "main.js": "/coronavirus-game-react/static/js/main.0eb67c06.chunk.js",
+    "main.js.map": "/coronavirus-game-react/static/js/main.0eb67c06.chunk.js.map",
     "runtime-main.js": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js",
     "runtime-main.js.map": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js.map",
     "static/js/2.b1d088f2.chunk.js": "/coronavirus-game-react/static/js/2.b1d088f2.chunk.js",
     "static/js/2.b1d088f2.chunk.js.map": "/coronavirus-game-react/static/js/2.b1d088f2.chunk.js.map",
     "index.html": "/coronavirus-game-react/index.html",
-    "precache-manifest.2e14dccce918e762d8e057a53e7ca798.js": "/coronavirus-game-react/precache-manifest.2e14dccce918e762d8e057a53e7ca798.js",
+    "precache-manifest.6e82c96690b7437edc1b4958b082d5b9.js": "/coronavirus-game-react/precache-manifest.6e82c96690b7437edc1b4958b082d5b9.js",
     "service-worker.js": "/coronavirus-game-react/service-worker.js",
-    "static/css/main.4967f0ea.chunk.css.map": "/coronavirus-game-react/static/css/main.4967f0ea.chunk.css.map",
+    "static/css/main.a9135db5.chunk.css.map": "/coronavirus-game-react/static/css/main.a9135db5.chunk.css.map",
     "static/js/2.b1d088f2.chunk.js.LICENSE.txt": "/coronavirus-game-react/static/js/2.b1d088f2.chunk.js.LICENSE.txt",
     "static/media/arrow.019860d6.svg": "/coronavirus-game-react/static/media/arrow.019860d6.svg",
     "static/media/arrows.1627dd33.svg": "/coronavirus-game-react/static/media/arrows.1627dd33.svg",
@@ -29,7 +29,7 @@
   "entrypoints": [
     "static/js/runtime-main.db404fd4.js",
     "static/js/2.b1d088f2.chunk.js",
-    "static/css/main.4967f0ea.chunk.css",
-    "static/js/main.b6c9a10a.chunk.js"
+    "static/css/main.a9135db5.chunk.css",
+    "static/js/main.0eb67c06.chunk.js"
   ]
 }
