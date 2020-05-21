@@ -17,6 +17,7 @@ import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
 
 import styles from './OnBoarding.module.css'
+import AppService from 'services/AppService'
 
 function OnBorading({ setScreenActive }) {
   const [showModalPortrait, setShowModalPortrait] = useState(false)
@@ -43,7 +44,7 @@ function OnBorading({ setScreenActive }) {
     ) {
       setShowModalPortrait(true)
     } else {
-      window.gtag('event', 'start', { 
+      AppService.gtag('event', 'start', { 
         'event_category': 'game', 
         'event_label': 'onBoarding'
       })
@@ -52,7 +53,7 @@ function OnBorading({ setScreenActive }) {
   }
 
   const handleOnChange = ({ activeId }) => {
-    window.gtag('event', 'onBoarding', { 
+    AppService.gtag('event', 'onBoarding', { 
       'event_category': 'onBoarding', 
       'event_label': 'onBoarding', 
       'value': activeId

@@ -52,7 +52,7 @@ function Game({ setScreenActive }) {
   }
 
   const hanldeAcceptModal = () => {
-    window.gtag('event', 'restart', { 
+    AppService.gtag('event', 'restart', { 
       'event_category': 'game', 
       'event_label': 'game'
     })

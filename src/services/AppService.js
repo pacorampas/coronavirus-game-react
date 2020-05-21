@@ -59,6 +59,13 @@ class AppService {
     this.onBoardingGameShowed = !!value
     localStorage.setItem('onBoardingGameShowed', this.onBoardingGameShowed)
   }
+
+  gtag() {
+    if (window.location.hostname.includes('localhost')) {
+      return
+    }
+    window.gtag.apply(null, arguments)
+  }
 }
 
 export default new AppService()

@@ -35,7 +35,7 @@ function Home({ setScreenActive }) {
 
   const goToGame = () => {
     if (AppService.onBoardingGameShowed) {
-      window.gtag('event', 'start', { 
+      AppService.gtag('event', 'start', { 
         'event_category': 'game', 
         'event_label': 'home'
       })
