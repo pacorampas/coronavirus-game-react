@@ -103,8 +103,9 @@ export const initGame = function (
     this.load.image('ball', process.env.PUBLIC_URL + '/assets/person.png')
     const urlParams = new URLSearchParams(window.location.search)
     const infectedAlt = urlParams.get('infectedAlt')
-
-    this.load.image('infected', process.env.PUBLIC_URL + infectedAlt ? '/assets/infected.png' : '/assets/infected1.png')
+    
+    const ifectedPath = infectedAlt ? '/assets/infected.png' : '/assets/infected1.png'
+    this.load.image('infected', process.env.PUBLIC_URL + ifectedPath)
 
     this.load.image('item_mask', process.env.PUBLIC_URL + '/assets/ico-mask.png')
     this.load.image(
