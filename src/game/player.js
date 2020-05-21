@@ -3,6 +3,21 @@ import { directionsUtil, PowerUpButton, PowerUps, isDesktop } from './utils'
 import CollectData from './collectData'
 import { socialDistancigAction } from './actions'
 
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
 export default class PlayerClass {
   directions = directionsUtil
   sprintButton
@@ -102,7 +117,7 @@ export default class PlayerClass {
     this.scene.physics.add.collider(
       this.player,
       balls.getGroup(),
-      (_player, _ball) => {
+        debounce((_player, _ball) => {
         const playerData = _player.getData('player') || {}
         const gameTime = this.scene.ownVars.time
 
@@ -138,7 +153,7 @@ export default class PlayerClass {
 
         this.directions.setAnimationByDirection(_player)
         this.directions.setAnimationByDirection(_ball)
-      }
+      }, 250)
     )
   }
 
