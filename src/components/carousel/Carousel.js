@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import c from 'classnames'
 import useCarousel from './useCarousel'
 import { ReactComponent as IconArrow } from './arrow.svg'
 import styles from './Carousel.module.css'
 
-function Carousel({ children, className, active, ...rest }) {
+function Carousel({ children, className, active, onChange, ...rest }) {
   let indicator 
   let ids = []
 
@@ -46,6 +46,10 @@ function Carousel({ children, className, active, ...rest }) {
     )
   
   const activeIndex = getActiveIndex(activeId)
+
+  useEffect(() => {
+    onChange && onChange({ activeId }) 
+  }, [activeId])
 
   return (
     <div 

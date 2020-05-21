@@ -43,13 +43,25 @@ function OnBorading({ setScreenActive }) {
     ) {
       setShowModalPortrait(true)
     } else {
+      window.gtag('event', 'start', { 
+        'event_category': 'game', 
+        'event_label': 'onBoarding'
+      })
       setScreenActive(SCREENS_IDS.game)
     }
+  }
+
+  const handleOnChange = ({ activeId }) => {
+    window.gtag('event', 'onBoarding', { 
+      'event_category': 'onBoarding', 
+      'event_label': 'onBoarding', 
+      'value': activeId
+    })
   }
   
   return (
     <div className={styles.onBoarding}>
-      <Carousel className={styles.wrapper} active="goal">
+      <Carousel className={styles.wrapper} active="goal" onChange={handleOnChange}>
 
         <CarouselIndicator name="indicator" />
 

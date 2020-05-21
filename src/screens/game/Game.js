@@ -52,6 +52,10 @@ function Game({ setScreenActive }) {
   }
 
   const hanldeAcceptModal = () => {
+    window.gtag('event', 'restart', { 
+      'event_category': 'game', 
+      'event_label': 'game'
+    })
     game.current.scene.getScenes(true)[0].scene.restart()
     hideModal()
   }
@@ -66,6 +70,11 @@ function Game({ setScreenActive }) {
         points,
         time,
         wave
+      })
+      window.gtag('event', 'gameOver', { 
+        'event_category': 'game', 
+        'event_label': 'game',
+        value: newBonusPoints + points
       })
       setNewBest(newBest)
       showModal()
