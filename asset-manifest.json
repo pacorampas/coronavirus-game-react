@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/coronavirus-game-react/static/css/main.c85eafa2.chunk.css",
-    "main.js": "/coronavirus-game-react/static/js/main.71dee696.chunk.js",
-    "main.js.map": "/coronavirus-game-react/static/js/main.71dee696.chunk.js.map",
+    "main.js": "/coronavirus-game-react/static/js/main.3cb70d25.chunk.js",
+    "main.js.map": "/coronavirus-game-react/static/js/main.3cb70d25.chunk.js.map",
     "runtime-main.js": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js",
     "runtime-main.js.map": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js.map",
     "static/js/2.57a0ae2a.chunk.js": "/coronavirus-game-react/static/js/2.57a0ae2a.chunk.js",
     "static/js/2.57a0ae2a.chunk.js.map": "/coronavirus-game-react/static/js/2.57a0ae2a.chunk.js.map",
     "index.html": "/coronavirus-game-react/index.html",
-    "precache-manifest.b1d07b011403dd6f60bcf538b5598408.js": "/coronavirus-game-react/precache-manifest.b1d07b011403dd6f60bcf538b5598408.js",
+    "precache-manifest.a1953556896ee80de356e091603b3dc3.js": "/coronavirus-game-react/precache-manifest.a1953556896ee80de356e091603b3dc3.js",
     "service-worker.js": "/coronavirus-game-react/service-worker.js",
     "static/css/main.c85eafa2.chunk.css.map": "/coronavirus-game-react/static/css/main.c85eafa2.chunk.css.map",
     "static/js/2.57a0ae2a.chunk.js.LICENSE.txt": "/coronavirus-game-react/static/js/2.57a0ae2a.chunk.js.LICENSE.txt",
@@ -30,6 +30,6 @@
     "static/js/runtime-main.db404fd4.js",
     "static/js/2.57a0ae2a.chunk.js",
     "static/css/main.c85eafa2.chunk.css",
-    "static/js/main.71dee696.chunk.js"
+    "static/js/main.3cb70d25.chunk.js"
   ]
 }
