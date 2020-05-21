@@ -35,8 +35,11 @@ function useCarousel({ slidesId, activeId }) {
   }, [idActiveInternal, slidesId, getIndexItemById])
 
   useEffect(() => {
-    const indexActive = slidesId.findIndex(id => id === idActiveInternal)
+    setIdActiveInternal(activeId)
+  }, [activeId])
 
+  useEffect(() => {
+    const indexActive = slidesId.findIndex(id => id === idActiveInternal)
     setIndexActiveInternal(indexActive)
     setNextDisabled(indexActive === slidesId.length - 1)
     setBackDisabled(indexActive === 0)

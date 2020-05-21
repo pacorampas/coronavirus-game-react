@@ -1,11 +1,9 @@
-
-
 class AppService {
   constructor() {
     const historyJson = localStorage.getItem('history')
     this.history = historyJson ? JSON.parse(historyJson) : []
 
-    this.onBoardingGameShowed = localStorage.getItem('onBoardingGameShowed')
+    this.onBoardingGameShowed = Number(localStorage.getItem('onBoarding')) || 0
   }
 
   setNewPuntation({ totalPoints, points, time, wave }) {
@@ -55,9 +53,17 @@ class AppService {
     return this.onBoardingGameShowed
   }
 
+  // 0
+  // 1 goal, directions and waves
+  // 2 sprint and socialDistancing
+  // 3 mask, medical, shop and dog
   setOnBoardingGameShowed(value) {
-    this.onBoardingGameShowed = !!value
-    localStorage.setItem('onBoardingGameShowed', this.onBoardingGameShowed)
+    this.onBoardingGameShowed = value
+    localStorage.setItem('onBoarding', this.onBoardingGameShowed)
+  }
+
+  showTip() {
+    return this.onBoardingGameShowed
   }
 
   gtag() {

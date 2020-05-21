@@ -46,7 +46,7 @@ function Home({ setScreenActive }) {
 
   const handleClickOnBoarding = () => {
     mobileDetect.mobile() && openFullscreen()
-    setScreenActive(SCREENS_IDS.onBorading)
+    setScreenActive(SCREENS_IDS.onBorading, { showComplete: true })
   }
 
   const goToGame = () => {
@@ -58,7 +58,7 @@ function Home({ setScreenActive }) {
       })
       setScreenActive(SCREENS_IDS.game)
     } else {
-      setScreenActive(SCREENS_IDS.onBorading)
+      setScreenActive(SCREENS_IDS.onBorading, { showComplete: false })
     }
   }
 

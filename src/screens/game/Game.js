@@ -28,6 +28,7 @@ function Game({ setScreenActive }) {
   const mobileDetect = new MobileDetect(navigator.userAgent)
 
   const showModal = () => {
+    game.current.scene.pause('default')
     setModalState(ANIMATE_STATES.entering)
     setShowModalGameOver(true)
   }
@@ -44,8 +45,12 @@ function Game({ setScreenActive }) {
   const hanldeStateChange = state => {
     // eslint-disable-next-line default-case
     switch(state) {
+      case ANIMATE_STATES.entered:
+        game.current.scene.stop('default')
+        return
       case ANIMATE_STATES.left:
         setShowModalGameOver(false)
+        !exit && game.current.scene.start('default')
         exit && setScreenActive(SCREENS_IDS.home)
         return
     }
@@ -56,7 +61,6 @@ function Game({ setScreenActive }) {
       'event_category': 'game', 
       'event_label': 'game'
     })
-    game.current.scene.getScenes(true)[0].scene.restart()
     hideModal()
   }
     

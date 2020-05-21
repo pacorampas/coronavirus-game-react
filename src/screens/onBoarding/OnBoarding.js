@@ -34,7 +34,7 @@ function openFullscreen() {
   }
 }
 
-function OnBorading({ setScreenActive }) {
+function OnBorading({ setScreenActive, showComplete }) {
   const [showModalPortrait, setShowModalPortrait] = useState(false)
   const mobileDetect = new MobileDetect(navigator.userAgent)
 
@@ -63,7 +63,7 @@ function OnBorading({ setScreenActive }) {
         'event_category': 'game', 
         'event_label': 'onBoarding'
       })
-      AppService.setOnBoardingGameShowed(true)
+      !showComplete && AppService.setOnBoardingGameShowed(1)
       mobileDetect.mobile() && openFullscreen()
       setScreenActive(SCREENS_IDS.game)
     }
@@ -76,54 +76,58 @@ function OnBorading({ setScreenActive }) {
       'value': activeId
     })
   }
+
+  const slides = [
+    <CarouselItem id="goal" name="slide">
+      <OnBoardingItem
+        title="OBJETIVO DEL JUEGO"
+        text="Esquiva a las bolas infectadas para conseguir sobrevivir a la pandemia."
+        content={<OnBoardingItemBalls variant="infected" />}
+      />
+    </CarouselItem>,
+    (mobileDetect.mobile() ?
+      <CarouselItem id="directions" name="slide">
+        <OnBoardingItem
+          title="MOVIMIENTO"
+          text="Sobre cualquier parte de la pantalla haz un deslizamiénto rápido hacia la dirección a la que quieres ir."
+          content={<OnBoardingItemTouches />}
+
+        />
+      </CarouselItem>
+      :
+      <CarouselItem id="directions" name="slide">
+        <OnBoardingItem
+          title="MOVIMIENTO"
+          text="Usa las flechas del teclado para esquivar las bolas infectadas."
+          content={<OnBoardingItemArrows />}
+
+        />
+      </CarouselItem>
+    ),
+    <CarouselItem id="waves" name="slide">
+      <OnBoardingItem
+        title="OLEADAS"
+        text="Cuando todas las bolas se recuperen puede comenzar otra oleada. Sigue alerta."
+        content={<OnBoardingItemBalls variant="recovered" />}
+      />
+    </CarouselItem>
+  ]
+
+  if (showComplete) {
+    slides.push([
+      <OnBoardingSlidesActions id={['sprint', 'socialDistancing']} name="slide" />,
+      <OnBoardingItemSlides id={['mask', 'medical', 'shop', 'dog']} name="slide" />
+    ])
+  }
+
+  slides.push( <OnBoardingReady id="ready" name="slide" onPlay={handleOnPlay} />)
   
   return (
     <div className={styles.onBoarding}>
       <Carousel className={styles.wrapper} active="goal" onChange={handleOnChange}>
 
         <CarouselIndicator name="indicator" />
-
-        <CarouselItem id="goal" name="slide">
-          <OnBoardingItem
-            title="OBJETIVO DEL JUEGO"
-            text="Esquiva a las bolas infectadas para conseguir sobrevivir a la pandemia."
-            content={<OnBoardingItemBalls variant="infected" />}
-          />
-        </CarouselItem>
-
-        {mobileDetect.mobile() ?
-          <CarouselItem id="directions" name="slide">
-            <OnBoardingItem
-              title="MOVIMIENTO"
-              text="Sobre cualquier parte de la pantalla haz un deslizamiénto rápido hacia la dirección a la que quieres ir."
-              content={<OnBoardingItemTouches />}
-
-            />
-          </CarouselItem>
-          :
-          <CarouselItem id="directions" name="slide">
-            <OnBoardingItem
-              title="MOVIMIENTO"
-              text="Usa las flechas del teclado para esquivar las bolas infectadas."
-              content={<OnBoardingItemArrows />}
-
-            />
-          </CarouselItem>
-        }
-
-        <CarouselItem id="waves" name="slide">
-          <OnBoardingItem
-            title="OLEADAS"
-            text="Cuando todas las bolas se recuperen puede comenzar otra oleada. Sigue alerta."
-            content={<OnBoardingItemBalls variant="recovered" />}
-          />
-        </CarouselItem>
-
-        <OnBoardingSlidesActions id={['sprint', 'socialDistancing']} name="slide" />
-
-        <OnBoardingItemSlides id={['mask', 'medical', 'shop', 'dog']} name="slide" />
-
-        <OnBoardingReady id="ready" name="slide" onPlay={handleOnPlay} />
+        {slides}
 
       </Carousel>
 

@@ -1,0 +1,151 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 48px;
+  box-sizing: border-box;
+}
+
+.wrapperPoints {
+  margin: auto 0;
+}
+
+.title {
+  font-family: FiraSans-SemiBold;
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+  margin: 0;
+}
+
+.text {
+  font-family: FiraSans-Regular;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+
+  margin: 0 0 6px;
+}
+
+.points {
+  font-family: FiraSans-Heavy;
+  font-size: 40px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+
+  margin: 0 0 16px;
+}
+
+.bonusPoints {
+  font-family: FiraSans-Bold;
+  font-size: 24px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  opacity: .2;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.button {
+  flex: 1;
+}
+
+.buttons.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.button:not(:last-child) {
+  margin-right: 12px;
+}
+
+.animation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.icon {
+  margin-right: 6px;
+}
+
+.wrapperPoints {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapperRecord {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bonusTimeWrapper {
+  position: relative;
+  width: 300px;
+  height: 0;
+  overflow: hidden;
+  transition: height .3s;
+}
+
+.bonusTimeWrapper.show {
+  height: 54px;
+}
+
+.bonusTimeWrapperAnim {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translate3d(0, 100%, 0);
+  transition: transform .3s;
+}
+
+.bonusTimeWrapperAnim.show {
+  transform: translate3d(0, 0, 0);
+}
+
+@media (max-width: 500px) {
+  .button:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+  .button {
+    flex: 1;
+    width: 100%;
+    min-width: 100%;
+  }
+}

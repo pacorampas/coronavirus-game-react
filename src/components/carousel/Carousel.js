@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import c from 'classnames'
 import useCarousel from './useCarousel'
 import { ReactComponent as IconArrow } from './arrow.svg'
 import styles from './Carousel.module.css'
 
 function Carousel({ children, className, active, onChange, ...rest }) {
+  const [_active, _setActive] = useState(active)
   let indicator 
   let ids = []
+
+  useEffect(() => {
+    _setActive(active)
+  }, [active])
 
   React.Children.forEach(children, child => {
     // eslint-disable-next-line default-case
@@ -29,7 +34,7 @@ function Carousel({ children, className, active, onChange, ...rest }) {
 
   const [activeId,, { next, nextDisabled }, { back, backDisabled }] = useCarousel({ 
     children, 
-    activeId: active,
+    activeId: _active,
     slidesId: idsFlatten
   })
 

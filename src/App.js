@@ -13,9 +13,14 @@ export const SCREENS_IDS = {
 
 function App() {
   const [screenActive, setScreenActive] = useState(SCREENS_IDS.home)
-
+  const [restProps, setRestProps] = useState()
+  
   const props = {
-    setScreenActive
+    setScreenActive: (screenId, props) => {
+      setScreenActive(screenId)
+      setRestProps(props || {})
+    },
+    ...restProps
   }
 
   switch(screenActive) {
