@@ -310,6 +310,10 @@ export class WavesManager {
     this.scene = scene
   }
 
+  getWave() {
+    return this.wave
+  }
+
   initText() {
     this.waveText = this.scene.add.text(0, 12)
     this.waveText.setStyle({

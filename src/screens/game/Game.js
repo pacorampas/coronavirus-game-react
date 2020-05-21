@@ -57,11 +57,16 @@ function Game({ setScreenActive }) {
   }
     
   useEffect(() => {
-    const handleGameOver = ({ time, points }) => {
+    const handleGameOver = ({ time, points, wave }) => {
       const newBonusPoints = Math.round(time * 2.683)
       setPoints(points)
       setBonusTime(newBonusPoints)
-      const newBest = AppService.setNewPuntation(newBonusPoints + points)
+      const newBest = AppService.setNewPuntation({ 
+        totalPoints: newBonusPoints + points,
+        points,
+        time,
+        wave
+      })
       setNewBest(newBest)
       showModal()
     }

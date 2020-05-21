@@ -8,10 +8,13 @@ class AppService {
     this.onBoardingGameShowed = localStorage.getItem('onBoardingGameShowed')
   }
 
-  setNewPuntation(points) {
+  setNewPuntation({ totalPoints, points, time, wave }) {
     // return true if is the new best
     const newHistoryItem = {
-      points,
+      totalPoints, 
+      points, 
+      time, 
+      wave,
       date: Date.now()
     }
 
@@ -22,7 +25,7 @@ class AppService {
     }
 
     const index = this.history.findIndex(pointsItem => 
-      points > pointsItem.points
+      totalPoints > pointsItem.points
     )
     
     if (index > -1) {
@@ -45,7 +48,7 @@ class AppService {
   }
 
   getBestScore() {
-    return this.history[0]
+    return this.history[0].totalPoints
   }
 
   onBoardingGameShowed() {

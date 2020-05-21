@@ -202,6 +202,7 @@ export const initGame = function (
         onGameHover({
           time: this.ownVars.time,
           points: wavesManager.getPoints(),
+          wave: this.ownVars.wavesManager.getWave()
         })
     }
     if (!playerDisbaled) {
