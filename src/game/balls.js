@@ -8,8 +8,6 @@ export default class BallsClass {
     this.scene = scene
     this.velocity = velocity
 
-
-
     this.balls = scene.physics.add.group({
       key: 'ball',
       frameQuantity: ballsLength,
@@ -55,6 +53,28 @@ export default class BallsClass {
 
   getGroup() {
     return this.balls
+  }
+
+  addBalls(len) {
+    const x = [20, this.scene.game.config.width - 20]
+    const y = [20, this.scene.game.config.height - 20]
+    for(let i = 0; i < len; i++) {
+      const xIndex = Phaser.Math.Between(0, 1)
+      const yIndex = Phaser.Math.Between(0, 1)
+      console.log(xIndex, yIndex)
+      this.balls.create(x[xIndex], y[yIndex], 'ball')
+    }
+    
+    const allBalls = this.balls.getChildren()
+    allBalls.forEach((ball, index) => {
+      ball.setSize(60, 60, true)
+      ball.setDisplaySize(24, 24)
+
+      if (index <= len - 1) {
+        console.log('infect')
+        this.infectABall({ ball: allBalls[allBalls.length - 1] })
+      }
+    })
   }
 
   infectABall({ ball }) {

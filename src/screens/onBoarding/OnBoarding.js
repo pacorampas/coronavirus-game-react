@@ -89,7 +89,7 @@ function OnBorading({ setScreenActive, showComplete }) {
       <CarouselItem id="directions" name="slide">
         <OnBoardingItem
           title="MOVIMIENTO"
-          text="Sobre cualquier parte de la pantalla haz un deslizamiénto rápido hacia la dirección a la que quieres ir."
+          text="Sobre cualquier parte de la pantalla haz un deslizamiento rápido hacia la dirección a la que quieres ir."
           content={<OnBoardingItemTouches />}
 
         />

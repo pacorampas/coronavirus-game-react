@@ -350,7 +350,11 @@ export class WavesManager {
     if (children.every((ball) => !ball.getData('infected'))) {
       this.wave += 1
       balls.uninfectAll()
-      balls.infectABall({ ball: children[0] })
+      if (isMobile(this.scene)) {
+        balls.addBalls(1)
+      } else {
+        balls.addBalls(2)
+      }
       this.incrementGameVelocity()
       this.updateWaveText()
       this.notifyWaveChange({ wave: this.wave })

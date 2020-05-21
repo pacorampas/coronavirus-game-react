@@ -51,7 +51,7 @@ function OnBoardingSlidesActions({
         <div className={styles.slide}>
           <h2 className={c(styles.subTitle, styles.butonActionColor)}>Distancia social</h2>
           {mobileDetect.mobile() ?
-            <p className={styles.text}>Al pulsarlo algunas de las bolas quedarán quietas. Úsalo con cabeza, puedes hacerlo solo una vez po oleada.</p>
+            <p className={styles.text}>Al pulsarlo algunas de las bolas quedarán quietas. Úsalo con cabeza, puedes hacerlo solo una vez por oleada.</p>
           : 
             <p className={styles.text}>Usa la tecla E para parar algunas bolas. Solo un uso por oleada.</p>
         }

@@ -20,10 +20,9 @@
   height: 250px;
 }
 
-@media (min-width: 610px) {
+@media (min-width: 700px) {
   .wrapper {
     overflow: hidden;
     border-radius: 6px;
-    margin: 10px;
   }
 }
