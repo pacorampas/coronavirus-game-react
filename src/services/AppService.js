@@ -25,7 +25,7 @@ class AppService {
     }
 
     const index = this.history.findIndex(pointsItem => 
-      totalPoints > pointsItem.points
+      totalPoints > pointsItem.totalPoints
     )
     
     if (index > -1) {
@@ -48,7 +48,7 @@ class AppService {
   }
 
   getBestScore() {
-    return this.history[0].totalPoints
+    return this.history[0] && this.history[0].totalPoints
   }
 
   onBoardingGameShowed() {

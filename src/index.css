@@ -24,6 +24,8 @@ code {
   justify-content: center;
   transition: background-color 0.3s ease;
   /* border: solid 2px rgba(31, 46, 101, 0.8); */
+  border: 0;
+  outline: 0;
 
   transition: height 0.25s, width 0.25s;
 }

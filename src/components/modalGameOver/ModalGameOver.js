@@ -19,8 +19,7 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
   const [showLastBest, setShowLastBest] = useState(false)
   const [showButtons, setShowButtons] = useState(false)
 
-  let bestScore = AppService.getBestScore()
-  bestScore = (bestScore && bestScore.points) || 0
+  let bestScore = AppService.getBestScore() || 0
 
   const { countUp } = useCountUp({ end: bonusTime, delay: 3.5, duration: 2 })
 

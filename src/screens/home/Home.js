@@ -10,6 +10,21 @@ import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
 
+function openFullscreen() {
+  if (document.body.requestFullscreen) {
+    document.body.requestFullscreen()
+  } else if (document.body.mozRequestFullScreen) {
+    /* Firefox */
+    document.body.mozRequestFullScreen()
+  } else if (document.body.webkitRequestFullscreen) {
+    /* Chrome, Safari and Opera */
+    document.body.webkitRequestFullscreen()
+  } else if (document.body.msRequestFullscreen) {
+    /* IE/Edge */
+    document.body.msRequestFullscreen()
+  }
+}
+
 function Home({ setScreenActive }) {
   const [showModalPortrait, setShowModalPortrait] = useState(false)
   const mobileDetect = new MobileDetect(navigator.userAgent)
@@ -30,10 +45,12 @@ function Home({ setScreenActive }) {
   }
 
   const handleClickOnBoarding = () => {
+    mobileDetect.mobile() && openFullscreen()
     setScreenActive(SCREENS_IDS.onBorading)
   }
 
   const goToGame = () => {
+    mobileDetect.mobile() && openFullscreen()
     if (AppService.onBoardingGameShowed) {
       AppService.gtag('event', 'start', { 
         'event_category': 'game', 
@@ -55,8 +72,7 @@ function Home({ setScreenActive }) {
   }
   
 
-  let bestScore = AppService.getBestScore()
-  bestScore = (bestScore && bestScore.points) || 0
+  let bestScore = AppService.getBestScore() || 0
  
   return (
     <div className={styles.home}>

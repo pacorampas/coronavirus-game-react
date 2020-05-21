@@ -19,6 +19,21 @@ import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalP
 import styles from './OnBoarding.module.css'
 import AppService from 'services/AppService'
 
+function openFullscreen() {
+  if (document.body.requestFullscreen) {
+    document.body.requestFullscreen()
+  } else if (document.body.mozRequestFullScreen) {
+    /* Firefox */
+    document.body.mozRequestFullScreen()
+  } else if (document.body.webkitRequestFullscreen) {
+    /* Chrome, Safari and Opera */
+    document.body.webkitRequestFullscreen()
+  } else if (document.body.msRequestFullscreen) {
+    /* IE/Edge */
+    document.body.msRequestFullscreen()
+  }
+}
+
 function OnBorading({ setScreenActive }) {
   const [showModalPortrait, setShowModalPortrait] = useState(false)
   const mobileDetect = new MobileDetect(navigator.userAgent)
@@ -48,6 +63,8 @@ function OnBorading({ setScreenActive }) {
         'event_category': 'game', 
         'event_label': 'onBoarding'
       })
+      AppService.setOnBoardingGameShowed(true)
+      mobileDetect.mobile() && openFullscreen()
       setScreenActive(SCREENS_IDS.game)
     }
   }
