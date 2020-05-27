@@ -1,25 +1,26 @@
 {
   "files": {
     "main.css": "/coronavirus-game-react/static/css/main.a9135db5.chunk.css",
-    "main.js": "/coronavirus-game-react/static/js/main.0eb67c06.chunk.js",
-    "main.js.map": "/coronavirus-game-react/static/js/main.0eb67c06.chunk.js.map",
+    "main.js": "/coronavirus-game-react/static/js/main.81489bf5.chunk.js",
+    "main.js.map": "/coronavirus-game-react/static/js/main.81489bf5.chunk.js.map",
     "runtime-main.js": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js",
     "runtime-main.js.map": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js.map",
-    "static/js/2.b1d088f2.chunk.js": "/coronavirus-game-react/static/js/2.b1d088f2.chunk.js",
-    "static/js/2.b1d088f2.chunk.js.map": "/coronavirus-game-react/static/js/2.b1d088f2.chunk.js.map",
+    "static/js/2.0e8633b9.chunk.js": "/coronavirus-game-react/static/js/2.0e8633b9.chunk.js",
+    "static/js/2.0e8633b9.chunk.js.map": "/coronavirus-game-react/static/js/2.0e8633b9.chunk.js.map",
     "index.html": "/coronavirus-game-react/index.html",
-    "precache-manifest.6e82c96690b7437edc1b4958b082d5b9.js": "/coronavirus-game-react/precache-manifest.6e82c96690b7437edc1b4958b082d5b9.js",
+    "precache-manifest.8178560e2e3ad85418a809be42b89f72.js": "/coronavirus-game-react/precache-manifest.8178560e2e3ad85418a809be42b89f72.js",
     "service-worker.js": "/coronavirus-game-react/service-worker.js",
     "static/css/main.a9135db5.chunk.css.map": "/coronavirus-game-react/static/css/main.a9135db5.chunk.css.map",
-    "static/js/2.b1d088f2.chunk.js.LICENSE.txt": "/coronavirus-game-react/static/js/2.b1d088f2.chunk.js.LICENSE.txt",
+    "static/js/2.0e8633b9.chunk.js.LICENSE.txt": "/coronavirus-game-react/static/js/2.0e8633b9.chunk.js.LICENSE.txt",
     "static/media/arrow.019860d6.svg": "/coronavirus-game-react/static/media/arrow.019860d6.svg",
-    "static/media/arrows.1627dd33.svg": "/coronavirus-game-react/static/media/arrows.1627dd33.svg",
-    "static/media/icoConfination.5589226c.svg": "/coronavirus-game-react/static/media/icoConfination.5589226c.svg",
+    "static/media/arrows.72108207.svg": "/coronavirus-game-react/static/media/arrows.72108207.svg",
+    "static/media/cookies-couple.575617d3.svg": "/coronavirus-game-react/static/media/cookies-couple.575617d3.svg",
+    "static/media/icoConfination.334f4eb7.svg": "/coronavirus-game-react/static/media/icoConfination.334f4eb7.svg",
     "static/media/icoDog.c4134454.svg": "/coronavirus-game-react/static/media/icoDog.c4134454.svg",
     "static/media/icoMask.95a7805a.svg": "/coronavirus-game-react/static/media/icoMask.95a7805a.svg",
     "static/media/icoMedicalKit.dd27dba4.svg": "/coronavirus-game-react/static/media/icoMedicalKit.dd27dba4.svg",
     "static/media/icoShop.49d77e6b.svg": "/coronavirus-game-react/static/media/icoShop.49d77e6b.svg",
-    "static/media/icoSprint.16e83aca.svg": "/coronavirus-game-react/static/media/icoSprint.16e83aca.svg",
+    "static/media/icoSprint.bf943c9b.svg": "/coronavirus-game-react/static/media/icoSprint.bf943c9b.svg",
     "static/media/iconArrows.d944ea23.svg": "/coronavirus-game-react/static/media/iconArrows.d944ea23.svg",
     "static/media/iconExit.edd29864.svg": "/coronavirus-game-react/static/media/iconExit.edd29864.svg",
     "static/media/iconPlay.2a2f05f7.svg": "/coronavirus-game-react/static/media/iconPlay.2a2f05f7.svg",
@@ -28,8 +29,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.db404fd4.js",
-    "static/js/2.b1d088f2.chunk.js",
+    "static/js/2.0e8633b9.chunk.js",
     "static/css/main.a9135db5.chunk.css",
-    "static/js/main.0eb67c06.chunk.js"
+    "static/js/main.81489bf5.chunk.js"
   ]
 }
