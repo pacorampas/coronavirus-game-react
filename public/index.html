@@ -79,7 +79,8 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
-
+    
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
     <script>
       // Your web app's Firebase configuration
       var firebaseConfig = {
@@ -94,6 +95,7 @@
       };
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig)
+      firebase.analytics()
     </script>
   
     <title>Aplana la curva</title>
@@ -107,16 +109,11 @@
         overflow: hidden;
         zoom: 100%;
       }
-    </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-SKZPPK9178"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-SKZPPK9178');
-    </script> -->
+      * {
+        user-select: none;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

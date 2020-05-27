@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HomeScreen from './screens/home/Home'
 import GameScreen from './screens/game/Game'
 import OnBorading from './screens/onBoarding/OnBoarding'
+import AppService from 'services/AppService'
 import './App.css'
 
 export const SCREENS_IDS = {
@@ -12,8 +13,15 @@ export const SCREENS_IDS = {
 }
 
 function App() {
+  const [init, setInit] = useState(false)
   const [screenActive, setScreenActive] = useState(SCREENS_IDS.home)
   const [restProps, setRestProps] = useState()
+  
+  useEffect(() => {
+    AppService.signInAnonymously().then(() => {
+      setInit(true)
+    })
+  }, [])
   
   const props = {
     setScreenActive: (screenId, props) => {
@@ -21,6 +29,10 @@ function App() {
       setRestProps(props || {})
     },
     ...restProps
+  }
+
+  if (!init) {
+    return null
   }
 
   switch(screenActive) {

@@ -61,7 +61,6 @@ export default class BallsClass {
     for(let i = 0; i < len; i++) {
       const xIndex = Phaser.Math.Between(0, 1)
       const yIndex = Phaser.Math.Between(0, 1)
-      console.log(xIndex, yIndex)
       this.balls.create(x[xIndex], y[yIndex], 'ball')
     }
     
@@ -71,7 +70,6 @@ export default class BallsClass {
       ball.setDisplaySize(24, 24)
 
       if (index <= len - 1) {
-        console.log('infect')
         this.infectABall({ ball: allBalls[allBalls.length - 1] })
       }
     })

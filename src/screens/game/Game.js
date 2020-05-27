@@ -57,7 +57,7 @@ function Game({ setScreenActive }) {
   }
 
   const hanldeAcceptModal = () => {
-    AppService.gtag('event', 'restart', { 
+    AppService.logEvent('restart', { 
       'event_category': 'game', 
       'event_label': 'game'
     })
@@ -65,17 +65,17 @@ function Game({ setScreenActive }) {
   }
     
   useEffect(() => {
-    const handleGameOver = ({ time, points, wave }) => {
+    const handleGameOver = async ({ time, points, wave }) => {
       const newBonusPoints = Math.round(time * 2.683)
       setPoints(points)
       setBonusTime(newBonusPoints)
-      const newBest = AppService.setNewPuntation({ 
+      const newBest = await AppService.setNewPuntation({ 
         totalPoints: newBonusPoints + points,
         points,
         time,
         wave
       })
-      AppService.gtag('event', 'gameOver', { 
+      AppService.logEvent('gameOver', { 
         'event_category': 'game', 
         'event_label': 'game',
         value: newBonusPoints + points

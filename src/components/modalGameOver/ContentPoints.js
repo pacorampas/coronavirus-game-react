@@ -19,8 +19,13 @@ function ContentPoints({ state, newBest, points, bonusTime, showTip, onAccept, o
   const [showBonusTime, setShowBonusTime] = useState(false)
   const [showLastBest, setShowLastBest] = useState(false)
   const [showButtons, setShowButtons] = useState(true)
+  const [bestScore, setBestScore] = useState(0)
 
-  let bestScore = AppService.getBestScore() || 0
+  useEffect(() => {
+    AppService.getBestScore().then(score => {
+      setBestScore(score)
+    })
+  }, [])
 
   const { countUp } = useCountUp({ end: bonusTime, delay: 3.5, duration: 2 })
 

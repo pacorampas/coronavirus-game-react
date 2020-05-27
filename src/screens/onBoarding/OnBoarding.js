@@ -15,6 +15,7 @@ import CarouselIndicator from 'components/carousel/CarouselIndicator'
 import MobileDetect from 'mobile-detect'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
+import { ReactComponent as CookieImage } from './components/assets/cookies-couple.svg'
 
 import styles from './OnBoarding.module.css'
 import AppService from 'services/AppService'
@@ -53,13 +54,15 @@ function OnBorading({ setScreenActive, showComplete }) {
     const screenHeight = window.innerHeight
     const isLandscape = screenWindth > screenHeight
 
+    AppService.setCookiesAccepted()
+
     if (
       !isLandscape && 
       mobileDetect.mobile()
     ) {
       setShowModalPortrait(true)
     } else {
-      AppService.gtag('event', 'start', { 
+      AppService.logEvent('start', { 
         'event_category': 'game', 
         'event_label': 'onBoarding'
       })
@@ -70,7 +73,7 @@ function OnBorading({ setScreenActive, showComplete }) {
   }
 
   const handleOnChange = ({ activeId }) => {
-    AppService.gtag('event', 'onBoarding', { 
+    AppService.logEvent('onBoarding', { 
       'event_category': 'onBoarding', 
       'event_label': 'onBoarding', 
       'value': activeId
@@ -120,7 +123,19 @@ function OnBorading({ setScreenActive, showComplete }) {
     ])
   }
 
-  slides.push( <OnBoardingReady id="ready" name="slide" onPlay={handleOnPlay} />)
+  if (!AppService.getCookiesAccepted()) {
+    slides.push([
+      <CarouselItem id="cookies" name="slide">
+        <OnBoardingItem
+          title="USAMOS COOKIES"
+          text="Usamos cookies de Firebase y Google Analytics. Dos herramientas que nos permiten desarrollar el juego y hacer un seguimiento de los usuarios."
+          content={<CookieImage style={{ width: '100px', height: '100px' }} />}
+        />
+      </CarouselItem>
+    ])
+  }
+
+  slides.push(<OnBoardingReady id="ready" name="slide" onPlay={handleOnPlay} />)
   
   return (
     <div className={styles.onBoarding}>

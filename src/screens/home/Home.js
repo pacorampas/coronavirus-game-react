@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SCREENS_IDS } from 'App'
 import Button from 'components/button/Button'
 import styles from './Home.module.css'
@@ -27,7 +27,14 @@ function openFullscreen() {
 
 function Home({ setScreenActive }) {
   const [showModalPortrait, setShowModalPortrait] = useState(false)
+  const [bestScore, setBestScore] = useState(0)
   const mobileDetect = new MobileDetect(navigator.userAgent)
+
+  useEffect(() => {
+    AppService.getBestScore().then(score => {
+      setBestScore(score)
+    })
+  }, [])
 
   const handleClickGame = () => {
     const screenWindth = window.innerWidth
@@ -52,7 +59,7 @@ function Home({ setScreenActive }) {
   const goToGame = () => {
     mobileDetect.mobile() && openFullscreen()
     if (AppService.onBoardingGameShowed) {
-      AppService.gtag('event', 'start', { 
+      AppService.logEvent('start', { 
         'event_category': 'game', 
         'event_label': 'home'
       })
@@ -71,14 +78,12 @@ function Home({ setScreenActive }) {
     setShowModalPortrait(false)
   }
   
-
-  let bestScore = AppService.getBestScore() || 0
  
   return (
     <div className={styles.home}>
       <div className={styles.wrapper}>
 
-        <h1 className={styles.coronaTime}>CORONA-TIME</h1>
+        <h1 className={styles.coronaTime}>APLANA LA CURVA</h1>
         <div className={styles.bestPoints}>
           <p>MEJOR PUNTUACIÓN</p>
           <h2>{bestScore} pts</h2>

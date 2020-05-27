@@ -3,69 +3,79 @@ class AppService {
     const historyJson = localStorage.getItem('history')
     this.history = historyJson ? JSON.parse(historyJson) : []
     this.firestore = window.firebase.firestore()
+    this.bestScore = { totalPoints: 0, wave: 0, points: 0, time: 0 }
 
     this.onBoardingGameShowed = Number(localStorage.getItem('onBoarding')) || 0
+    this.cookiesAccepted = Boolean(localStorage.getItem('cookiesAccepted')) || false
+  }
 
-    window.firebase.auth().signInAnonymously()
-
-    window.firebase.auth().onAuthStateChanged(function(user) {
-      console.log(user.uid)
-      // const { uid } = user
-      // this.firestore.collection('users').doc(uid).then(function(doc) {
-      //   // Document was found in the cache. If no cached document exists,
-      //   // an error will be returned to the 'catch' block below.
-      //   console.log(doc.data());
-      // }).catch(function(error) {
-      //     console.log("Error getting cached document:", error);
-      // });
+  signInAnonymously = async () => {
+    return new Promise(resolve => {
+      window.firebase.auth().signInAnonymously()
+      window.firebase.auth().onAuthStateChanged(async user => {
+        if (user) {
+          this.user = user
+          resolve(this.user)
+        }
+      })
     })
   }
 
-  setNewPuntation({ totalPoints, points, time, wave }) {
-    // return true if is the new best
+  setNewPuntation = async ({ totalPoints, points, time, wave }) => {
+    const { uid } = this.user
+    const date = Date.now()
+
     const newHistoryItem = {
       totalPoints, 
       points, 
       time, 
       wave,
-      date: Date.now()
+      date
     }
-
-    if (!this.history.length) {
-      this.history.push(newHistoryItem)
-      this.saveInLocalStorage()
-      return true
-    }
-
-    const index = this.history.findIndex(pointsItem => 
-      totalPoints > pointsItem.totalPoints
-    )
     
-    if (index > -1) {
-      this.history.splice(index, 0, newHistoryItem)
-    } else {
-      this.history.push(newHistoryItem)
-    }
+    // TODO save in local storage if connection is lost
+    this.firestore.collection('users').doc(uid).collection('history').add(newHistoryItem)
+        
+    return new Promise(resolve => {
+      if (newHistoryItem.totalPoints > this.bestScore.totalPoints) {
+        this.bestScore = newHistoryItem
+        resolve(true)
+      }
+  
+      resolve(false)
+    })
 
-    if (this.history.length > 10) {
-      this.history.pop()
-    }
-
-    this.saveInLocalStorage()
-
-    return index === 0
   }
 
-  saveInLocalStorage() {
-    localStorage.setItem('history', JSON.stringify(this.history))
-  }
+  getBestScore = async () => {
+    const { uid } = this.user
 
-  getBestScore() {
-    return this.history[0] && this.history[0].totalPoints
+    const querySnapshot = await this.firestore
+      .collection('users')
+      .doc(uid)
+      .collection('history')
+      .orderBy('totalPoints', 'desc')
+      .limit(1)
+      .get()
+
+    querySnapshot.forEach(doc => 
+      this.bestScore = doc.data()
+    )
+
+    return this.bestScore.totalPoints
   }
 
   onBoardingGameShowed() {
     return this.onBoardingGameShowed
+  }
+
+  getCookiesAccepted() {
+    return this.cookiesAccepted
+  }
+
+  setCookiesAccepted() {
+    this.cookiesAccepted = true
+    localStorage.setItem('cookiesAccepted', this.cookiesAccepted)
   }
 
   // 0
@@ -81,11 +91,8 @@ class AppService {
     return this.onBoardingGameShowed
   }
 
-  gtag() {
-    // if (window.location.hostname.includes('localhost')) {
-    //   return
-    // }
-    window.firebase.analytics().logEvent(null, arguments)
+  logEvent() {
+    window.firebase.analytics().logEvent.apply(null, arguments)
   }
 }
 
