@@ -75,7 +75,7 @@ function Game({ setScreenActive }) {
         time,
         wave
       })
-      window.gtag('event', 'gameOver', { 
+      AppService.gtag('event', 'gameOver', { 
         'event_category': 'game', 
         'event_label': 'game',
         value: newBonusPoints + points

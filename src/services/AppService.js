@@ -2,8 +2,23 @@ class AppService {
   constructor() {
     const historyJson = localStorage.getItem('history')
     this.history = historyJson ? JSON.parse(historyJson) : []
+    this.firestore = window.firebase.firestore()
 
     this.onBoardingGameShowed = Number(localStorage.getItem('onBoarding')) || 0
+
+    window.firebase.auth().signInAnonymously()
+
+    window.firebase.auth().onAuthStateChanged(function(user) {
+      console.log(user.uid)
+      // const { uid } = user
+      // this.firestore.collection('users').doc(uid).then(function(doc) {
+      //   // Document was found in the cache. If no cached document exists,
+      //   // an error will be returned to the 'catch' block below.
+      //   console.log(doc.data());
+      // }).catch(function(error) {
+      //     console.log("Error getting cached document:", error);
+      // });
+    })
   }
 
   setNewPuntation({ totalPoints, points, time, wave }) {
@@ -67,10 +82,10 @@ class AppService {
   }
 
   gtag() {
-    if (window.location.hostname.includes('localhost')) {
-      return
-    }
-    window.gtag.apply(null, arguments)
+    // if (window.location.hostname.includes('localhost')) {
+    //   return
+    // }
+    window.firebase.analytics().logEvent(null, arguments)
   }
 }
 
