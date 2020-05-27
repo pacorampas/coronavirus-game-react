@@ -18,6 +18,14 @@ function debounce(func, wait, immediate) {
 	};
 };
 
+const sleep = async time => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve()
+    }, time)
+  })
+}
+
 export default class PlayerClass {
   directions = directionsUtil
   sprintButton
@@ -112,12 +120,13 @@ export default class PlayerClass {
     }
   }
 
+  timeoutSleepId
   collideWithBall(balls, onGameOver) {
     this.balls = balls
     this.scene.physics.add.collider(
       this.player,
-      balls.getGroup(),
-        debounce((_player, _ball) => {
+      balls.getGroup(), async (_player, _ball) => {
+        await sleep(50)
         const playerData = _player.getData('player') || {}
         const gameTime = this.scene.ownVars.time
 
@@ -153,7 +162,7 @@ export default class PlayerClass {
 
         this.directions.setAnimationByDirection(_player)
         this.directions.setAnimationByDirection(_ball)
-      }, 50)
+      }
     )
   }
 
