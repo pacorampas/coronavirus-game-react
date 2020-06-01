@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState, useRef } from 'react'
+import c from 'classnames'
 import { SCREENS_IDS } from 'App'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
@@ -104,7 +105,7 @@ function Game({ setScreenActive }) {
   }, [])
 
   return (
-    <div className={styles.game}>
+    <div className={c(styles.game, mobileDetect.mobile() && styles.isMobile)}>
 
       <div 
         style={{

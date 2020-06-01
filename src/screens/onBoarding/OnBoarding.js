@@ -126,7 +126,7 @@ function OnBorading({ setScreenActive, showComplete }) {
   slides.push(<OnBoardingReady id="ready" name="slide" onPlay={handleOnPlay} />)
   
   return (
-    <div className={styles.onBoarding}>
+    <div className={c(styles.onBoarding, mobileDetect.mobile() && styles.isMobile)}>
       <Carousel className={styles.wrapper} active="goal" onChange={handleOnChange}>
 
         <CarouselIndicator name="indicator" />

@@ -20,8 +20,12 @@
   background-color: #fafafa;
 }
 
+.onBoarding.isMobile .wrapper {
+  max-height: unset;
+}
+
 @media (min-width: 700px) {
-  .wrapper {
+  .onBoarding:not(.isMobile) .wrapper {
     overflow: hidden;
     border-radius: 6px;
   }

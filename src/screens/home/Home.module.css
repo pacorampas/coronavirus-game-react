@@ -24,6 +24,10 @@
   background-color: #fafafa;
 }
 
+.home.isMobile .wrapper {
+  max-height: unset;
+}
+
 .coronaTime {
   position: absolute;
   top: 24px;
@@ -83,8 +87,9 @@
 }
 
 @media (min-width: 700px) {
-  .wrapper {
+  .home:not(.isMobile) .wrapper {
     overflow: hidden;
     border-radius: 6px;
   }
+  
 }

@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react'
+import c from 'classnames'
 import { SCREENS_IDS } from 'App'
 import Button from 'components/button/Button'
 import styles from './Home.module.css'
@@ -11,6 +12,7 @@ import CookiesMessage from './components/CookiesMessage'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
 import TranslationService from 'services/TranslationService'
+
 
 function openFullscreen() {
   if (document.body.requestFullscreen) {
@@ -82,7 +84,7 @@ function Home({ setScreenActive }) {
   
  
   return (
-    <div className={styles.home}>
+    <div className={c(styles.home,  mobileDetect.mobile() && styles.isMobile)}>
       <div className={styles.wrapper}>
 
         <h1 className={styles.coronaTime}>{TranslationService.t('home.name')}</h1>
