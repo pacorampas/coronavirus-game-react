@@ -87,7 +87,7 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
           points={points} 
           bonusTime={bonusTime} 
           onTip={() => {
-            setSlideActive('mask')
+            setSlideActive('wall')
           }}
         />,
         <OnBoardingWall id="wall" name="slide" />,
