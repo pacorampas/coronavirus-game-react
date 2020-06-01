@@ -3,6 +3,9 @@ import Modal from 'components/modal/Modal'
 import Carousel from 'components/carousel/Carousel'
 import OnBoardingSlidesActions from 'screens/onBoarding/components/onBoardingSlidesActions/OnBoardingSlidesActions'
 import OnBoardingItemSlides  from 'screens/onBoarding/components/onBoardingItemSlides/OnBoardingItemSlides'
+import OnBoardingWall from 'screens/onBoarding/components/onBoardingWall/OnBoardingWall'
+import OnBoardingItem from 'screens/onBoarding/OnBoardingItem'
+import CarouselItem from 'components/carousel/CarouselItem'
 import OnBoardingReady from 'screens/onBoarding/components/onBoardingReady/OnBoardingReady'
 import ContentPoints from './ContentPoints'
 import AppService from 'services/AppService'
@@ -69,6 +72,30 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
           id={['mask', 'medical', 'shop', 'dog']} 
           name="slide" 
         />,
+        <OnBoardingReady id="ready" name="slide" onPlay={handleOnPlay} />
+      )
+      break
+    case 3:
+      items.push(
+        <ContentPoints
+          name="slide"
+          key="points"
+          id="points"
+          showTip={!!String(showTip)}
+          newBest={newBest} 
+          points={points} 
+          bonusTime={bonusTime} 
+          onTip={() => {
+            setSlideActive('mask')
+          }}
+        />,
+        <CarouselItem id="wall" name="slide">
+          <OnBoardingItem
+            title="MURO DE CUARENTENA"
+            text="¡Cuidado! De vez en cuando puede aparecer un muro para aislar a los infectados."
+            content={<OnBoardingWall />}
+          />
+        </CarouselItem>,
         <OnBoardingReady id="ready" name="slide" onPlay={handleOnPlay} />
       )
       break

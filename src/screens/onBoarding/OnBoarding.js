@@ -10,6 +10,7 @@ import OnBoardingItemArrows from './components/onBoardingItemArrows/OnBoardingIt
 import OnBoardingItemTouches from './components/onBoardingItemTouches/OnBoardingItemTouches'
 import OnBoardingItemSlides from './components/onBoardingItemSlides/OnBoardingItemSlides'
 import OnBoardingSlidesActions from './components/onBoardingSlidesActions/OnBoardingSlidesActions'
+import OnBoardingWall from './components/onBoardingWall/OnBoardingWall'
 import OnBoardingReady from './components/onBoardingReady/OnBoardingReady'
 import CarouselIndicator from 'components/carousel/CarouselIndicator'
 import MobileDetect from 'mobile-detect'

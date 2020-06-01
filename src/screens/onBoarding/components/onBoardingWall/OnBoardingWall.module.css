@@ -1,0 +1,175 @@
+.item {
+  position: relative;
+  width: 200px;
+  height: 120px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background: #eee;
+  box-sizing: border-box;
+}
+
+.title {
+  font-family: FiraSans-Bold;
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #000b32;
+
+  margin: 0 0 24px;
+}
+
+.subTitle {
+  font-family: FiraSans-bold;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.23px;
+  text-align: center;
+  color: #99999991;
+  margin: 0 0 8px;
+}
+
+.subTitle.mask {
+  color: #8671ff;
+}
+
+.subTitle.medical {
+  color: #f174ff;
+}
+
+.subTitle.shop,
+.shop {
+  color: #dab087;
+}
+
+.subTitle.dog,
+.dog {
+  color: #86cff7;
+}
+
+.subTitle.butonActionColor {
+  color: #1f2e66;
+}
+
+.text {
+  font-family: FiraSans-Regular;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: -0.23px;
+  text-align: center;
+  color: #000b32;
+  max-width: 424px;
+
+  margin: 0 0 24px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  margin: 0 0 24px;
+}
+
+.powerUp:not(:last-child) {
+  margin-right: 12px;
+}
+
+.slides {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+
+  transition: transform 0.3s;
+}
+
+.slides.active1 {
+  transform: translate3d(0, 0, 0);
+}
+
+.slides.active2 {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.slides.active3 {
+  transform: translate3d(-200%, 0, 0);
+}
+
+.slides.active4 {
+  transform: translate3d(-300%, 0, 0);
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100%;
+
+}
+
+
+.ball {
+  width: 24px;
+  height: 24px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: #d8d8d8;
+}
+
+.ball:first-child,
+.ball:last-child {
+  opacity: 0.5;
+}
+
+.ball.infected {
+  width: 24px;
+  height: 24px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: #ff656d;
+}
+
+.ball.recovered {
+  width: 24px;
+  height: 24px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: #62dcb6;
+}
+
+
+.ball1 {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+}
+
+.ball2 {
+  position: absolute;
+  right: 12px;
+  top: 25px;
+}
+
+.ball3 {
+  position: absolute;
+  right: 55px;
+  top: 67px;
+}
+
+.wall {
+  position: absolute;
+  left: 50%;
+  margin-left: -2.5px;
+  width: 5px;
+  height: 100%;
+  background: #d4d6dc;
+}
