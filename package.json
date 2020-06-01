@@ -26,7 +26,8 @@
     "eject": "react-scripts eject",
     "gitResetChanges": "git checkout package.json",
     "ghPagesHomepage": "npx json -I -f package.json -e 'this.homepage=\"http://pacorampas.github.io/coronavirus-game-react\"'",
-    "deploy": "npm run ghPagesHomepage && npm run build && gh-pages -d build && npm run gitResetChanges"
+    "ghpages": "npm run ghPagesHomepage && npm run build && gh-pages -d build && npm run gitResetChanges",
+    "deploy": "yarn build && make docker"
   },
   "eslintConfig": {
     "extends": "react-app"
