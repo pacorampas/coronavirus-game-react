@@ -10,6 +10,7 @@ import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import CookiesMessage from './components/CookiesMessage'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
+import TranslationService from 'services/TranslationService'
 
 function openFullscreen() {
   if (document.body.requestFullscreen) {
@@ -84,23 +85,23 @@ function Home({ setScreenActive }) {
     <div className={styles.home}>
       <div className={styles.wrapper}>
 
-        <h1 className={styles.coronaTime}>APLANA LA CURVA</h1>
+        <h1 className={styles.coronaTime}>{TranslationService.t('home.name')}</h1>
         <div className={styles.bestPoints}>
-          <p>MEJOR PUNTUACIÓN</p>
-          <h2>{bestScore} pts</h2>
+          <p>{TranslationService.t('home.bestScore')}</p>
+          <h2>{bestScore} {TranslationService.t('home.pts')}</h2>
         </div>
         <Button 
           className={styles.button}
           variant="primary"
           onClick={handleClickGame}
         >
-          <IconPlay className={styles.icon} />JUGAR AHORA
+          <IconPlay className={styles.icon} />{TranslationService.t('home.playNow')}
         </Button>
         <Button 
           className={styles.button}
           onClick={handleClickOnBoarding}
         >
-          ¿CÓMO FUNCIONA?
+          {TranslationService.t('home.howItWorks')}
         </Button>
         <CookiesMessage />
         {showModalPortrait &&
