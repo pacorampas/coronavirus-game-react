@@ -20,8 +20,8 @@ class TranslationService {
     })
   }
 
-  t(key) {
-    return i18next.t(key)
+  t(key, opts) {
+    return i18next.t(key, opts)
   }
 }
 

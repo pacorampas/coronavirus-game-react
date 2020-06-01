@@ -1,4 +1,7 @@
 const es = {
+  cookiesMessage: {
+     message: '          Usamos cookies de dos servicios de terceros que usamos para mejorar la experiencia para el usuario. Si quieres saber más sobre ellso visita: {{linkFirebase}} y {{linkAnalytics}}'
+  },
   game: {
     wave: 'OLEADA',
     pts: 'pts',

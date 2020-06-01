@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import AppService from 'services/AppService'
 import Button from 'components/button/Button'
 import { ReactComponent as CookieImage } from './cookies-couple.svg'
+import TranslateService from 'services/TranslationService'
 import styles from './CookiesMessage.module.css'
 
 function CookiesMessage() {
@@ -29,9 +30,13 @@ function CookiesMessage() {
         <div className={styles.cookieImgWrapper}>
           <CookieImage className={styles.cookieImg} />
         </div>
-        <span>
-          Usamos cookies de dos servicios de terceros que usamos para mejorar la experiencia para el usuario. Si quieres saber más sobre ellso visita: <a href="https://firebase.google.com/" target="_blank">Firebase</a> y <a href="https://marketingplatform.google.com/intl/es/about/analytics/" target="_blank">Google Analytics</a>   
-        </span>
+        <span dangerouslySetInnerHTML={{ __html: 
+            TranslateService.t('cookiesMessage.message', { 
+            linkFirebase: '<a href="https://firebase.google.com/" target="_blank">Firebase</a>',
+            linkAnalytics: '<a href="https://marketingplatform.google.com/intl/es/about/analytics/" target="_blank">Google Analytics</a>',
+            interpolation: { escapeValue: false }
+          }) 
+        }} />
       </p>
      
       <Button className={styles.button} variant="primary" size="tiny" onClick={handleAcceptCookies}>Entendido</Button>
