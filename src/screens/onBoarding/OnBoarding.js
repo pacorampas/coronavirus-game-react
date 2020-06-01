@@ -118,7 +118,8 @@ function OnBorading({ setScreenActive, showComplete }) {
   if (showComplete) {
     slides.push([
       <OnBoardingSlidesActions id={['sprint', 'socialDistancing']} name="slide" />,
-      <OnBoardingItemSlides id={['mask', 'medical', 'shop', 'dog']} name="slide" />
+      <OnBoardingItemSlides id={['mask', 'medical', 'shop', 'dog']} name="slide" />,
+      <OnBoardingWall id="wall" name="slide" />
     ])
   }
 

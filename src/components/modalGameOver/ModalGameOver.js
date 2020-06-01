@@ -9,6 +9,7 @@ import CarouselItem from 'components/carousel/CarouselItem'
 import OnBoardingReady from 'screens/onBoarding/components/onBoardingReady/OnBoardingReady'
 import ContentPoints from './ContentPoints'
 import AppService from 'services/AppService'
+import TranslationsService from 'services/TranslationService'
 
 import styles from './ModalGameOver.module.css'
 
@@ -89,13 +90,7 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
             setSlideActive('mask')
           }}
         />,
-        <CarouselItem id="wall" name="slide">
-          <OnBoardingItem
-            title="MURO DE CUARENTENA"
-            text="¡Cuidado! De vez en cuando puede aparecer un muro para aislar a los infectados."
-            content={<OnBoardingWall />}
-          />
-        </CarouselItem>,
+        <OnBoardingWall id="wall" name="slide" />,
         <OnBoardingReady id="ready" name="slide" onPlay={handleOnPlay} />
       )
       break

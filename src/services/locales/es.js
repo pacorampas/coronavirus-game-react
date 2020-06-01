@@ -1,4 +1,9 @@
 const es = {
+  game: {
+    wave: 'OLEADA',
+    pts: 'pts',
+    seconds: 's'
+  },
   home: {
     name: 'APLANA LA CURVA',
     bestScore: 'MEJOR PUNTUACIÓN',
@@ -49,6 +54,23 @@ const es = {
   onBoradingReady: {
     title: '¡YA ESTÁ TODO LISTO!',
     play: 'JUGAR'
+  },
+  onBoardingWall: {
+    title: 'MURO DE CUARENTENA',
+    text: '¡Cuidado! De vez en cuando puede aparecer un muro para aislar a los infectados.'
+  },
+  modalGameOver: {
+    contentPoints: {
+      title: '¡SE ACABÓ!',
+      score: 'Puntuación',
+      pts: 'pts',
+      timeBonus: 'Bonus de tiempo',
+      bestScore: 'Tu mejor puntuación',
+      newRecord: '¡NUEVO RECORD!',
+      restart: 'REINTENTAR',
+      close: 'SALIR',
+      tip: 'CONSEJO'
+    }
   }
 }
 

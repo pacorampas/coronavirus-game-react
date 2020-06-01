@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import TranslationService from 'services/TranslationService'
 import { timerNextItem } from './items'
 import { quarentineWallAction } from './actions'
 
@@ -11,14 +12,14 @@ export const initTimerText = function () {
     fill: '#333333',
     align: 'right',
   })
-  this.ownVars.timeText.setText(`${time}s`)
+  this.ownVars.timeText.setText(`${time}${TranslationService.t('game.seconds')}`)
   this.ownVars.timeText.setAlpha(0.9)
 }
 
 export const timer = function () {
   const { player, time, timeText } = this.ownVars
 
-  timeText && timeText.setText(`${time}s`)
+  timeText && timeText.setText(`${time}${TranslationService.t('game.seconds')}`)
 
   this.time.addEvent({
     delay: 1000,
@@ -374,14 +375,14 @@ export class WavesManager {
     if (!this.waveText) {
       return
     }
-    this.waveText.setText(`OLEADA ${this.wave}`)
+    this.waveText.setText(`${TranslationService.t('game.wave')} ${this.wave}`)
   }
 
   updatePointsText() {
     if (!this.pointsText) {
       return
     }
-    this.pointsText.setText(`${this.points}pts`)
+    this.pointsText.setText(`${this.points}${TranslationService.t('game.pts')}`)
   }
 
   timerNextItem() {

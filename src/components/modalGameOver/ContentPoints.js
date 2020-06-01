@@ -9,6 +9,8 @@ import { ReactComponent as IconPlay } from './iconPlay.svg'
 import styles from './ContentPoints.module.css'
 import CarouselItem from 'components/carousel/CarouselItem'
 import AppService from 'services/AppService'
+import TranslationsService from 'services/TranslationService'
+
 
 
 function ContentPoints({ state, newBest, points, bonusTime, showTip, onAccept, onCancel, onTip, ...rest }) {
@@ -87,31 +89,31 @@ function ContentPoints({ state, newBest, points, bonusTime, showTip, onAccept, o
   return (
     <CarouselItem className={styles.wrapper} {...rest}>
     
-      <h1 className={styles.title}>¡SE ACABÓ!</h1>
+      <h1 className={styles.title}>{TranslationsService.t('modalGameOver.contentPoints.title')}</h1>
       
       <div className={styles.wrapperPoints}>
 
         <div className={styles.wrapperRecord}>
-          <p className={styles.text}>Puntuación</p>
+          <p className={styles.text}>score</p>
           <p className={styles.points}>
-            {(points + Number(countUp))} pts
+            {(points + Number(countUp))} {TranslationsService.t('modalGameOver.contentPoints.pts')}
           </p>
         </div>
 
         <div className={c(styles.bonusTimeWrapper, showBonusTimeWrapper && styles.show)}>
 
           <div className={c(styles.bonusTimeWrapperAnim, showBonusTime && styles.show)}>
-            <p className={styles.text}>Bonus de tiempo</p>
+            <p className={styles.text}>{TranslationsService.t('modalGameOver.contentPoints.timeBonus')}</p>
             <p className={styles.bonusPoints}>+ {bonusTime - Number(countUp)}</p>
           </div>
 
           <div className={c(styles.bonusTimeWrapperAnim, showLastBest && styles.show)}>
-            <p className={styles.text}>Tu mejor puntuación</p>
+            <p className={styles.text}>{TranslationsService.t('modalGameOver.contentPoints.bestScore')}</p>
             <p className={styles.bonusPoints}>{bestScore}</p>
           </div>
 
           <div className={c(styles.bonusTimeWrapperAnim, showNewBestText && styles.show)}>
-            <p className={styles.bonusPoints}>¡NUEVO RECORD!</p>
+            <p className={styles.bonusPoints}>{TranslationsService.t('modalGameOver.contentPoints.newRecord')}</p>
           </div>
         </div>
 
@@ -131,14 +133,14 @@ function ContentPoints({ state, newBest, points, bonusTime, showTip, onAccept, o
             variant="primary"
             onClick={hanldeClickRestart}
           >
-            <IconPlay className={styles.icon} />REINTENTAR
+            <IconPlay className={styles.icon} />{TranslationsService.t('modalGameOver.contentPoints.restart')}
           </Button>
           <Button 
             className={styles.button} 
             variant="negative"
             onClick={hanldeClickExit}
           >
-            <IconExit className={styles.icon} />SALIR
+            <IconExit className={styles.icon} />{TranslationsService.t('modalGameOver.contentPoints.close')}
           </Button>
         </div>
         :
@@ -148,7 +150,7 @@ function ContentPoints({ state, newBest, points, bonusTime, showTip, onAccept, o
             variant="primary"
             onClick={hanldeClickTip}
           >
-            <IconPlay className={styles.icon} />CONSEJO
+            <IconPlay className={styles.icon} />{TranslationsService.t('modalGameOver.contentPoints.tip')}
           </Button>
         </div>
       }
