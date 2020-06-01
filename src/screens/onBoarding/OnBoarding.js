@@ -16,7 +16,6 @@ import CarouselIndicator from 'components/carousel/CarouselIndicator'
 import MobileDetect from 'mobile-detect'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
-import { ReactComponent as CookieImage } from './components/assets/cookies-couple.svg'
 
 import styles from './OnBoarding.module.css'
 import AppService from 'services/AppService'
@@ -54,8 +53,6 @@ function OnBorading({ setScreenActive, showComplete }) {
     const screenWindth = window.innerWidth
     const screenHeight = window.innerHeight
     const isLandscape = screenWindth > screenHeight
-
-    AppService.setCookiesAccepted()
 
     if (
       !isLandscape && 
@@ -121,18 +118,6 @@ function OnBorading({ setScreenActive, showComplete }) {
     slides.push([
       <OnBoardingSlidesActions id={['sprint', 'socialDistancing']} name="slide" />,
       <OnBoardingItemSlides id={['mask', 'medical', 'shop', 'dog']} name="slide" />
-    ])
-  }
-
-  if (!AppService.getCookiesAccepted()) {
-    slides.push([
-      <CarouselItem id="cookies" name="slide">
-        <OnBoardingItem
-          title="USAMOS COOKIES"
-          text="Usamos cookies de Firebase y Google Analytics. Dos herramientas que nos permiten desarrollar el juego y hacer un seguimiento de los usuarios."
-          content={<CookieImage style={{ width: '100px', height: '100px' }} />}
-        />
-      </CarouselItem>
     ])
   }
 

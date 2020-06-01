@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background: #eee;
+  max-width: 400px;
+  font-family: FiraSans-Regular;
+  border-radius: 6px;
+  margin-top: 24px;
+}
+
+.wrapper a {
+  font-family: FiraSans-Heavy;
+  text-decoration: none;
+  line-height: 1.5;
+  color: #8671ff;
+}
+
+.wrapper p {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.cookieImgWrapper {
+  position: relative;;
+  width: 30px;
+  height: 30px;
+  margin-right: 12px;
+}
+
+.cookieImg {
+  width: 30px;
+  height: 30px;
+}
+
+.button {
+  align-self: flex-end;
+  margin-top: 3px;
+}

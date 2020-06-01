@@ -7,6 +7,7 @@ import { ReactComponent as IconPlay } from './iconPlay.svg'
 import AppService from 'services/AppService'
 import MobileDetect from 'mobile-detect'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
+import CookiesMessage from './components/CookiesMessage'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
 
@@ -101,6 +102,7 @@ function Home({ setScreenActive }) {
         >
           ¿CÓMO FUNCIONA?
         </Button>
+        <CookiesMessage />
         {showModalPortrait &&
           <ModalPortraitToLandscape 
             state={ANIMATE_STATES.entering} 
