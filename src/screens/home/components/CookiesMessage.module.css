@@ -3,10 +3,9 @@
   flex-direction: column;
   padding: 12px;
   background: #eee;
-  max-width: 400px;
   font-family: FiraSans-Regular;
   border-radius: 6px;
-  margin-top: 24px;
+  margin: 12px;
 }
 
 .wrapper a {
