@@ -5,6 +5,7 @@ import MobileDetect from 'mobile-detect'
 import { ReactComponent as IconSprint } from '../assets/icoSprint.svg'
 import { ReactComponent as IconConfination } from '../assets/icoConfination.svg'
 import useOwnIdActive from '../../useOwnIdActive'
+import TranslationsService from 'services/TranslationService'
 import styles from './OnBoardingSlidesActions.module.css'
 
 function OnBoardingSlidesActions({ 
@@ -26,7 +27,7 @@ function OnBoardingSlidesActions({
     >
       <div className={styles.titles}>
         <h1 className={styles.title}>
-          ACCIONES
+          {TranslationsService.t('onBoradingItemSlidesActions.title')}
         </h1>
       </div>
       <div className={styles.content}>
@@ -40,20 +41,20 @@ function OnBoardingSlidesActions({
       <div className={c(styles.slides, styles[`active${ownIdActive}`])}>
        
         <div className={styles.slide}>
-          <h2 className={c(styles.subTitle, styles.butonActionColor)}>Sprint</h2>
+          <h2 className={c(styles.subTitle, styles.butonActionColor)}>{TranslationsService.t('onBoradingItemSlidesActions.sprint')}</h2>
           {mobileDetect.mobile() ?
-            <p className={styles.text}>Para sprintar pulsa este botón o haz un doble toque hacia una dirección. Depués no podrás usarlo por un tiempo.</p>
+            <p className={styles.text}>{TranslationsService.t('onBoradingItemSlidesActions.sprintTextMobile')}</p>
           : 
-            <p className={styles.text}>Para sprintar haz un doble toque hacia una dirección. Depués no podrás usarlo por un tiempo.</p>
+            <p className={styles.text}>{TranslationsService.t('onBoradingItemSlidesActions.sprintTextDesktop')}</p>
           }
         </div>
 
         <div className={styles.slide}>
-          <h2 className={c(styles.subTitle, styles.butonActionColor)}>Distancia social</h2>
+          <h2 className={c(styles.subTitle, styles.butonActionColor)}>{TranslationsService.t('onBoradingItemSlidesActions.socialDistancing')}</h2>
           {mobileDetect.mobile() ?
-            <p className={styles.text}>Al pulsarlo algunas de las bolas quedarán quietas. Úsalo con cabeza, puedes hacerlo solo una vez por oleada.</p>
+            <p className={styles.text}>{TranslationsService.t('onBoradingItemSlidesActions.socialDistancingMobile')}</p>
           : 
-            <p className={styles.text}>Usa la tecla E para parar algunas bolas. Solo un uso por oleada.</p>
+            <p className={styles.text}>{TranslationsService.t('onBoradingItemSlidesActions.socialDistancingDesktop')}</p>
         }
         </div>
       </div>

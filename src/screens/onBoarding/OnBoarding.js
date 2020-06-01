@@ -19,6 +19,7 @@ import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalP
 
 import styles from './OnBoarding.module.css'
 import AppService from 'services/AppService'
+import TranslationsService from 'services/TranslationService'
 
 function openFullscreen() {
   if (document.body.requestFullscreen) {
@@ -81,16 +82,16 @@ function OnBorading({ setScreenActive, showComplete }) {
   const slides = [
     <CarouselItem id="goal" name="slide">
       <OnBoardingItem
-        title="OBJETIVO DEL JUEGO"
-        text="Esquiva a las bolas infectadas para conseguir sobrevivir a la pandemia."
+        title={TranslationsService.t('onBoarding.goal.title')}
+        text={TranslationsService.t('onBoarding.goal.text')}
         content={<OnBoardingItemBalls variant="infected" />}
       />
     </CarouselItem>,
     (mobileDetect.mobile() ?
       <CarouselItem id="directions" name="slide">
         <OnBoardingItem
-          title="MOVIMIENTO"
-          text="Sobre cualquier parte de la pantalla haz un deslizamiento rápido hacia la dirección a la que quieres ir."
+          title={TranslationsService.t('onBoarding.directions.mobile.title')}
+          text={TranslationsService.t('onBoarding.directions.mobile.text')}
           content={<OnBoardingItemTouches />}
 
         />
@@ -98,8 +99,8 @@ function OnBorading({ setScreenActive, showComplete }) {
       :
       <CarouselItem id="directions" name="slide">
         <OnBoardingItem
-          title="MOVIMIENTO"
-          text="Usa las flechas del teclado para esquivar las bolas infectadas."
+          title={TranslationsService.t('onBoarding.directions.desktop.title')}
+          text={TranslationsService.t('onBoarding.directions.desktop.text')}
           content={<OnBoardingItemArrows />}
 
         />
@@ -107,8 +108,8 @@ function OnBorading({ setScreenActive, showComplete }) {
     ),
     <CarouselItem id="waves" name="slide">
       <OnBoardingItem
-        title="OLEADAS"
-        text="Cuando todas las bolas se recuperen puede comenzar otra oleada. Sigue alerta."
+        title={TranslationsService.t('onBoarding.waves.title')}
+        text={TranslationsService.t('onBoarding.waves.text')}
         content={<OnBoardingItemBalls variant="recovered" />}
       />
     </CarouselItem>

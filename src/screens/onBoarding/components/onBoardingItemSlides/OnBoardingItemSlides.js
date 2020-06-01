@@ -3,6 +3,7 @@ import c from 'classnames'
 import OnBoradingItemIcons from '../onBoardingItemIcons/OnBoardingItemIcons'
 import CarouselItem from 'components/carousel/CarouselItem'
 import useOwnIdActive from '../../useOwnIdActive'
+import TranslationsService from 'services/TranslationService'
 import styles from './OnBoardingItemSlides.module.css'
 
 function OnBoardingItemSlides({ 
@@ -20,7 +21,7 @@ function OnBoardingItemSlides({
     >
       <div className={styles.titles}>
         <h1 className={styles.title}>
-          BONIFICACIONES
+          {TranslationsService.t('onBoradingItemSlides.title')}
         </h1>
       </div>
       <div className={styles.content}>
@@ -29,27 +30,27 @@ function OnBoardingItemSlides({
       <div className={c(styles.slides, styles[`active${ownIdActive}`])}>
        
         <div className={styles.slide}>
-          <h2 className={c(styles.subTitle, styles['mask'])}>Mascarilla</h2>
-          <p className={styles.text}>Recógela para que puedas moverte libremente sin que las bolas infectadas te afecten. Tiene 1 solo uso.</p>
+          <h2 className={c(styles.subTitle, styles['mask'])}>{TranslationsService.t('onBoradingItemSlides.mask')}</h2>
+          <p className={styles.text}>{TranslationsService.t('onBoradingItemSlides.maskText')}</p>
         </div>
 
         <div className={styles.slide}>
-          <h2 className={c(styles.subTitle, styles['medical'])}>Kit Médico</h2>
-          <p className={styles.text}>Recógelo y podrás curar a las bolas infectadas. Tiene 1 solo uso.</p>
+          <h2 className={c(styles.subTitle, styles['medical'])}>{TranslationsService.t('onBoradingItemSlides.medicalKit')}</h2>
+          <p className={styles.text}>{TranslationsService.t('onBoradingItemSlides.medicalKitText')}</p>
         </div>
 
         <div className={styles.slide}>
           <h2 className={c(styles.subTitle, styles['shop'])}>
-              Ir a Comprar
+            {TranslationsService.t('onBoradingItemSlides.shop')}
           </h2>
-          <p className={styles.text}>A pesar de la pandemia hay que hacer la compra, cuando veas este objeto recógelo y obten puntos.</p>
+          <p className={styles.text}>{TranslationsService.t('onBoradingItemSlides.shopText')}</p>
         </div>
 
         <div className={styles.slide}>
           <h2 className={c(styles.subTitle, styles['dog'])}>
-              Pasear al perro
+            {TranslationsService.t('onBoradingItemSlides.dog')}
           </h2>
-          <p className={styles.text}>Tu mascota sigue necesitando cuidados. Al recogerlo obtendrás puntos, igual que al ir a la compra.</p>
+          <p className={styles.text}>{TranslationsService.t('onBoradingItemSlides.dogText')}</p>
         </div>
       </div>
     </CarouselItem>
