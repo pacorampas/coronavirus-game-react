@@ -22,7 +22,9 @@
   height: 24px;
   margin: 0 4px;
   border-radius: 50%;
-  background: #ff656d;
+  background: url(../assets/virus.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .ball.recovered {
