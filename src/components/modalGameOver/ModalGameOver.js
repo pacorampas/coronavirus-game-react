@@ -15,7 +15,7 @@ import TranslationsService from 'services/TranslationService'
 import styles from './ModalGameOver.module.css'
 
 
-function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, ...rest }) {
+function ModalGameOver({ state, newBest, points, totalPoints, bonusTime, onAccept, onCancel, ...rest }) {
   const [slideActive, setSlideActive] = useState('points')
 
   const handleOnChange = ({ activeId }) => {
@@ -110,7 +110,7 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
 
   return (
     <Modal state={state} {...rest}>
-      <ShareButton className={styles.shareButton} />
+      <ShareButton className={styles.shareButton} score={totalPoints} />
       <Carousel className={styles.wrapper} active={slideActive} onChange={handleOnChange}>
         {items}        
       </Carousel>

@@ -17,7 +17,7 @@ import TranslateService from 'services/TranslationService'
 
 import styles from './ShareButton.module.css'
 
-function ShareButton({ ...rest }) {
+function ShareButton({ score, ...rest }) {
   const [stateModal, setStateModal] = useState(ANIMATE_STATES.waitingToEnter)
   const [stateCopied, setStateCopied] = useState(ANIMATE_STATES.waitingToEnter)
   const copyTextRef = useRef()
@@ -60,13 +60,15 @@ function ShareButton({ ...rest }) {
     setStateCopied(ANIMATE_STATES.entering)
   }
 
+  
   const url = TranslateService.t('shareButton.url')
   const message = TranslateService.t('shareButton.message', {
     url,
-    score: 100
+    score
   })
+
   const message2 = TranslateService.t('shareButton.message2', {
-    score: 100
+    score
   })
 
   return (
@@ -101,7 +103,7 @@ function ShareButton({ ...rest }) {
             </a>
           </div>
 
-          <textarea className={c(styles.text, animationClassCopy)} ref={copyTextRef} readonly>{message}</textarea>
+          <textarea className={c(styles.text, animationClassCopy)} ref={copyTextRef} readonly value={message} />
 
           <Button className={styles.button} onClick={handleClose}>{TranslateService.t('shareButton.close')}</Button>
         </div>

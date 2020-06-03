@@ -22,6 +22,7 @@ function Game({ setScreenActive }) {
   const [showModalGameOver, setShowModalGameOver] = useState(false)
   const [exit, setExit] = useState(false)
   const [points, setPoints] = useState(0)
+  const [totalPoints, setTotalPoints] = useState(0)
   const [bonusTime, setBonusTime] = useState(0)
   const [newBest, setNewBest] = useState(false)
   const [gameSize, setGameSize] = useState(desktopGameSize)
@@ -68,7 +69,6 @@ function Game({ setScreenActive }) {
   useEffect(() => {
     const handleGameOver = async ({ time, points, wave }) => {
       const newBonusPoints = Math.round(time * 2.683)
-      setPoints(points)
       setBonusTime(newBonusPoints)
       const newBest = await AppService.setNewPuntation({ 
         totalPoints: newBonusPoints + points,
@@ -76,6 +76,8 @@ function Game({ setScreenActive }) {
         time,
         wave
       })
+      setPoints(points)
+      setTotalPoints(newBonusPoints + points)
       AppService.logEvent('gameOver', { 
         'event_category': 'game', 
         'event_label': 'game',
@@ -122,6 +124,7 @@ function Game({ setScreenActive }) {
             className={styles.modal}
             state={modalState} 
             points={points}
+            totalPoints={totalPoints}
             bonusTime={bonusTime}
             newBest={newBest}
             onAccept={hanldeAcceptModal} 

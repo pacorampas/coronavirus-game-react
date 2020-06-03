@@ -82,8 +82,7 @@ function Home({ setScreenActive }) {
 
   const handleModalPortraitCancel = () => {
     setShowModalPortrait(false)
-  }
-  
+  }  
  
   return (
     <div className={c(styles.home,  mobileDetect.mobile() && styles.isMobile)}>
@@ -94,7 +93,7 @@ function Home({ setScreenActive }) {
           <div className={styles.bestPoints}>
             <p>{TranslationService.t('home.bestScore')}</p>
             <h2>{bestScore} {TranslationService.t('home.pts')}</h2>
-            <ShareButton className={styles.shareButton} />
+            <ShareButton className={styles.shareButton} score={bestScore} />
           </div>
         </header>
         
