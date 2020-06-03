@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/coronavirus-game-react/static/css/main.020eef81.chunk.css",
-    "main.js": "/coronavirus-game-react/static/js/main.74ff0516.chunk.js",
-    "main.js.map": "/coronavirus-game-react/static/js/main.74ff0516.chunk.js.map",
+    "main.js": "/coronavirus-game-react/static/js/main.8fd94f0c.chunk.js",
+    "main.js.map": "/coronavirus-game-react/static/js/main.8fd94f0c.chunk.js.map",
     "runtime-main.js": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js",
     "runtime-main.js.map": "/coronavirus-game-react/static/js/runtime-main.db404fd4.js.map",
-    "static/js/2.42e67c4a.chunk.js": "/coronavirus-game-react/static/js/2.42e67c4a.chunk.js",
-    "static/js/2.42e67c4a.chunk.js.map": "/coronavirus-game-react/static/js/2.42e67c4a.chunk.js.map",
+    "static/js/2.2e90be87.chunk.js": "/coronavirus-game-react/static/js/2.2e90be87.chunk.js",
+    "static/js/2.2e90be87.chunk.js.map": "/coronavirus-game-react/static/js/2.2e90be87.chunk.js.map",
     "index.html": "/coronavirus-game-react/index.html",
-    "precache-manifest.8789d606e7f749844b817b3fd036265f.js": "/coronavirus-game-react/precache-manifest.8789d606e7f749844b817b3fd036265f.js",
+    "precache-manifest.07d35318d3132e7a76bb0c2f19122e7d.js": "/coronavirus-game-react/precache-manifest.07d35318d3132e7a76bb0c2f19122e7d.js",
     "service-worker.js": "/coronavirus-game-react/service-worker.js",
     "static/css/main.020eef81.chunk.css.map": "/coronavirus-game-react/static/css/main.020eef81.chunk.css.map",
-    "static/js/2.42e67c4a.chunk.js.LICENSE.txt": "/coronavirus-game-react/static/js/2.42e67c4a.chunk.js.LICENSE.txt",
+    "static/js/2.2e90be87.chunk.js.LICENSE.txt": "/coronavirus-game-react/static/js/2.2e90be87.chunk.js.LICENSE.txt",
     "static/media/arrow.019860d6.svg": "/coronavirus-game-react/static/media/arrow.019860d6.svg",
     "static/media/arrows.72108207.svg": "/coronavirus-game-react/static/media/arrows.72108207.svg",
     "static/media/cookies-couple.575617d3.svg": "/coronavirus-game-react/static/media/cookies-couple.575617d3.svg",
@@ -31,8 +31,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.db404fd4.js",
-    "static/js/2.42e67c4a.chunk.js",
+    "static/js/2.2e90be87.chunk.js",
     "static/css/main.020eef81.chunk.css",
-    "static/js/main.74ff0516.chunk.js"
+    "static/js/main.8fd94f0c.chunk.js"
   ]
 }
