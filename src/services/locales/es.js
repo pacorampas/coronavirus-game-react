@@ -86,6 +86,18 @@ const es = {
   },
   safariMessage: {
     message: 'Hemos detectado que eres usuario de <b>iOS</b>. Te <b>recomendamos usar Safari</b>. Así, tendrás más espacio para jugar, puesto que Apple solo permite a este navegador ocultar la barra de direcciones.'
+  },
+  dialogQuestion: {
+    title: 'Nos gustaría hacerte una pregunta',
+    text: 'Hemos observado que has jugado unas cuanta partidas por eso nos interesa mucho tu opinión. ¿Te parece difícil el juego?:',
+    title2: '¡Wow! Ya has jugado muchas partidas',
+    text2: 'Por eso nos interesa mucho tu opinión, ¿qué dificultad piensas que tiene el juego?',
+    option1: 'Muy fácil',
+    option2: 'Fácil',
+    option3: 'Moderado',
+    option4: 'Difícil',
+    option5: 'Muy difícil',
+    thanks: 'Muchas gracias por tu respuesta :)'
   }
 }
 

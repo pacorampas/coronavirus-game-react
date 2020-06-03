@@ -1,7 +1,11 @@
+export const FIRST_QUESTION_COUNT = 20
+export const SECOND_QUESTION_COUNT = 80
+
 class AppService {
   constructor() {
     const historyJson = localStorage.getItem('history')
     this.history = historyJson ? JSON.parse(historyJson) : []
+    this.countGames = 0
     this.firestore = window.firebase.firestore()
     this.bestScore = { totalPoints: 0, wave: 0, points: 0, time: 0 }
 
@@ -16,6 +20,13 @@ class AppService {
         if (user) {
           this.user = user
           resolve(this.user)
+
+          const resp = await this.firestore
+            .collection('users')
+            .doc(user.uid)
+            .get()
+
+          this.countGames = (resp.data() && resp.data().countGames) || 0
         }
       })
     })
@@ -93,6 +104,17 @@ class AppService {
 
   logEvent() {
     window.firebase.analytics().logEvent.apply(null, arguments)
+  }
+
+  getCountGames() {
+    return this.countGames
+  }
+
+  incrementCountGames() {
+    const { uid } = this.user
+    this.countGames = this.countGames + 1
+    this.firestore.collection('users').doc(uid).set({ countGames: this.countGames })
+    return this.countGames
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from 'components/modal/Modal'
 import Carousel from 'components/carousel/Carousel'
 import OnBoardingSlidesActions from 'screens/onBoarding/components/onBoardingSlidesActions/OnBoardingSlidesActions'
@@ -8,15 +8,23 @@ import OnBoardingItem from 'screens/onBoarding/OnBoardingItem'
 import CarouselItem from 'components/carousel/CarouselItem'
 import OnBoardingReady from 'screens/onBoarding/components/onBoardingReady/OnBoardingReady'
 import ContentPoints from './ContentPoints'
-import AppService from 'services/AppService'
+import AppService, { FIRST_QUESTION_COUNT, SECOND_QUESTION_COUNT } from 'services/AppService'
 import ShareButton from 'components/shareButton/ShareButton'
 import TranslationsService from 'services/TranslationService'
+import DialogQuestion from 'components/dialogQuestion/DialogQuestion'
+
 
 import styles from './ModalGameOver.module.css'
 
 
 function ModalGameOver({ state, newBest, points, totalPoints, bonusTime, onAccept, onCancel, ...rest }) {
   const [slideActive, setSlideActive] = useState('points')
+  const [countGames, setCountGames] = useState(0)
+
+  useEffect(() => {
+    const count = AppService.incrementCountGames()
+    setCountGames(count)
+  }, [])
 
   const handleOnChange = ({ activeId }) => {
     setSlideActive(activeId)
@@ -114,6 +122,9 @@ function ModalGameOver({ state, newBest, points, totalPoints, bonusTime, onAccep
       <Carousel className={styles.wrapper} active={slideActive} onChange={handleOnChange}>
         {items}        
       </Carousel>
+      {console.log(countGames)}
+      {countGames === FIRST_QUESTION_COUNT && <DialogQuestion state={2} />}
+      {countGames === SECOND_QUESTION_COUNT && <DialogQuestion state={2} question2 />}
     </Modal>
   );
 }

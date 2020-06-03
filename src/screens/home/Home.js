@@ -16,6 +16,9 @@ import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalP
 import TranslationService from 'services/TranslationService'
 
 
+import DialogQuestion from 'components/dialogQuestion/DialogQuestion'
+
+
 function openFullscreen() {
   if (document.body.requestFullscreen) {
     document.body.requestFullscreen()
@@ -123,6 +126,8 @@ function Home({ setScreenActive }) {
             onCancel={handleModalPortraitCancel} 
           />
         }
+        
+        {/* <DialogQuestion state={2} /> */}
         {/* <ModalGameOver state={2} points={3000} bonusTime={376} newBest={false} /> */}
         {/* <ModalPortraitToLandscape state={2} /> */}
       </div>

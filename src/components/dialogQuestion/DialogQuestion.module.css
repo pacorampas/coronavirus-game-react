@@ -1,0 +1,144 @@
+.content {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.title {
+  font-family: FiraSans-SemiBold;
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+  margin: 0 0 6px;
+}
+
+.text {
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none; /*remove the resize handle on the bottom right*/
+  background: transparent;
+
+  width: 100%;
+
+  font-family: FiraSans-Regular;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+  user-select: none;
+
+  border: solid 2px #ddd;
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 12px;
+
+  height: auto;
+  width: 300px;
+  width: calc(100% - 48px);
+
+  margin: 0 0 24px;
+}
+
+.text::selection {
+  color: inherit;
+  background: transparent;
+}
+
+.items {
+  width: 300px;
+  margin: 0 auto 24px;
+  cursor: pointer;
+}
+
+.item {
+  border: solid 2px #ddd;
+  background-color: #eee;
+  color: #333;
+  padding: 12px;
+  margin: 0 0 12px;
+  transition: all 0.3s;
+}
+
+.itemActive {
+  border: solid 2px #009dffdb;
+  background-color: #009dff;
+  color: #fff;
+}
+
+.button {
+  margin: 0 auto;
+}
+
+.thankWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0);
+
+  animation-name: entering-bg;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.thank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -135px;
+  height: 100px;
+  width: 250px;
+  background-color: #009dffee;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 18px;
+  padding: 12px;
+  font-family: Firasans-Bold;
+  transform: translate3d(0, 100px, 0);
+  opacity: 0;
+
+  animation-name: entering;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes entering-bg {
+  from {
+    background-color: rgba(0,0,0,0);
+  }
+  to {
+    background-color: rgba(0,0,0,0.4);
+  }
+}
+
+@keyframes entering {
+  from {
+    transform: translate3d(0, 100px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
