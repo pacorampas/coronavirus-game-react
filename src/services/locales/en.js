@@ -1,6 +1,7 @@
 const en = {
   cookiesMessage: {
-    message: 'We use cookies from two third-party services in order to improve user experience. For more information, see: {{linkFirebase}} and {{linkAnalytics}}'
+    message: 'We use cookies from two third-party services in order to improve user experience. For more information, see: {{linkFirebase}} and {{linkAnalytics}}',
+    accept: 'Accept'
   },
   game: {
     wave: 'WAVE',
@@ -82,6 +83,9 @@ const en = {
     close: 'CLOSE',
     copied: '¡Copy!',
     title: 'SHARE ON SOCIAL NETWORKS'
+  },
+  safariMessage: {
+    message: 'Hemos detectado que eres usuario de <b>iOS</b>, te <b>recomendamos usar Safari</b> porque tendrás más espacio mientras juega porque Apple solo permite a este navegador ocultar la barra de direcciones. La magia de Apple...'
   }
 }
 

@@ -9,7 +9,8 @@ import { ReactComponent as IconPlay } from './iconPlay.svg'
 import AppService from 'services/AppService'
 import MobileDetect from 'mobile-detect'
 import { ANIMATE_STATES } from 'utils/useAnimationEnd'
-import CookiesMessage from './components/CookiesMessage'
+import CookiesMessage from './components/cookiesMessage/CookiesMessage'
+import SafariMessage from './components/safariMessage/SafariMessage'
 import ModalGameOver from 'components/modalGameOver/ModalGameOver'
 import ModalPortraitToLandscape from 'components/modalPortraitToLandscape/ModalPortraitToLandscape'
 import TranslationService from 'services/TranslationService'
@@ -88,26 +89,34 @@ function Home({ setScreenActive }) {
     <div className={c(styles.home,  mobileDetect.mobile() && styles.isMobile)}>
       <div className={styles.wrapper}>
 
-        <h1 className={styles.coronaTime}>{TranslationService.t('home.name')}</h1>
-        <div className={styles.bestPoints}>
-          <p>{TranslationService.t('home.bestScore')}</p>
-          <h2>{bestScore} {TranslationService.t('home.pts')}</h2>
-          <ShareButton className={styles.shareButton} />
+        <header className={styles.header}>
+          <h1 className={styles.coronaTime}>{TranslationService.t('home.name')}</h1>
+          <div className={styles.bestPoints}>
+            <p>{TranslationService.t('home.bestScore')}</p>
+            <h2>{bestScore} {TranslationService.t('home.pts')}</h2>
+            <ShareButton className={styles.shareButton} />
+          </div>
+        </header>
+        
+        <div className={styles.content}>
+          <div className={styles.scrollable}>
+            <Button 
+              className={styles.button}
+              variant="primary"
+              onClick={handleClickGame}
+            >
+              <IconPlay className={styles.icon} />{TranslationService.t('home.playNow')}
+            </Button>
+            <Button 
+              className={styles.button}
+              onClick={handleClickOnBoarding}
+            >
+              {TranslationService.t('home.howItWorks')}
+            </Button>
+            <CookiesMessage />
+            <SafariMessage />
+          </div>
         </div>
-        <Button 
-          className={styles.button}
-          variant="primary"
-          onClick={handleClickGame}
-        >
-          <IconPlay className={styles.icon} />{TranslationService.t('home.playNow')}
-        </Button>
-        <Button 
-          className={styles.button}
-          onClick={handleClickOnBoarding}
-        >
-          {TranslationService.t('home.howItWorks')}
-        </Button>
-        <CookiesMessage />
         {showModalPortrait &&
           <ModalPortraitToLandscape 
             state={ANIMATE_STATES.entering} 

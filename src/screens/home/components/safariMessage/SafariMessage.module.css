@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background: rgb(255, 168, 19);
+  font-family: FiraSans-Regular;
+  border-radius: 6px;
+  margin: 12px;
+}
+
+.wrapper a {
+  font-family: FiraSans-Heavy;
+  text-decoration: none;
+  line-height: 1.5;
+  color: #8671ff;
+}
+
+.wrapper p {
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.865);
+  display: flex;
+}
+
+.wrapper p b {
+  color: #fff;
+  font-family: FiraSans-Bold;
+}
+
+.cookieImgWrapper {
+  position: relative;;
+  width: 30px;
+  height: 30px;
+  margin-right: 12px;
+}
+
+.cookieImg {
+  width: 30px;
+  height: 30px;
+}
+
+.button {
+  align-self: flex-end;
+  margin-top: 3px;
+}

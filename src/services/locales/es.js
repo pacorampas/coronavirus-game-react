@@ -1,6 +1,7 @@
 const es = {
   cookiesMessage: {
-    message: 'Usamos cookies de dos servicios de terceros con el fin de mejorar la experiencia para el usuario. Para más información, visita: {{linkFirebase}} y {{linkAnalytics}}'
+    message: 'Usamos cookies de dos servicios de terceros con el fin de mejorar la experiencia para el usuario. Para más información, visita: {{linkFirebase}} y {{linkAnalytics}}',
+    accept: 'Entendido'
   },
   game: {
     wave: 'OLEADA',
@@ -82,6 +83,9 @@ const es = {
     close: 'CERRAR',
     copied: '¡Copiado!',
     title: 'COMPARTE EN REDES SOCIALES'
+  },
+  safariMessage: {
+    message: 'Hemos detectado que eres usuario de <b>iOS</b>, te <b>recomendamos usar Safari</b> porque tendrás más espacio mientras juega porque Apple solo permite a este navegador ocultar la barra de direcciones. La magia de Apple...'
   }
 }
 

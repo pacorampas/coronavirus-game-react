@@ -39,7 +39,7 @@ function CookiesMessage() {
         }} />
       </p>
      
-      <Button className={styles.button} variant="primary" size="tiny" onClick={handleAcceptCookies}>Entendido</Button>
+      <Button className={styles.button} variant="primary" size="tiny" onClick={handleAcceptCookies}>{TranslateService.t('cookiesMessage.accept')}</Button>
     </div>
   );
 }
