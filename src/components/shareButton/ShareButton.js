@@ -85,7 +85,7 @@ function ShareButton({ ...rest }) {
             <a href={`https://twitter.com/intent/tweet?url=${url}&text=${message2}`} target="_blank" rel="noopener noreferrer">
               <Icon className={styles.icon} width="64px" icon={twitterIcon} />
             </a>
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}&${message2}`} target="_blank" rel="noopener noreferrer">
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${message2}`} target="_blank" rel="noopener noreferrer">
               <Icon className={styles.icon} width="64px" icon={facebookIcon} />
             </a>
             {mobileDetect.mobile() && 
@@ -101,8 +101,7 @@ function ShareButton({ ...rest }) {
             </a>
           </div>
 
-          {/* <p ref={copyTextRef}  className={styles.text}>Comparte con tus amigos tu puntuación y anímales a que jueguen</p> */}
-          <textarea className={c(styles.text, animationClassCopy)} ref={copyTextRef}>{message}</textarea>
+          <textarea className={c(styles.text, animationClassCopy)} ref={copyTextRef} readonly>{message}</textarea>
 
           <Button className={styles.button} onClick={handleClose}>{TranslateService.t('shareButton.close')}</Button>
         </div>

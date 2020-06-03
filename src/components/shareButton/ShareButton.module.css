@@ -48,6 +48,7 @@
 
   height: auto;
   width: 300px;
+  width: calc(100% - 48px);
 
   margin: 0 0 24px;
 }
@@ -60,6 +61,7 @@
 .icons {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin: 0 0 12px;
   cursor: pointer;
 }
