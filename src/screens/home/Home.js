@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import c from 'classnames'
 import { SCREENS_IDS } from 'App'
 import Button from 'components/button/Button'
+import ShareButton from 'components/shareButton/ShareButton'
 import styles from './Home.module.css'
 import { ReactComponent as IconPlay } from './iconPlay.svg'
 import AppService from 'services/AppService'
@@ -91,6 +92,7 @@ function Home({ setScreenActive }) {
         <div className={styles.bestPoints}>
           <p>{TranslationService.t('home.bestScore')}</p>
           <h2>{bestScore} {TranslationService.t('home.pts')}</h2>
+          <ShareButton className={styles.shareButton} />
         </div>
         <Button 
           className={styles.button}

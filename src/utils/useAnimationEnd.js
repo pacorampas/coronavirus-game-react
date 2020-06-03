@@ -63,8 +63,8 @@ const useAnimationEnd = ({ onStateChange, state, metadata, styles, classPrefix }
   }, [animateRef, handleStateChangeMemo])
 
   const getCSSClass = useCallback(() => {
-    return styles && mapStateWithClassCSSModule({ state, styles, classPrefix })
-  }, [state, styles, classPrefix])
+    return styles && mapStateWithClassCSSModule({ state: stateInternal, styles, classPrefix })
+  }, [stateInternal, styles, classPrefix])
 
   const animationClass = getCSSClass()
 
@@ -110,6 +110,7 @@ export const mapStateWithClassCSSModule = ({ state, styles, classPrefix }) => {
   if (!classPrefixPar) {
     classPrefixPar = 'spark-animation'
   }
+
   switch (state) {
     case ANIMATE_STATES.waitingToEnter:
       return styles[`${classPrefixPar}--waiting-to-enter`]

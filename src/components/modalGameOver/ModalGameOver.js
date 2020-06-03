@@ -9,6 +9,7 @@ import CarouselItem from 'components/carousel/CarouselItem'
 import OnBoardingReady from 'screens/onBoarding/components/onBoardingReady/OnBoardingReady'
 import ContentPoints from './ContentPoints'
 import AppService from 'services/AppService'
+import ShareButton from 'components/shareButton/ShareButton'
 import TranslationsService from 'services/TranslationService'
 
 import styles from './ModalGameOver.module.css'
@@ -109,6 +110,7 @@ function ModalGameOver({ state, newBest, points, bonusTime, onAccept, onCancel, 
 
   return (
     <Modal state={state} {...rest}>
+      <ShareButton className={styles.shareButton} />
       <Carousel className={styles.wrapper} active={slideActive} onChange={handleOnChange}>
         {items}        
       </Carousel>

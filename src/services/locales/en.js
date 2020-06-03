@@ -1,79 +1,87 @@
 const en = {
   cookiesMessage: {
-     message: '          Usamos cookies de dos servicios de terceros que usamos para mejorar la experiencia para el usuario. Si quieres saber más sobre ellso visita: {{linkFirebase}} y {{linkAnalytics}}'
+    message: 'We use cookies from two third-party services in order to improve user experience. For more information, see: {{linkFirebase}} and {{linkAnalytics}}'
   },
   game: {
-    wave: 'OLEADA',
+    wave: 'WAVE',
     pts: 'pts',
     seconds: 's'
   },
   home: {
-    name: 'APLANA LA CURVA',
-    bestScore: 'MEJOR PUNTUACIÓN',
+    name: 'FLATTEN THE CURVE',
+    bestScore: 'BEST SCORE',
     pts: 'pts',
-    playNow: 'JUGAR AHORA',
-    howItWorks:' ¿CÓMO FUNCIONA?'
+    playNow: 'PLAY NOW',
+    howItWorks: 'HOW DOES IT WORK?'
   },
   onBoradingItemSlides: {
-    title: 'BONIFICACIONES',
-    mask: 'Mascarilla',
-    maskText: 'Recógela para que puedas moverte libremente sin que las bolas infectadas te afecten. Tiene 1 solo uso.',
-    medicalKit: 'Kit Médico',
-    medicalKitText: 'Recógelo y podrás curar a las bolas infectadas. Tiene 1 solo uso.',
-    shop: 'Ir a Comprar',
-    shopText: 'A pesar de la pandemia hay que hacer la compra, cuando veas este objeto recógelo y obten puntos.',
-    dog: 'Pasear al perro',
-    dogText: 'Tu mascota sigue necesitando cuidados. Al recogerlo obtendrás puntos, igual que al ir a la compra.'
+    title: 'ITEMS',
+    mask: 'Mask',
+    maskText: 'Take it to move freely without being affected by the infected balls. 1 use only',
+    medicalKit: 'Medical Kit',
+    medicalKitText: 'Take it to cure the infected balls. 1 use only.',
+    shop: 'Grocery Shopping',
+    shopText: 'Despite the pandemic, we have to go shopping. When you see this item, collect it to get points.',
+    dog: 'Walking the Dog',
+    dogText: 'Your pet still needs care. When you collect it, you get points, just like Grocery Shopping.'
   },
   onBoradingItemSlidesActions: {
-    title: 'ACCIONES',
+    title: 'ACTIONS',
     sprint: 'Sprint',
-    sprintTextMobile: 'Para sprintar haz un doble toque hacia una dirección. Depués no podrás usarlo por un tiempo.',
-    sprintTextDesktop: 'Para sprintar haz un doble toque hacia una dirección. Depués no podrás usarlo por un tiempo.',
-    socialDistancing: 'Distancia social',
-    socialDistancingMobile: 'Al pulsarlo algunas de las bolas quedarán quietas. Úsalo con cabeza, puedes hacerlo solo una vez por oleada.',
-    socialDistancingDesktop: 'Usa la tecla E para parar algunas bolas. Solo un uso por oleada.'
+    sprintTextMobile: 'To sprint, swipe your finger twice in a row on the screen in the same direction. Then you won\'t be able to use it for a while.',
+    sprintTextDesktop: 'To sprint, double-tap any of the keyboard arrows. Then you won\'t be able to use it for a while.',
+    socialDistancing: 'Social Distancing',
+    socialDistancingMobile: 'When tapped, some of the balls remain still. Use it carefully, since you can only use it once per wave.',
+    socialDistancingDesktop: 'Press the E key to make some balls stay still. Use it carefully, since you can only use it once per wave.'
   },
   onBoarding: {
     goal: {
-      title: 'OBJETIVO DEL JUEGO',
-      text: 'Esquiva a las bolas infectadas para conseguir sobrevivir a la pandemia.',
+      title: 'GOAL OF THE GAME',
+      text: 'Dodge the infected balls to survive the pandemic.',
     },
     directions: {
       desktop: {
-        title: 'MOVIMIENTO',
-        text: 'Usa las flechas del teclado para esquivar las bolas infectadas.'
+        title: 'MOVEMENT',
+        text: 'Use the keyboard arrows to dodge the infected balls.'
       },
       mobile: {
-        title: 'MOVIMIENTO',
-        text: 'Sobre cualquier parte de la pantalla haz un deslizamiento rápido hacia la dirección a la que quieres ir.'
+        title: 'MOVEMENT',
+        text: 'Swipe your finger across any part of the screen in the direction you want to go.'
       },
     },
     waves: {
-      title: 'OLEADAS',
-      text: 'Cuando todas las bolas se recuperen puede comenzar otra oleada. Sigue alerta.',
+      title: 'WAVES',
+      text: 'When all the balls are recovered, another wave can begin. Stay alert!',
     },
   },
   onBoradingReady: {
-    title: '¡YA ESTÁ TODO LISTO!',
-    play: 'JUGAR'
+    title: 'EVERYTHING IS READY NOW!',
+    play: 'PLAY'
   },
   onBoardingWall: {
-    title: 'MURO DE CUARENTENA',
-    text: '¡Cuidado! De vez en cuando puede aparecer un muro para aislar a los infectados.'
+    title: 'QUARANTINE WALL',
+    text: 'Watch out! Occasionally, a wall may appear to isolate the infected.'
   },
   modalGameOver: {
     contentPoints: {
-      title: '¡SE ACABÓ!',
-      score: 'Puntuación',
+      title: 'GAME OVER!',
+      score: 'Score',
       pts: 'pts',
-      timeBonus: 'Bonus de tiempo',
-      bestScore: 'Tu mejor puntuación',
-      newRecord: '¡NUEVO RECORD!',
-      restart: 'REINTENTAR',
-      close: 'SALIR',
-      tip: 'CONSEJO'
+      timeBonus: 'Time Bonus',
+      bestScore: 'Your Best Score',
+      newRecord: 'NEW RECORD!',
+      restart: 'RETRY',
+      close: 'LEAVE',
+      tip: 'TIP'
     }
+  },
+  shareButton: {
+    message: 'My record is {{score}} points in {{url}}',
+    message2: 'My record is {{score}} pts',
+    url: 'www.aplanalacurva.fun',
+    close: 'CLOSE',
+    copied: '¡Copy!',
+    title: 'SHARE ON SOCIAL NETWORKS'
   }
 }
 

@@ -18,6 +18,10 @@
   cursor: pointer;
 }
 
+.button.smallPadding {
+  padding: 12px;
+}
+
 .button:active {
   background-color: #a6a6a6;
 

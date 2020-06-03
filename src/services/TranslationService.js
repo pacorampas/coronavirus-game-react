@@ -15,8 +15,6 @@ class TranslationService {
           translation: es
         }
       }
-    }, () => {
-      console.log( i18next.t('hello'))
     })
   }
 

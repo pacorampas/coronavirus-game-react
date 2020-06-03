@@ -1,6 +1,6 @@
 const es = {
   cookiesMessage: {
-     message: '          Usamos cookies de dos servicios de terceros que usamos para mejorar la experiencia para el usuario. Si quieres saber más sobre ellso visita: {{linkFirebase}} y {{linkAnalytics}}'
+    message: 'Usamos cookies de dos servicios de terceros con el fin de mejorar la experiencia para el usuario. Para más información, visita: {{linkFirebase}} y {{linkAnalytics}}'
   },
   game: {
     wave: 'OLEADA',
@@ -12,27 +12,27 @@ const es = {
     bestScore: 'MEJOR PUNTUACIÓN',
     pts: 'pts',
     playNow: 'JUGAR AHORA',
-    howItWorks:' ¿CÓMO FUNCIONA?'
+    howItWorks: '¿CÓMO FUNCIONA?'
   },
   onBoradingItemSlides: {
-    title: 'BONIFICACIONES',
+    title: 'OBJETOS',
     mask: 'Mascarilla',
-    maskText: 'Recógela para que puedas moverte libremente sin que las bolas infectadas te afecten. Tiene 1 solo uso.',
-    medicalKit: 'Kit Médico',
-    medicalKitText: 'Recógelo y podrás curar a las bolas infectadas. Tiene 1 solo uso.',
-    shop: 'Ir a Comprar',
-    shopText: 'A pesar de la pandemia hay que hacer la compra, cuando veas este objeto recógelo y obten puntos.',
+    maskText: 'Recógela para moverte libremente sin que las bolas infectadas te contagien. Tiene 1 solo uso.',
+    medicalKit: 'Kit médico',
+    medicalKitText: 'Recógelo para curar a las bolas infectadas. Tiene 1 solo uso.',
+    shop: 'Hacer la compra',
+    shopText: 'A pesar de la pandemia, hay que ir a comprar. Cuando veas este objeto, recógelo para obtener puntos.',
     dog: 'Pasear al perro',
-    dogText: 'Tu mascota sigue necesitando cuidados. Al recogerlo obtendrás puntos, igual que al ir a la compra.'
+    dogText: 'Tu mascota sigue necesitando cuidados. Al recogerlo obtendrás puntos, al igual que hacer la compra.'
   },
   onBoradingItemSlidesActions: {
     title: 'ACCIONES',
     sprint: 'Sprint',
-    sprintTextMobile: 'Para sprintar haz un doble toque hacia una dirección. Depués no podrás usarlo por un tiempo.',
-    sprintTextDesktop: 'Para sprintar haz un doble toque hacia una dirección. Depués no podrás usarlo por un tiempo.',
-    socialDistancing: 'Distancia social',
-    socialDistancingMobile: 'Al pulsarlo algunas de las bolas quedarán quietas. Úsalo con cabeza, puedes hacerlo solo una vez por oleada.',
-    socialDistancingDesktop: 'Usa la tecla E para parar algunas bolas. Solo un uso por oleada.'
+    sprintTextMobile: 'Para sprintar, deliza el dedo dos veces seguidas sobre la pantalla hacia la misma dirección. Depués no podrás usarlo por un tiempo.',
+    sprintTextDesktop: 'Para sprintar, pulsa dos veces seguidas cualquiera de las flechas del teclado. Depués no podrás usarlo por un tiempo.',
+    socialDistancing: 'Distanciamiento social',
+    socialDistancingMobile: 'Al pulsarlo, algunas de las bolas se quedarán quietas. Úsalo con cabeza, ya que puedes hacerlo solo una vez por oleada.',
+    socialDistancingDesktop: 'Pulsa la tecla E para que algunas bolas se queden quietas. Úsalo con cabeza, ya que puedes hacerlo solo una vez por oleada.'
   },
   onBoarding: {
     goal: {
@@ -42,16 +42,16 @@ const es = {
     directions: {
       desktop: {
         title: 'MOVIMIENTO',
-        text: 'Usa las flechas del teclado para esquivar las bolas infectadas.'
+        text: 'Usa las flechas del teclado para esquivar a las bolas infectadas.'
       },
       mobile: {
         title: 'MOVIMIENTO',
-        text: 'Sobre cualquier parte de la pantalla haz un deslizamiento rápido hacia la dirección a la que quieres ir.'
+        text: 'Desliza el dedo rápidamente sobre cualquier parte de la pantalla hacia la dirección a la que quieras ir.'
       },
     },
     waves: {
       title: 'OLEADAS',
-      text: 'Cuando todas las bolas se recuperen puede comenzar otra oleada. Sigue alerta.',
+      text: 'Cuando todas las bolas se recuperan, puede comenzar otra oleada. ¡Sigue alerta!',
     },
   },
   onBoradingReady: {
@@ -60,7 +60,7 @@ const es = {
   },
   onBoardingWall: {
     title: 'MURO DE CUARENTENA',
-    text: '¡Cuidado! De vez en cuando puede aparecer un muro para aislar a los infectados.'
+    text: '¡Cuidado! De vez en cuando, puede aparecer un muro para aislar a los infectados.'
   },
   modalGameOver: {
     contentPoints: {
@@ -69,11 +69,19 @@ const es = {
       pts: 'pts',
       timeBonus: 'Bonus de tiempo',
       bestScore: 'Tu mejor puntuación',
-      newRecord: '¡NUEVO RECORD!',
+      newRecord: '¡NUEVO RÉCORD!',
       restart: 'REINTENTAR',
       close: 'SALIR',
       tip: 'CONSEJO'
     }
+  },
+  shareButton: {
+    message: 'Mi récord es de {{score}} puntos en {{url}}',
+    message2: 'Mi récord es de {{score}} pts',
+    url: 'www.aplanalacurva.fun',
+    close: 'CERRAR',
+    copied: '¡Copiado!',
+    title: 'COMPARTE EN REDES SOCIALES'
   }
 }
 

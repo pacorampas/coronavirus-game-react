@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <g fill="none" fill-rule="evenodd">
+        <path d="M0 0L32 0 32 32 0 32z" transform="matrix(-1 0 0 1 32 0)"/>
+        <path fill="#000B32" fill-rule="nonzero" d="M13.333 12V9.88c0-1.187-1.44-1.787-2.28-.947l-6.12 6.12c-.52.52-.52 1.36 0 1.88l6.12 6.12c.84.84 2.28.254 2.28-.933v-2.253C20 19.867 24.667 22 28 26.667 26.667 20 22.667 13.333 13.333 12z" transform="matrix(-1 0 0 1 32 0)"/>
+    </g>
+</svg>

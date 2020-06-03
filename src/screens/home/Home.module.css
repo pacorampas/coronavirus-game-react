@@ -59,6 +59,15 @@
   position: absolute;
   top: 24px;
   right: 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.shareButton {
+  width: fit-content;
+  margin-top: 6px;
 }
 
 .bestPoints h2 {

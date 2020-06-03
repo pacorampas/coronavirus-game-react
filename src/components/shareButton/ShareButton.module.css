@@ -1,0 +1,194 @@
+.content {
+  position: relative;
+  text-align: center;
+}
+
+.title {
+  font-family: FiraSans-SemiBold;
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 1px;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+  margin: 0 0 6px;
+}
+
+.text {
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none; /*remove the resize handle on the bottom right*/
+  background: transparent;
+
+  width: 100%;
+
+  font-family: FiraSans-Regular;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: rgba(0, 11, 50, 0.8);
+  user-select: none;
+
+  border: solid 2px #ddd;
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 12px;
+
+  height: auto;
+  width: 300px;
+
+  margin: 0 0 24px;
+}
+
+.text::selection {
+  color: inherit;
+  background: transparent;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 12px;
+  cursor: pointer;
+}
+
+.icon {
+  padding: 12px;
+}
+
+.button {
+  margin: 0 auto;
+}
+
+.copied {
+  width: 120px;
+  font-family: FiraSans-Regular;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  background: #009dffdb;
+  padding: 6px 0;
+  border-radius: 12px;
+  display: inline-block;
+
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  margin-left: -60px;
+}
+
+
+.copied.copied--waiting-to-enter {
+  opacity: 0;
+  transform: translate3d(0, -20px, 0);
+}
+
+.copied.copied--entering {
+  animation-name: copied-entering;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.copied.copied--entered {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.copied.copied--leaving {
+  animation-name: copied-leaving;
+  animation-duration: .1s;
+  animation-fill-mode: forwards;
+}
+
+.copied.copied--left {
+  opacity: 0;
+  transform: translate3d(0, -20px, 0);
+}
+
+@keyframes copied-entering {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes copied-leaving {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
+
+.text.copied--entering {
+  animation-name: text-entering;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+.text.copied--entered {
+  color: #fff;
+  background-color: #009dffdb;
+  border-color: #009dff;
+}
+
+.text.copied--leaving {
+  animation-name: text-leaving;
+  animation-duration: .1s;
+  animation-fill-mode: forwards;
+}
+
+.text.copied--left {
+  background-color: #eee;
+}
+
+@keyframes text-entering {
+  from {
+    color: #000;
+    background-color: #eee;
+    border-color: #ddd;
+  }
+  to {
+    color: #fff;
+    background-color: #009dffdb;
+    border-color: #009dff;
+  }
+}
+
+@keyframes text-leaving {
+  from {
+    color: #fff;
+    background-color: #009dffdb;
+    border-color: #009dff;
+  }
+  to {
+    color: #000;
+    background-color: #eee;
+    border-color: #ddd;
+  }
+}

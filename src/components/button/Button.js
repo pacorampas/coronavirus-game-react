@@ -2,14 +2,15 @@ import React from 'react'
 import c from 'classnames'
 import styles from './Button.module.css'
 
-function Button({ children, className, size, variant, ...rest }) {
+function Button({ children, className, size, variant, smallPadding, ...rest }) {
   return (
     <button 
       className={c(
         className,
         styles.button,
         styles[variant],
-        styles[size]
+        styles[size],
+        smallPadding && styles.smallPadding
       )}
       {...rest}
     >
