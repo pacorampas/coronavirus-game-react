@@ -85,7 +85,7 @@ const es = {
     title: 'COMPARTE EN REDES SOCIALES'
   },
   safariMessage: {
-    message: 'Hemos detectado que eres usuario de <b>iOS</b>, te <b>recomendamos usar Safari</b> porque tendrás más espacio mientras juega porque Apple solo permite a este navegador ocultar la barra de direcciones. La magia de Apple...'
+    message: 'Hemos detectado que eres usuario de <b>iOS</b>. Te <b>recomendamos usar Safari</b>. Así, tendrás más espacio para jugar, puesto que Apple solo permite a este navegador ocultar la barra de direcciones.'
   }
 }
 
