@@ -35,8 +35,7 @@ function DialogQuestion({ state, question2, ...rest }) {
     >
       <div className={styles.content}>
         
-        <h1 className={styles.title}>{TranslateService.t('dialogQuestion.title')}</h1>
-        {question2 ?
+        {!question2 ?
           <>
             <h1 className={styles.title}>{TranslateService.t('dialogQuestion.title')}</h1>
             <p>{TranslateService.t('dialogQuestion.text')}</p>
