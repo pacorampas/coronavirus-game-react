@@ -91,7 +91,7 @@ const en = {
     title: 'We would like to ask you a question',
     text: 'We’ve observed that you’ve played a few times, and we really want to hear about your opinion. Does the game seem difficult to you?:',
     title2: 'Wow! You’ve played many times',
-    text2: 'We really want to hear about your opinion, how difficult you find the game?',
+    text2: 'We really want to hear about your opinion, how difficult do you find the game?',
     option1: 'Very easy',
     option2: 'Easy',
     option3: 'Medium',
