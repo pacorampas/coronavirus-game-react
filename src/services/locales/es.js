@@ -98,6 +98,12 @@ const es = {
     option4: 'Difícil',
     option5: 'Muy difícil',
     thanks: 'Muchas gracias por tu respuesta :)'
+  },
+  toLandscape: {
+    title: 'Úsame en horizantal',
+    title2: 'Perfecto, ya puedes comenzar',
+    play: 'JUGAR',
+    cancel: 'CANCELAR'
   }
 }
 

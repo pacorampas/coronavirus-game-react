@@ -98,7 +98,7 @@ function Game({ setScreenActive }) {
     const urlParams = new URLSearchParams(window.location.search)
     const ballsLenghtPar = urlParams.get('balls')
 
-    const ballsLenght = mobileDetect.mobile() ? ballsLenghtPar || 8 : ballsLenghtPar || 15
+    const ballsLenght = mobileDetect.mobile() ? ballsLenghtPar || 10 : ballsLenghtPar || 18
     game.current = initGame('coronavirusGame', ballsLenght, 0, false, false, handleGameOver, gameSize)
 
     return () => {

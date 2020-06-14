@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import c from 'classnames'
 import Modal from 'components/modal/Modal'
 import Button from 'components/button/Button'
+import TranslateService from 'services/TranslationService'
 import { ReactComponent as IconPlay } from './iconPlay.svg'
 import styles from './ModalPortraitToLandscape.module.css'
 
@@ -38,8 +39,8 @@ function ModalPortraitToLandscape({ state, onAccept, onCancel, ...rest }) {
 
           <div className={styles.wrapperRecord}>
             {!isLandscape ? 
-              <p className={styles.title}>Úsame en horizantal</p> :
-              <p className={styles.title}>Perfecto, ya puedes comenzar</p>
+              <p className={styles.title}>{TranslateService.t('toLandscape.title')}</p> :
+              <p className={styles.title}>{TranslateService.t('toLandscape.title2')}</p>
             }
           </div>
 
@@ -50,14 +51,14 @@ function ModalPortraitToLandscape({ state, onAccept, onCancel, ...rest }) {
             variant="primary"
             onClick={hanldeClickRestart}
           >
-            <IconPlay className={styles.icon} />JUGAR
+            <IconPlay className={styles.icon} />{TranslateService.t('toLandscape.play')}
           </Button>
           <Button 
             className={styles.button} 
             variant="negative"
             onClick={hanldeClickExit}
           >
-            CANCELAR
+            {TranslateService.t('toLandscape.cancel')}
           </Button>
         </div>
       </div>
