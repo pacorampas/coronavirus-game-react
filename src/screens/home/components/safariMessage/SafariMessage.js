@@ -11,9 +11,8 @@ function SafariMessage() {
   useEffect(() => {
     const mobileDetect = new MobileDetect(navigator.userAgent)
     setShowMessage(false)
-    const mobile = mobileDetect.mobile()
-    const agent = mobileDetect.userAgent()
-    if (mobile.toLowerCase() === 'iphone' && agent.toLowerCase() !== 'safari' ) {
+
+    if (mobileDetect.is('iPhone') && !mobileDetect.is('Safari')) {
       setShowMessage(true)
     }
   }, [])
