@@ -41,7 +41,8 @@ class AppService {
       points, 
       time, 
       wave,
-      date
+      date,
+      ts: Date.now()
     }
     
     // TODO save in local storage if connection is lost

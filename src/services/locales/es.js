@@ -89,7 +89,7 @@ const es = {
   },
   dialogQuestion: {
     title: 'Nos gustaría hacerte una pregunta',
-    text: 'Hemos observado que has jugado unas cuanta partidas por eso nos interesa mucho tu opinión. ¿Te parece difícil el juego?:',
+    text: 'Hemos observado que has jugado unas cuantas partidas y nos interesa mucho tu opinión. ¿El juego te parece difícil?:',
     title2: '¡Wow! Ya has jugado muchas partidas',
     text2: 'Por eso nos interesa mucho tu opinión, ¿qué dificultad piensas que tiene el juego?',
     option1: 'Muy fácil',

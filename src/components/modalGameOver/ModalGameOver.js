@@ -122,7 +122,6 @@ function ModalGameOver({ state, newBest, points, totalPoints, bonusTime, onAccep
       <Carousel className={styles.wrapper} active={slideActive} onChange={handleOnChange}>
         {items}        
       </Carousel>
-      {console.log(countGames)}
       {countGames === FIRST_QUESTION_COUNT && <DialogQuestion state={2} />}
       {countGames === SECOND_QUESTION_COUNT && <DialogQuestion state={2} question2 />}
     </Modal>

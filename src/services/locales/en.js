@@ -88,22 +88,22 @@ const en = {
     message: 'We have detected that you are an <b>iOS</b> user. We <b>recommend using Safari</b>. Thus, you will have more space to play, since Apple allows this browser only to hide the URL bar.'
   },
   dialogQuestion: {
-    title: 'Nos gustaría hacerte una pregunta',
-    text: 'Hemos observado que has jugado unas cuanta partidas por eso nos interesa mucho tu opinión. ¿Te parece difícil el juego?:',
-    title2: '¡Wow! Ya has jugado muchas partidas',
-    text2: 'Por eso nos interesa mucho tu opinión, ¿qué dificultad piensas que tiene el juego?',
-    option1: 'Muy fácil',
-    option2: 'Fácil',
-    option3: 'Moderado',
-    option4: 'Difícil',
-    option5: 'Muy difícil',
-    thanks: 'Muchas gracias por tu respuesta :)'
+    title: 'We would like to ask you a question',
+    text: 'We’ve observed that you’ve played a few times, and we really want to hear about your opinion. Does the game seem difficult to you?:',
+    title2: 'Wow! You’ve played many times',
+    text2: 'We really want to hear about your opinion, how difficult you find the game?',
+    option1: 'Very easy',
+    option2: 'Easy',
+    option3: 'Medium',
+    option4: 'Difficult',
+    option5: 'Very difficult',
+    thanks: 'Many thanks for your response :)'
   },
   toLandscape: {
-    title: 'Úsame en horizantal',
-    title2: 'Perfecto, ya puedes comenzar',
-    play: 'JUGAR',
-    cancel: 'CANCELAR'
+    title: 'Use me horizontally',
+    title2: 'Perfect, you can start now',
+    play: 'PLAY',
+    cancel: 'CANCEL'
   }
 }
 
